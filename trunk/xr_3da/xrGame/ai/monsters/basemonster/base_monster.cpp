@@ -526,23 +526,22 @@ void CBaseMonster::OnEvent(NET_Packet& P, u16 type)
 			pIItem->m_eItemPlace = eItemPlaceRuck;
 
 			O->H_SetParent		(this);
-			inventory().Take	(GO, true, true);
+			inventory().Take	(GO, false, false);
 		break;
 		}
 	case GE_TRADE_SELL:
-
 	case GE_OWNERSHIP_REJECT:
 		{
 			P.r_u16		(id);
-			CObject* O	= Level().Objects.net_Find	(id);
-			VERIFY		(O);
+			CObject* Obj = Level().Objects.net_Find(id);
+			Obj = Level().Objects.net_Find	(id);
+			bool just_before_destroy		= !P.r_eof() && P.r_u8();
+			bool dont_create_shell			= (type==GE_TRADE_SELL) || just_before_destroy;
 
-			bool just_before_destroy	= !P.r_eof() && P.r_u8();
-			O->SetTmpPreDestroy				(just_before_destroy);
-			if (inventory().DropItem(smart_cast<CGameObject*>(O)) && !O->getDestroy()) 
+			Obj->SetTmpPreDestroy			(just_before_destroy);
+			if (inventory().DropItem(smart_cast<CGameObject*>(Obj), dont_create_shell && !Obj->getDestroy(), just_before_destroy))
 			{
-				O->H_SetParent	(0,just_before_destroy);
-				feel_touch_deny	(O,2000);
+				feel_touch_deny(Obj, 2000);
 			}
 		}
 		break;
