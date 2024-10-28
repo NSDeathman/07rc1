@@ -63,7 +63,6 @@ public:
 
 	IC void			SetAlign				(u32 align)					{uAlign=align;};
 	IC u32			GetAlign				()							{return uAlign;}
-
-	IC void			SetMirrorMode			(EUIMirroring m)			{ eMirrorMode = m; }
-	IC EUIMirroring GetMirrorMode			()							{ return eMirrorMode; }
+	IC virtual void			SetMirrorMode			(EUIMirroring m)			{ eMirrorMode = m; }
+	IC virtual EUIMirroring GetMirrorMode			()							{ return eMirrorMode; }
 };

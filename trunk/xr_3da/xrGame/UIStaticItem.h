@@ -58,6 +58,9 @@ public:
 	IC u32			GetColor		() const					{return dwColor;}
 	IC u32&			GetColorRef		()							{return dwColor;}
 	IC ref_shader&	GetShader		()							{return hShader;}
+
+	IC virtual void			SetMirrorMode			(EUIMirroring m)			{ eMirrorMode = m; }
+	IC virtual EUIMirroring GetMirrorMode			()							{ return eMirrorMode; }
 };
 
 extern ENGINE_API BOOL g_bRendering; 
