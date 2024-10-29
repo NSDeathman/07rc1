@@ -171,7 +171,7 @@ protected:
 	//и равномерно, а после просчета также изменяется текущая
 	//скорость и положение с учетом гравитации и ветра
 	//возвращаем true если пуля продолжает полет
-	bool					CalcBullet			(collide::rq_results & rq_storage, xr_vector<ISpatial*>& rq_spatial, SBullet* bullet, u32 delta_time);
+	bool					CalcBullet			(collide::rq_results & _rq_storage, xr_vector<ISpatial*>& _rq_spatial, SBullet* bullet, u32 delta_time);
 	void 		__stdcall	UpdateWorkload		();
 public:
 							CBulletManager		();

@@ -11,26 +11,26 @@
 
 using namespace luabind;
 
-bool r_eof(IReader *self)
+bool r_eof(IReader * _self)
 {
-	return			(!!self->eof());
+	return			(!!_self->eof());
 }
 
-LPCSTR r_stringZ(IReader *self)
+LPCSTR r_stringZ(IReader * _self)
 {
 	shared_str		temp;
-	self->r_stringZ	(temp);
+	_self->r_stringZ	(temp);
 	return			(*temp);
 }
 
-bool r_bool(IReader *self)
+bool r_bool(IReader * _self)
 {
-	return			(!!self->r_u8());
+	return			(!!_self->r_u8());
 }
 
-void r_fvector3(IReader *self, Fvector *arg0)
+void r_fvector3(IReader * _self, Fvector *arg0)
 {
-	self->r_fvector3(*arg0);
+	_self->r_fvector3(*arg0);
 }
 
 #pragma optimize("s",on)

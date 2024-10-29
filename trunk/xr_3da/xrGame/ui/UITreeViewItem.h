@@ -102,7 +102,7 @@ private:
 	friend class CUITreeViewItem;
 
 	// Применить состояние вверх по иерархии
-	void	CheckParentMark(CUITreeViewItem *pOwner);
+	void	CheckParentMark(CUITreeViewItem *_pOwner);
 	// Цвет текста когда артикл не прочитан
 	u32		m_uUnreadedColor;
 	// Цвет текста когда артикл не прочитан

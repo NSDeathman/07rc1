@@ -20,7 +20,7 @@ public:
 
 	void				update					();
 
-	void				force_corpse			(const CEntityAlive *corpse);
+	void				force_corpse			(const CEntityAlive *_corpse);
 	void				unforce_corpse			();
 
 	const CEntityAlive *get_corpse				() {return corpse;}

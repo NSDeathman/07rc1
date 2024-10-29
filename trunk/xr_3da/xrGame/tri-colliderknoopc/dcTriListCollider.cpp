@@ -11,10 +11,10 @@
 #include "../phdebug.h"
 #endif
 
-dcTriListCollider::dcTriListCollider(dxGeom* Geometry)
+dcTriListCollider::dcTriListCollider(dxGeom* _Geometry)
 {
-	this->Geometry = Geometry;
-	GeomData = (dxTriList*)dGeomGetClassData(Geometry);
+	this->Geometry = _Geometry;
+	GeomData = (dxTriList*)dGeomGetClassData(_Geometry);
 
 
 }

@@ -27,10 +27,10 @@ bool is_app_ready()
 	return !!g_appLoaded;
 }
 
-u32 time_global(const CRenderDevice *self)
+u32 time_global(const CRenderDevice * _self)
 {
 	THROW		(self);
-	return		(self->dwTimeGlobal);
+	return		(_self->dwTimeGlobal);
 }
 
 #pragma optimize("s",on)

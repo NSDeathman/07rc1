@@ -47,8 +47,8 @@ public:
 	}
 	void				_export		(NET_Packet& P)
 	{
-		u16	ID			=	M_EVENT;
-		P.w_begin		(ID			);
+		u16	_ID			=	M_EVENT;
+		P.w_begin		(_ID		);
 		P.w_u32			(timestamp	);
 		P.w_u16			(type		);
 		P.w_u16			(destination);

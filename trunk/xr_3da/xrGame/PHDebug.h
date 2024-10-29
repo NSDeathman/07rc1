@@ -82,8 +82,8 @@ enum
 };
 struct SPHObjDBGDraw
 {
-	Fvector AABB;
-	Fvector AABB_center;
+	Fvector m_AABB;
+	Fvector m_AABB_center;
 };
 
 DEFINE_VECTOR( SPHObjDBGDraw, PHOBJ_DBG_V, PHOBJ_DBG_I );
