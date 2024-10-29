@@ -303,10 +303,10 @@ void CActor::cam_Update(float dt, float fFOV)
 	
 	if( psActorFlags.test(AF_PSP) )
 	{
-		Cameras().Update			(C);
+		Cameras().UpdateFromCamera			(C);
 	}else
 	{
-		Cameras().Update			(cameras[eacFirstEye]);
+		Cameras().UpdateFromCamera			(cameras[eacFirstEye]);
 	}
 
 	fCurAVelocity			= vPrevCamDir.sub(cameras[eacFirstEye]->vDirection).magnitude()/Device.fTimeDelta;
@@ -314,7 +314,7 @@ void CActor::cam_Update(float dt, float fFOV)
 
 	if (Level().CurrentEntity() == this)
 	{
-		Level().Cameras().Update	(C);
+		Level().Cameras().UpdateFromCamera	(C);
 		if(eacFirstEye == cam_active && !Level().Cameras().GetCamEffector(cefDemo)){
 			Cameras().ApplyDevice	(_viewport_near);
 		}
@@ -327,7 +327,7 @@ void CActor::update_camera (CCameraShotEffector* effector)
 	if (!effector) return;
 	//	if (Level().CurrentViewEntity() != this) return;
 
-	CCameraBase* pACam = cam_FirstEye();
+	CCameraBase* pACam = cam_Active();
 	if (!pACam) return;
 
 	if (pACam->bClampPitch)
@@ -340,8 +340,8 @@ void CActor::update_camera (CCameraShotEffector* effector)
 
 	effector->ApplyLastAngles(&(pACam->pitch), &(pACam->yaw));
 
-	if (pACam->bClampYaw)	clamp(pACam->yaw,pACam->lim_yaw[0],pACam->lim_yaw[1]);
-	if (pACam->bClampPitch)	clamp(pACam->pitch,pACam->lim_pitch[0],pACam->lim_pitch[1]);
+	if (pACam->bClampYaw)	clamp(pACam->yaw, pACam->lim_yaw[0], pACam->lim_yaw[1]);
+	if (pACam->bClampPitch)	clamp(pACam->pitch, pACam->lim_pitch[0], pACam->lim_pitch[1]);
 }
 
 

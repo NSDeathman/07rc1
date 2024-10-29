@@ -34,39 +34,64 @@ CCameraBase::~CCameraBase()
 
 void CCameraBase::Load(LPCSTR section)
 {
-	rot_speed			= pSettings->r_fvector3	(section,"rot_speed");
+	rot_speed			= pSettings->r_fvector3(section, "rot_speed");
 
-	lim_yaw				= pSettings->r_fvector2	(section,"lim_yaw");
-	lim_pitch			= pSettings->r_fvector2	(section,"lim_pitch");
+	lim_yaw				= pSettings->r_fvector2(section, "lim_yaw");
+	lim_pitch			= pSettings->r_fvector2(section, "lim_pitch");
 
-	bClampPitch			= (0!=lim_pitch[0])||(0!=lim_pitch[1]);
-	bClampYaw			= (0!=lim_yaw[0])||(0!=lim_yaw[1]);
+	bClampPitch			= (0 != lim_pitch[0]) || (0 != lim_pitch[1]);
+	bClampYaw			= (0 != lim_yaw[0]) || (0 != lim_yaw[1]);
 
-	if (bClampPitch)	pitch = (lim_pitch[0]+lim_pitch[1])*0.5f;
-	if (bClampYaw)		yaw	  = (lim_yaw[0]+lim_yaw[1])*0.5f;
+	if (bClampPitch)
+		pitch			= (lim_pitch[0]+lim_pitch[1])*0.5f;
+	if (bClampYaw)
+		yaw				= (lim_yaw[0]+lim_yaw[1])*0.5f;
 }
 
-IC float AClamp(Fvector2& l, float v){
-	return (2*v-l[0]-l[1])/(l[1]-l[0]);
+IC float AClamp(Fvector2& l, float v)
+{
+	return (2 * v - l[0] - l[1]) / (l[1] - l[0]);
 }
 
-float CCameraBase::CheckLimYaw( ){
-	if (bClampYaw){
+float CCameraBase::CheckLimYaw()
+{
+	if (bClampYaw)
+	{
 		return AClamp(lim_yaw,yaw);
-	}else 
-		return 0;
+	}
+	return 0;
 }
 
-float CCameraBase::CheckLimPitch( ){
-	if (bClampYaw){
+float CCameraBase::CheckLimPitch()
+{
+	if (bClampYaw)
+	{
 		return AClamp(lim_pitch,pitch);
-	}else 
+	}
+	return 0;
+}
+
+float CCameraBase::CheckLimRoll()
+{
+	if (bClampYaw)
+	{
+		return AClamp(lim_roll,roll);
+	}
+	else 
 		return 0;
 }
 
-float CCameraBase::CheckLimRoll( ){
-	if (bClampYaw){
-		return AClamp(lim_roll,roll);
-	}else 
-		return 0;
+SCamEffectorInfo::SCamEffectorInfo()
+{
+	p.set(0, 0, 0);
+	d.set(0, 0, 1);
+	n.set(0, 1, 0);
+
+	fFov = 90.0f;
+	fFar = 100.0f;
+	fAspect = 1.f;
+	dont_apply = false;
+	affected_on_hud = true;
+	style = ECameraStyle::cs_forcedword;
+	parent = nullptr;
 }

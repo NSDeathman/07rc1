@@ -46,6 +46,7 @@ public:
     virtual void    save                            (IWriter &pWriter) = 0;
     virtual float   get_length                      () = 0;
     virtual size_t  get_keys_count                  () = 0;
+    virtual         ~CPostProcessParam              () = default;
 #ifdef _PP_EDITOR_
     virtual void    add_value                       (float time, float value, float t, float c, float b, int index = 0) = 0;
     virtual void    update_value                    (float time, float value, float t, float c, float b, int index = 0) = 0;

@@ -15,6 +15,7 @@
 #include "CustomHUD.h"
 
 CDemoRecord * xrDemoRecord = 0;
+CDemoRecord::force_position CDemoRecord::g_position = { false, { 0, 0, 0 } };
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction
@@ -26,6 +27,7 @@ CDemoRecord::CDemoRecord(const char *name,float life_time) : CEffectorCam(cefDem
 	file	= FS.w_open	(name);
 	if (file) 
 	{
+		g_position.set_position = false;
 		IR_Capture		();	// capture input
 		m_Camera.invert	(Device.mView);
 
@@ -60,10 +62,11 @@ CDemoRecord::CDemoRecord(const char *name,float life_time) : CEffectorCam(cefDem
 		m_fAngSpeed1	= pSettings->r_float("demo_record","ang_speed1");
 		m_fAngSpeed2	= pSettings->r_float("demo_record","ang_speed2");
 		m_fAngSpeed3	= pSettings->r_float("demo_record","ang_speed3");
-	} else {
+	}
+	else
+	{
 		fLifeTime = -1;
 	}
-	m_bOverlapped		= FALSE;
 }
 
 CDemoRecord::~CDemoRecord()
@@ -145,7 +148,6 @@ void CDemoRecord::MakeLevelMapProcess()
 		if (!psDeviceFlags.equal(s_dev_flags,rsFullscreen))Device.Reset();
 		break;
 	case DEVICE_RESET_PRECACHE_FRAME_COUNT+1:{
-		m_bOverlapped		= TRUE;
 		s_hud_flag.assign	(psHUD_Flags);
 		psHUD_Flags.assign	(0);
 
@@ -175,7 +177,6 @@ void CDemoRecord::MakeLevelMapProcess()
 
 		}break;
 	case DEVICE_RESET_PRECACHE_FRAME_COUNT+2:{
-		m_bOverlapped				= FALSE;
 		string_path tmp;
 		Fbox bb						= g_pGameLevel->ObjectSpace.GetBoundingVolume();
 
@@ -231,28 +232,32 @@ void CDemoRecord::MakeCubeMapFace(Fvector &D, Fvector &N)
 	m_Stage++;
 }
 
-BOOL CDemoRecord::Process(Fvector &P, Fvector &D, Fvector &N, float& fFov, float& fFar, float& fAspect)
+BOOL CDemoRecord::ProcessCam(SCamEffectorInfo& info)
 {
-	if (0==file)	return TRUE;
+	info.dont_apply = false;
+
+	if (0 == file)
+		return TRUE;
 
 	if (m_bMakeScreenshot)
 	{
 		MakeScreenshotFace();
 		// update camera
-		N.set(m_Camera.j);
-		D.set(m_Camera.k);
-		P.set(m_Camera.c);
+		info.n.set(m_Camera.j);
+		info.d.set(m_Camera.k);
+		info.p.set(m_Camera.c);
 	}
 	else if (m_bMakeLevelMap)
 	{
-			MakeLevelMapProcess();
+		MakeLevelMapProcess();
+		info.dont_apply = true;
 	}
 	else if (m_bMakeCubeMap)
 	{
-		fFov = 90.f;
-		MakeCubeMapFace(D,N);
-		P.set(m_Camera.c);
-		fAspect = 1.f;
+		info.fFov = 90.f;
+		MakeCubeMapFace(info.d, info.n);
+		info.p.set(m_Camera.c);
+		info.fAspect = 1.f;
 	}
 	else
 	{
@@ -287,16 +292,33 @@ BOOL CDemoRecord::Process(Fvector &P, Fvector &D, Fvector &N, float& fFov, float
 		m_vAngularVelocity.lerp	(m_vAngularVelocity,m_vR,0.3f);
 
 		float speed = m_fSpeed1, ang_speed = m_fAngSpeed1;
-		if (Console->IR_GetKeyState(DIK_LSHIFT))		{ speed=m_fSpeed0; ang_speed=m_fAngSpeed0;}
-		else if (Console->IR_GetKeyState(DIK_LALT))		{ speed=m_fSpeed2; ang_speed=m_fAngSpeed2;}
-		else if (Console->IR_GetKeyState(DIK_LCONTROL)) { speed=m_fSpeed3; ang_speed=m_fAngSpeed3;}
+
+		if (Console->IR_GetKeyState(DIK_LSHIFT))
+		{
+			speed = m_fSpeed0; ang_speed = m_fAngSpeed0;
+		}
+		else if (Console->IR_GetKeyState(DIK_LALT))
+		{
+			speed = m_fSpeed2; ang_speed = m_fAngSpeed2;
+		}
+		else if (Console->IR_GetKeyState(DIK_LCONTROL))
+		{
+			speed = m_fSpeed3;
+			ang_speed = m_fAngSpeed3;
+		}
+		
 		m_vT.mul				(m_vVelocity, Device.fTimeDelta * speed);
 		m_vR.mul				(m_vAngularVelocity, Device.fTimeDelta * ang_speed);
 
 		m_HPB.x -= m_vR.y;
 		m_HPB.y -= m_vR.x;
 		m_HPB.z += m_vR.z;
-
+		if(g_position.set_position)
+		{
+			m_Position.set(g_position.p);
+			g_position.set_position = false;
+		} else
+			g_position.p.set( m_Position );
 		// move
 		Fvector vmove;
 
@@ -319,9 +341,9 @@ BOOL CDemoRecord::Process(Fvector &P, Fvector &D, Fvector &N, float& fFov, float
 		m_Camera.translate_over	(m_Position);
 
 		// update camera
-		N.set(m_Camera.j);
-		D.set(m_Camera.k);
-		P.set(m_Camera.c);
+		info.n.set(m_Camera.j);
+		info.d.set(m_Camera.k);
+		info.p.set(m_Camera.c);
 
 		fLifeTime-=Device.fTimeDelta;
 

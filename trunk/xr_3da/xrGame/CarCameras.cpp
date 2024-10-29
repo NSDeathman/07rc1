@@ -36,12 +36,12 @@ void	CCar::cam_Update			(float dt, float fov)
 		if(OwnerActor()) OwnerActor()->Orientation().yaw	= -active_camera->yaw;
 		if(OwnerActor()) OwnerActor()->Orientation().pitch	= -active_camera->pitch;
 		break;
-	case ectChase:					break;
-	case ectFree:					break;
+	case ectChase:						break;
+	case ectFree:						break;
 	}
-	active_camera->f_fov			= fov;
-	active_camera->Update			(P,Da);
-	Level().Cameras().Update		(active_camera);
+	active_camera->f_fov				= fov;
+	active_camera->Update				(P,Da);
+	Level().Cameras().UpdateFromCamera	(active_camera);
 }
 
 void	CCar::OnCameraChange		(int type)
