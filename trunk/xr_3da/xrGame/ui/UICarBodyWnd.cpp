@@ -127,8 +127,8 @@ void CUICarBodyWnd::Init()
 	AttachChild						(m_pUITakeAll);
 	xml_init.Init3tButton				(uiXml, "take_all_btn", 0, m_pUITakeAll);
 
-	BindDragDropListEnents			(m_pUIOurBagList);
-	BindDragDropListEnents			(m_pUIOthersBagList);
+	BindDragDropListEvents			(m_pUIOurBagList);
+	BindDragDropListEvents			(m_pUIOthersBagList);
 
 	//Load sounds
 
@@ -715,7 +715,7 @@ bool CUICarBodyWnd::TransferItem(PIItem itm, CInventoryOwner* owner_from, CInven
 	return true;
 }
 
-void CUICarBodyWnd::BindDragDropListEnents(CUIDragDropListEx* lst)
+void CUICarBodyWnd::BindDragDropListEvents(CUIDragDropListEx* lst)
 {
 	lst->m_f_item_drop				= CUIDragDropListEx::DRAG_DROP_EVENT(this,&CUICarBodyWnd::OnItemDrop);
 	lst->m_f_item_start_drag		= CUIDragDropListEx::DRAG_DROP_EVENT(this,&CUICarBodyWnd::OnItemStartDrag);

@@ -404,6 +404,35 @@ public :
 		strcpy_s(I,sizeof(I),"change screen resolution WxH");
 	}
 
+	virtual void fill_tips(vecTips& tips, u32 mode)
+	{
+		TStatus str, cur;
+		Status(cur);
+
+		bool res = false;
+		xr_token* tok = GetToken();
+		while (tok->name && !res)
+		{
+			if (!xr_strcmp(tok->name, cur))
+			{
+				xr_sprintf(str, sizeof(str), "%s  (current)", tok->name);
+				tips.push_back(str);
+				res = true;
+			}
+			tok++;
+		}
+		if (!res)
+		{
+			tips.push_back("---  (current)");
+		}
+		tok = GetToken();
+		while (tok->name)
+		{
+			tips.push_back(tok->name);
+			tok++;
+		}
+	}
+
 
 };
 //-----------------------------------------------------------------------
