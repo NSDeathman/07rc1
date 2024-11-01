@@ -23,6 +23,7 @@ CDemoRecord::force_position CDemoRecord::g_position = { false, { 0, 0, 0 } };
 
 CDemoRecord::CDemoRecord(const char *name,float life_time) : CEffectorCam(cefDemo,life_time/*,FALSE*/)
 {
+	m_b_redirect_input_to_level = false;
 	_unlink	(name);
 	file	= FS.w_open	(name);
 	if (file) 
@@ -355,6 +356,14 @@ BOOL CDemoRecord::ProcessCam(SCamEffectorInfo& info)
 
 void CDemoRecord::IR_OnKeyboardPress	(int dik)
 {
+	if (dik == DIK_MULTIPLY)
+		m_b_redirect_input_to_level = !m_b_redirect_input_to_level;
+
+	if (m_b_redirect_input_to_level)
+	{
+		g_pGameLevel->IR_OnKeyboardPress(dik);
+		return;
+	}
 	if (dik == DIK_GRAVE)
 							Console->Show			();
 
@@ -379,6 +388,11 @@ void CDemoRecord::IR_OnKeyboardPress	(int dik)
 
 void CDemoRecord::IR_OnKeyboardHold	(int dik)
 {
+	if (m_b_redirect_input_to_level)
+	{
+		g_pGameLevel->IR_OnKeyboardHold(dik);
+		return;
+	}
 	switch(dik){
 	case DIK_A:
 	case DIK_NUMPAD1:
@@ -402,6 +416,11 @@ void CDemoRecord::IR_OnKeyboardHold	(int dik)
 
 void CDemoRecord::IR_OnMouseMove		(int dx, int dy)
 {
+	if (m_b_redirect_input_to_level)
+	{
+		g_pGameLevel->IR_OnMouseMove(dx, dy);
+		return;
+	}
 	float scale			= .5f;//psMouseSens;
 	if (dx||dy){
 		m_vR.y			+= float(dx)*scale; // heading
@@ -411,6 +430,11 @@ void CDemoRecord::IR_OnMouseMove		(int dx, int dy)
 
 void CDemoRecord::IR_OnMouseHold		(int btn)
 {
+	if (m_b_redirect_input_to_level)
+	{
+		g_pGameLevel->IR_OnMouseHold(btn);
+		return;
+	}
 	switch (btn){
 	case 0:			m_vT.z += 1.0f; break; // Move Backward
 	case 1:			m_vT.z -= 1.0f; break; // Move Forward
