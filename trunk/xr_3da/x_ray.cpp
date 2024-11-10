@@ -1050,7 +1050,7 @@ void CApplication::Level_Scan()
 {
 #pragma todo("container is created in stack!")
 	xr_vector<char*>*		folder			= FS.file_list_open		("$game_levels$",FS_ListFolders|FS_RootOnly);
-	R_ASSERT				(folder&&folder->size());
+	R_ASSERT2				(folder&&folder->size(), "$game_levels$ folder does not exists");
 	for (u32 i=0; i<folder->size(); i++)	Level_Append((*folder)[i]);
 	FS.file_list_close		(folder);
 #ifdef DEBUG
