@@ -233,6 +233,7 @@ bool CUIXmlInit::InitStatic(CUIXml& xml_doc, LPCSTR path,
 bool CUIXmlInit::InitCheck(CUIXml& xml_doc, LPCSTR path, int index, CUICheckButton* pWnd){
 	InitStatic(xml_doc, path, index, pWnd);
 	InitOptionsItem(xml_doc, path, index, pWnd);
+	InitSound(xml_doc, path, index, pWnd);
 
 	return true;
 }

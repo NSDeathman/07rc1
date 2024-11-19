@@ -41,6 +41,8 @@ void CUI3tButton::OnClick()
 
 bool CUI3tButton::OnMouse(float x, float y, EUIMessages mouse_action)
 {
+	if (mouse_action == WINDOW_LBUTTON_DOWN)
+		PlaySoundT();
 	if (m_bCheckMode)
 		return CUIWindow::OnMouse(x,y,mouse_action);
 	else

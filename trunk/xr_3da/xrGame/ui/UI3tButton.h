@@ -35,8 +35,8 @@ public:
 	virtual void 	SetBaseTextureOffset		(Fvector2 offset);
 	virtual void 	SetWidth					(float width);
 	virtual void 	SetHeight					(float height);
-			void 	InitSoundH					(LPCSTR sound_file);
-			void 	InitSoundT					(LPCSTR sound_file);
+	virtual void 	InitSoundH					(LPCSTR sound_file);
+	virtual void 	InitSoundT					(LPCSTR sound_file);
 
 	virtual void 	OnClick						();
 	virtual void 	OnFocusReceive				();
@@ -61,8 +61,8 @@ public:
 protected:
 	bool				m_bCheckMode;
 private:	
-			void		PlaySoundH					();
-			void		PlaySoundT					();
+	virtual void	PlaySoundH					();
+	virtual void	PlaySoundT					();
 
 	ref_sound			m_sound_h;
 	ref_sound			m_sound_t;	
