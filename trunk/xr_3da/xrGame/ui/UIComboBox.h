@@ -66,7 +66,7 @@ protected:
 	int					m_backup_itoken_id;
 
 	CUI_IB_FrameLineWnd	m_frameLine;
-	CUILabel			m_text;
+	CUIStatic			m_text;
 	CUIFrameWindow		m_frameWnd;
 
 	u32					m_textColor[2];

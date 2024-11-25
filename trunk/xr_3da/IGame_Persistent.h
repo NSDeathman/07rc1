@@ -64,7 +64,7 @@ public:
 	IGame_ObjectPool				ObjectPool;
 #endif
 	IMainMenu*						m_pMainMenu;
-			bool 					IsMainMenuActive();
+	static bool 					IsMainMenuActive();
 
 	CEnvironment*					pEnvironment;
 	CEnvironment&					Environment()	{return *pEnvironment;};

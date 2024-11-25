@@ -103,11 +103,11 @@ bool	WriteRegistryValue	(LPCSTR rKeyName, DWORD rKeyType, const void* value)
 
 	if (hKey) RegCloseKey(hKey);
 	return true;
-};
+}
 
-void	ReadRegistry_StrValue	(LPCSTR rKeyName, char* value )
+bool	ReadRegistry_StrValue	(LPCSTR rKeyName, char* value )
 {
-	ReadRegistryValue(rKeyName, REG_SZ, value);
+	return ReadRegistryValue(rKeyName, REG_SZ, value);
 }
 
 void	WriteRegistry_StrValue	(LPCSTR rKeyName, const char* value )
@@ -119,6 +119,7 @@ void	ReadRegistry_DWValue	(LPCSTR rKeyName, DWORD& value )
 {
 	ReadRegistryValue(rKeyName, REG_DWORD, &value);
 }
+
 void	WriteRegistry_DWValue	(LPCSTR rKeyName, const DWORD& value )
 {
 	WriteRegistryValue(rKeyName, REG_DWORD, &value);

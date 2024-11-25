@@ -1,5 +1,6 @@
 #include "pch_script.h"
-#include "uigamesp.h"
+#include "UIGameSP.h"
+#include "UIDialogHolder.h"
 #include "actor.h"
 #include "level.h"
 
@@ -269,4 +270,3 @@ void CChangeLevelWnd::Hide()
 	g_block_pause							= false;
 	Device.Pause							(FALSE, TRUE, TRUE, "CChangeLevelWnd_hide");
 }
-

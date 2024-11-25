@@ -113,6 +113,7 @@ void IGame_Persistent::Disconnect	()
 	if(g_hud)
 		g_hud->OnDisconnected			();
 #endif
+	ObjectPool.clear();
 }
 
 void IGame_Persistent::OnGameStart()

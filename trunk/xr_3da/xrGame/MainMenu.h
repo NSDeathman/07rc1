@@ -155,7 +155,10 @@ public:
 	virtual void	OnDeviceReset					();
 	LPCSTR			GetGSVer						();
 		bool		ValidateCDKey					();
-		bool		IsCDKeyIsValid();
+		bool		IsCDKeyIsValid					();
+
+	static	LPCSTR	AddHyphens						(LPCSTR str);
+	static	LPCSTR	DelHyphens						(LPCSTR str);
 };
 
 extern CMainMenu*	MainMenu();
