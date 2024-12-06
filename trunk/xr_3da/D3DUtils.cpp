@@ -222,7 +222,7 @@ void CDrawUtilities::OnDeviceCreate()
 	vs_TL.create	(FVF::F_TL,RCache.Vertex.Buffer(),RCache.Index.Buffer());
 	vs_LIT.create	(FVF::F_LIT,RCache.Vertex.Buffer(),RCache.Index.Buffer());
 
-	m_Font						= xr_new<CGameFont>("stat_font");
+	m_Font						= xr_new<CGameFont>("stat_font", (u32)0, false);
 }
 
 void CDrawUtilities::OnDeviceDestroy()

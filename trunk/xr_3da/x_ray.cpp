@@ -789,21 +789,27 @@ LPCSTR _GetFontTexName (LPCSTR section)
 	return pSettings->r_string(section,tex_names[def_idx]);
 }
 
-void _InitializeFont(CGameFont*& F, LPCSTR section, u32 flags)
+void _InitializeFont(CGameFont*& F, LPCSTR section, u32 flags, bool need_prefix = true)
 {
 	LPCSTR font_tex_name = _GetFontTexName(section);
 	R_ASSERT(font_tex_name);
 
-	if(!F){
-		F = xr_new<CGameFont> ("font", font_tex_name, flags);
+	if(!F)
+	{
+		F = xr_new<CGameFont> ("font", font_tex_name, flags, need_prefix);
 		Device.seqRender.Add( F, REG_PRIORITY_LOW-1000 );
-	}else
-		F->Initialize("font",font_tex_name);
+	}
+	else
+	
+		F->Initialize("font", font_tex_name, need_prefix);
 
-	if (pSettings->line_exist(section,"size")){
+	if (pSettings->line_exist(section,"size"))
+	{
 		float sz = pSettings->r_float(section,"size");
-		if (flags&CGameFont::fsDeviceIndependent)	F->SetHeightI(sz);
-		else										F->SetHeight(sz);
+		if (flags&CGameFont::fsDeviceIndependent)
+			F->SetHeightI(sz);
+		else
+			F->SetHeight(sz);
 	}
 	if (pSettings->line_exist(section,"interval"))
 		F->SetInterval(pSettings->r_fvector2(section,"interval"));

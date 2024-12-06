@@ -37,8 +37,8 @@ CFontManager::CFontManager()
 void CFontManager::InitializeFonts()
 {
 
-	InitializeFont(pFontMedium				,"hud_font_medium"				);
-	InitializeFont(pFontDI					,"hud_font_di",					CGameFont::fsGradient|CGameFont::fsDeviceIndependent);
+	InitializeFont(pFontMedium				,"hud_font_medium"				, (u32)0, false);
+	InitializeFont(pFontDI					,"hud_font_di",					CGameFont::fsGradient|CGameFont::fsDeviceIndependent, false);
 	InitializeFont(pFontArial14				,"ui_font_arial_14"				);
 	InitializeFont(pFontGraffiti19Russian	,"ui_font_graffiti19_russian"	);
 	InitializeFont(pFontGraffiti22Russian	,"ui_font_graffiti22_russian"	);
@@ -48,7 +48,7 @@ void CFontManager::InitializeFonts()
 	InitializeFont(pFontGraffiti40Russian	,"ui_font_graff_40"				);
 	InitializeFont(pFontGraffiti50Russian	,"ui_font_graff_50"				);
 	InitializeFont(pFontLetterica25			,"ui_font_letter_25"			);
-	InitializeFont(pFontStat				,"stat_font",					CGameFont::fsDeviceIndependent);
+	InitializeFont(pFontStat				,"stat_font",					CGameFont::fsDeviceIndependent, false);
 
 }
 
@@ -82,24 +82,27 @@ LPCSTR CFontManager::GetFontTexName (LPCSTR section)
 	return pSettings->r_string(section,tex_names[def_idx]);
 }
 
-void CFontManager::InitializeFont(CGameFont*& F, LPCSTR section, u32 flags)
+void CFontManager::InitializeFont(CGameFont*& F, LPCSTR section, u32 flags, bool need_prefix)
 {
 	LPCSTR font_tex_name = GetFontTexName(section);
 	R_ASSERT(font_tex_name);
 
-	if(!F)
-		F = xr_new<CGameFont> ("font", font_tex_name, flags);
+	if (!F)
+		F = xr_new<CGameFont> ("font", font_tex_name, flags, need_prefix);
 	else
-		F->Initialize("font",font_tex_name);
+		F->Initialize("font",font_tex_name, need_prefix);
 
 	F->m_font_name = section;
-	if (pSettings->line_exist(section,"size")){
+	if (pSettings->line_exist(section,"size"))
+	{
 		float sz = pSettings->r_float(section,"size");
-		if (flags&CGameFont::fsDeviceIndependent)	F->SetHeightI(sz);
-		else										F->SetHeight(sz);
+		if (flags &CGameFont::fsDeviceIndependent)
+			F->SetHeightI(sz);
+		else
+			F->SetHeight(sz);
 	}
 	if (pSettings->line_exist(section,"interval"))
-	F->SetInterval(pSettings->r_fvector2(section,"interval"));
+		F->SetInterval(pSettings->r_fvector2(section,"interval"));
 
 }
 

@@ -64,11 +64,11 @@ protected:
 	IC const Fvector&		GetCharTC		(u16 c)		{return TCMap[c];}
 
 public:
-							CGameFont		(LPCSTR section, u32 flags=0);
-							CGameFont		(LPCSTR shader, LPCSTR texture, u32 flags=0);
+							CGameFont		(LPCSTR section, u32 flags = 0, bool need_prefix = true);
+							CGameFont		(LPCSTR shader, LPCSTR texture, u32 flags = 0, bool need_prefix = true);
 							~CGameFont		();
 
-	void					Initialize		(LPCSTR shader, LPCSTR texture);
+	void					Initialize		(LPCSTR shader, LPCSTR texture, bool need_prefix = true);
 
 	IC void					SetColor		(u32 C)		{dwCurrentColor=C;};
 

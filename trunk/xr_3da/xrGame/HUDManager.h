@@ -32,7 +32,7 @@ struct CFontManager :public pureDeviceReset			{
 	CGameFont*				pFontStat;
 
 	void					InitializeFonts			();
-	void					InitializeFont			(CGameFont*& F, LPCSTR section, u32 flags = 0);
+	void					InitializeFont			(CGameFont*& F, LPCSTR section, u32 flags = 0, bool need_prefix = true);
 	LPCSTR					GetFontTexName			(LPCSTR section);				
 
 	virtual void			OnDeviceReset			();

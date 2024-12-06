@@ -13,7 +13,7 @@ unsigned short int mbhMulti2Wide
 extern ENGINE_API BOOL g_bRendering; 
 ENGINE_API Fvector2		g_current_font_scale={1.0f,1.0f};
 
-CGameFont::CGameFont(LPCSTR section, u32 flags)
+CGameFont::CGameFont(LPCSTR section, u32 flags, bool need_prefix)
 {
 	fCurrentHeight				= 0.0f;
 	fXStep						= 0.0f;
@@ -21,17 +21,22 @@ CGameFont::CGameFont(LPCSTR section, u32 flags)
 	uFlags						= flags;
 	nNumChars					= 0x100;
 	TCMap						= NULL;
-	Initialize	(pSettings->r_string(section,"shader"),pSettings->r_string(section,"texture"));
-	if (pSettings->line_exist(section,"size")){
+	LPCSTR shader_				= pSettings->r_string(section, "shader");
+	LPCSTR texture_				= pSettings->r_string(section, "texture");
+	Initialize	(shader_, texture_, need_prefix);
+	if (pSettings->line_exist(section,"size"))
+	{
 		float sz = pSettings->r_float(section,"size");
-		if (uFlags&fsDeviceIndependent)	SetHeightI(sz);
-		else							SetHeight(sz);
+		if (uFlags &fsDeviceIndependent)
+			SetHeightI(sz);
+		else
+			SetHeight(sz);
 	}
 	if (pSettings->line_exist(section,"interval"))
 		SetInterval(pSettings->r_fvector2(section,"interval"));
 }
 
-CGameFont::CGameFont(LPCSTR shader, LPCSTR texture, u32 flags)
+CGameFont::CGameFont(LPCSTR shader, LPCSTR texture, u32 flags, bool need_prefix)
 {
 	fCurrentHeight				= 0.0f;
 	fXStep						= 0.0f;
@@ -39,18 +44,15 @@ CGameFont::CGameFont(LPCSTR shader, LPCSTR texture, u32 flags)
 	uFlags						= flags;
 	nNumChars					= 0x100;
 	TCMap						= NULL;
-	Initialize					(shader,texture);
+	Initialize					(shader, texture, need_prefix);
 }
 
-void CGameFont::Initialize		(LPCSTR cShader, LPCSTR cTextureName)
+void CGameFont::Initialize		(LPCSTR cShader, LPCSTR cTextureName, bool need_prefix)
 {
 	string_path					cTexture;
 
 	LPCSTR _lang				= pSettings->r_string("string_table", "font_prefix");
-	bool is_di					= strstr(cTextureName, "ui_font_hud_01") || 
-								  strstr(cTextureName, "ui_font_hud_02") ||
-								  strstr(cTextureName, "ui_font_console_02");
-	if(_lang && !is_di)
+	if (_lang && need_prefix)
 		strconcat				(sizeof(cTexture),cTexture, cTextureName, _lang);
 	else
 		strcpy_s				(cTexture, sizeof(cTexture), cTextureName);
@@ -65,53 +67,69 @@ void CGameFont::Initialize		(LPCSTR cShader, LPCSTR cTextureName)
 
 	// check ini exist
 	string_path fn,buf;
-	strcpy_s		(buf,cTexture); if (strext(buf)) *strext(buf)=0;
-	R_ASSERT2	(FS.exist(fn,"$game_textures$",buf,".ini"),fn);
+	strcpy_s					(buf,cTexture);
+	if (strext(buf))
+		*strext(buf)			= 0;
+	R_ASSERT2					(FS.exist(fn,"$game_textures$",buf,".ini"),fn);
 	CInifile* ini				= CInifile::Create(fn);
 
 	nNumChars = 0x100;
-	TCMap = ( Fvector* ) xr_realloc( ( void* ) TCMap , nNumChars * sizeof( Fvector ) );
+	TCMap = (Fvector*)xr_realloc((void*)TCMap, nNumChars * sizeof(Fvector));
 
-	if ( ini->section_exist( "mb_symbol_coords" ) ) {
-		nNumChars = 0x10000;
-		TCMap = ( Fvector* ) xr_realloc( ( void* ) TCMap , nNumChars * sizeof( Fvector ) );
-		uFlags |= fsMultibyte;
-		fHeight = ini->r_float( "mb_symbol_coords" , "height" );
-		
-		fXStep = ceil( fHeight / 2.0f );
+	if (ini->section_exist("mb_symbol_coords"))
+	{
+		nNumChars				= 0x10000;
+		TCMap					= (Fvector*)xr_realloc((void*)TCMap, nNumChars * sizeof(Fvector));
+		uFlags					|= fsMultibyte;
+		fHeight					= ini->r_float("mb_symbol_coords", "height");
 
-		for ( u32 i=0 ; i < nNumChars ; i++ ) {
-			sprintf_s( buf ,sizeof(buf), "%05d" , i );
-			if ( ini->line_exist( "mb_symbol_coords" , buf ) ) {
-				Fvector v = ini->r_fvector3( "mb_symbol_coords" , buf );
-				TCMap[i].set( v.x , v.y , 1 + v[2] - v[0] );
-			} else
-				TCMap[i].set( 0 , 0 , 0 );
+		fXStep					= ceil(fHeight / 2.0f);
+
+		for (u32 i = 0; i < nNumChars; i++)
+		{
+			sprintf_s			(buf, sizeof(buf), "%05d", i);
+			if (ini->line_exist("mb_symbol_coords", buf))
+			{
+				Fvector v = ini->r_fvector3("mb_symbol_coords", buf);
+				TCMap[i].set	(v.x, v.y, 1 + v[2] - v[0]);
+			}
+			else
+				TCMap[i].set	(0, 0, 0);
 		}
-	}else
-	if (ini->section_exist("symbol_coords")){
-		fHeight						= ini->r_float("symbol_coords","height");
-		for (u32 i=0; i<nNumChars; i++){
-			sprintf_s				(buf,sizeof(buf),"%03d",i);
-			Fvector v				= ini->r_fvector3("symbol_coords",buf);
-			TCMap[i].set			(v.x,v.y,v[2]-v[0]);
+	}
+	else if (ini->section_exist("symbol_coords"))
+	{
+		fHeight					= ini->r_float("symbol_coords", "height");
+		for (u32 i = 0; i < nNumChars; i++)
+		{
+			sprintf_s			(buf, sizeof(buf), "%03d", i);
+			Fvector v			= ini->r_fvector3("symbol_coords", buf);
+			TCMap[i].set		(v.x, v.y, v[2] - v[0]);
 		}
-	}else{
-	if (ini->section_exist("char widths")){
-		fHeight					= ini->r_float("char widths","height");
-		int cpl					= 16;
-		for (u32 i=0; i<nNumChars; i++){
-			sprintf_s			(buf,sizeof(buf),"%d",i);
-			float w				= ini->r_float("char widths",buf);
-			TCMap[i].set		((i%cpl)*fHeight,(i/cpl)*fHeight,w);
+	}
+	else
+	{
+		if (ini->section_exist("char widths"))
+		{
+			fHeight				= ini->r_float("char widths", "height");
+			int cpl				= 16;
+			for (u32 i = 0; i < nNumChars; i++)
+			{
+				sprintf_s		(buf, sizeof(buf), "%d", i);
+				float w			= ini->r_float("char widths", buf);
+				TCMap[i].set	((i % cpl) * fHeight, ((float)i / cpl) * fHeight, w);
+			}
 		}
-	}else{
-		R_ASSERT(ini->section_exist("font_size"));
-		fHeight					= ini->r_float("font_size","height");
-		float width				= ini->r_float("font_size","width");
-		const int cpl			= ini->r_s32	("font_size","cpl");
-		for (u32 i=0; i<nNumChars; i++)
-			TCMap[i].set		((i%cpl)*width,(i/cpl)*fHeight,width);
+		else
+		{
+			R_ASSERT			(ini->section_exist("font_size"));
+			fHeight				= ini->r_float("font_size", "height");
+			float width			= ini->r_float("font_size", "width");
+			const int cpl		= ini->r_s32("font_size", "cpl");
+			for (u32 i = 0; i < nNumChars; i++)
+			{
+				TCMap[i].set((i % cpl) * width, ((float)i / cpl) * fHeight, width);
+			}
 		}
 	}
 
