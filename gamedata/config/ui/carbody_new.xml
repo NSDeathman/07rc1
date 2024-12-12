@@ -36,7 +36,7 @@
 			cell_width = "38" cell_height="38" rows_num="11" cols_num="7" 
 			unlimited="1" group_similar="1"/>
 
-	<others_bag_static x="683" y="260" width="520" height="518" stretch="1">
+	<others_bag_static x="683" y="260" width="520" height="518" stretch="1" complex_mode="1">
 		<texture>ui\ui_dg_inventory_exchange_trade</texture>
 		<text x="30" y="8" font="graffiti22" r="238" g="153" b="26">st_items</text>
 	</others_bag_static>
