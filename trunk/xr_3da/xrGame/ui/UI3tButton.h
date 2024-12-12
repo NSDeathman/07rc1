@@ -57,7 +57,7 @@ public:
 
 
 	CUIStatic			m_hint;
-	CUIIBStatic		m_background;
+	CUIIBStatic			m_background;
 protected:
 	bool				m_bCheckMode;
 private:	

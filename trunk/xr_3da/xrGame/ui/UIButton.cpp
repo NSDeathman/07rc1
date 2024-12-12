@@ -1,4 +1,4 @@
-// UIButton.cpp: класс нажимаемой кнопки
+// UIButton.cpp: РєР»Р°СЃСЃ РЅР°Р¶РёРјР°РµРјРѕР№ РєРЅРѕРїРєРё
 //
 //////////////////////////////////////////////////////////////////////
 
@@ -113,7 +113,7 @@ bool  CUIButton::OnMouse(float x, float y, EUIMessages mouse_action)
 		break;
 
 	case DOWN_PRESS:
-        if(mouse_action == WINDOW_MOUSE_MOVE)
+		if(mouse_action == WINDOW_MOUSE_MOVE)
 		{
 			if(m_bCursorOverWindow)
 			{
@@ -165,7 +165,9 @@ void CUIButton::DrawTexture()
 		if( Heading() )
 			m_UIStaticItem.Render( GetHeading() );
 		else
-			m_UIStaticItem.Render();		
+			m_UIStaticItem.Render();
+
+		m_UIStaticItem.SetMirrorMode(eMirrorMode);
 	}
 }
 

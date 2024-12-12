@@ -25,14 +25,14 @@ protected:
 		flValidHeadingPivot		=0x0004,
 	};
 
-	//прямоугольник(в пикселях) 
-	//геом. регион  на который натягикается текстура с текстурными координатами iOriginalRect
+	//РїСЂВ¤РјРѕСѓРіРѕР»СЊРЅРёРє(РІ РїРёРєСЃРµР»В¤С…) 
+	//РіРµРѕРј. СЂРµРіРёРѕРЅ  РЅР° РєРѕС‚РѕСЂС‹Р№ РЅР°С‚В¤РіРёРєР°РµС‚СЃВ¤ С‚РµРєСЃС‚СѓСЂР° СЃ С‚РµРєСЃС‚СѓСЂРЅС‹РјРё РєРѕРѕСЂРґРёРЅР°С‚Р°РјРё iOriginalRect
 	Frect			iVisRect;
 
-	//фрейм текстуры в пикселях отн. 0/0
+	//С„СЂРµР№Рј С‚РµРєСЃС‚СѓСЂС‹ РІ РїРёРєСЃРµР»В¤С… РѕС‚РЅ. 0/0
 	Frect			iOriginalRect;
 
-	// точка, относительно которой применяем поворот
+	// С‚РѕС‡РєР°, РѕС‚РЅРѕСЃРёС‚РµР»СЊРЅРѕ РєРѕС‚РѕСЂРѕР№ РїСЂРёРјРµРЅВ¤РµРј РїРѕРІРѕСЂРѕС‚
 	Fvector2		iHeadingPivot;
 
 	u32				uFlags;
@@ -63,6 +63,6 @@ public:
 
 	IC void			SetAlign				(u32 align)					{uAlign=align;};
 	IC u32			GetAlign				()							{return uAlign;}
-	IC virtual void			SetMirrorMode			(EUIMirroring m)			{ eMirrorMode = m; }
-	IC virtual EUIMirroring GetMirrorMode			()							{ return eMirrorMode; }
+	IC virtual void			SetMirrorMode	(EUIMirroring m)			{ eMirrorMode = m; }
+	IC virtual EUIMirroring GetMirrorMode	() const					{ return eMirrorMode; }
 };

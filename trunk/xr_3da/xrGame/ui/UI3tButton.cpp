@@ -155,6 +155,7 @@ void CUI3tButton::InitTexture(LPCSTR tex_enabled,
 	m_background.InitDisabledState		(tex_disabled);
 	m_background.InitTouchedState		(tex_touched);
 	m_background.InitHighlightedState	(tex_highlighted);
+	m_background.SetMirrorMode			(eMirrorMode);
 	this->m_bTextureEnable = true;
 }
 

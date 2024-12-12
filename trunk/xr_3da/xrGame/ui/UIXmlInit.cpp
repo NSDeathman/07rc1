@@ -141,7 +141,7 @@ bool CUIXmlInit::InitFrameWindow(CUIXml& xml_doc, LPCSTR path,
 
 	if(*tex_name) pWnd->InitLeftBottom(*tex_name, x,y);
 */
-	//инициализировать заголовок окна
+	//РёРЅРёС†РёР°Р»РёР·РёСЂРѕРІР°С‚СЊ Р·Р°РіРѕР»РѕРІРѕРє РѕРєРЅР°
 	strconcat(sizeof(buf),buf,path,":title");
 	if(xml_doc.NavigateToNode(buf,index)) InitStatic(xml_doc, buf, index, pWnd->UITitleText);
 	
@@ -310,6 +310,14 @@ extern int keyname_to_dik(LPCSTR);
 bool CUIXmlInit::Init3tButton(CUIXml& xml_doc, const char* path, int index, CUI3tButton* pWnd){
 	R_ASSERT3(xml_doc.NavigateToNode(path,index), "XML node not found", path);
 
+	shared_str mirroring = xml_doc.ReadAttrib(path, index, "mirror", "");
+	if (0 == xr_strcmp(mirroring, "h"))
+		pWnd->SetMirrorMode(tmMirrorHorisontal);
+	else if (0 == xr_strcmp(mirroring, "v"))
+		pWnd->SetMirrorMode(tmMirrorVertical);
+	else if (0 == xr_strcmp(mirroring, "b"))
+		pWnd->SetMirrorMode(tmMirrorBoth);
+
 	InitWindow			(xml_doc, path, index, pWnd);
 	InitMultiText		(xml_doc, path, index, pWnd);
 	InitMultiTexture	(xml_doc, path, index, pWnd);
@@ -397,6 +405,14 @@ bool CUIXmlInit::InitButton(CUIXml& xml_doc, LPCSTR path,
 
 	bool stretch_flag = xml_doc.ReadAttribInt(path, index, "stretch") == 1;
 	pWnd->SetStretchTexture(stretch_flag);
+
+	shared_str mirroring = xml_doc.ReadAttrib(path, index, "mirror", "");
+	if (0 == xr_strcmp(mirroring, "h"))
+		pWnd->SetMirrorMode(tmMirrorHorisontal);
+	else if (0 == xr_strcmp(mirroring, "v"))
+		pWnd->SetMirrorMode(tmMirrorVertical);
+	else if (0 == xr_strcmp(mirroring, "b"))
+		pWnd->SetMirrorMode(tmMirrorBoth);
 
 	InitStatic(xml_doc, path, index, pWnd);
 

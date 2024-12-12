@@ -99,3 +99,21 @@ void CUIIBStatic::SetStretchTexture(bool stretch_texture)
 	if (m_stateTouched)
 		m_stateTouched->SetStretchTexture(stretch_texture);
 }
+
+void CUIIBStatic::SetMirrorMode(EUIMirroring m)
+{
+	if (m_stateCurrent)
+		m_stateCurrent->GetUIStaticItem().SetMirrorMode(m);
+
+	if (m_stateEnabled)
+		m_stateEnabled->GetUIStaticItem().SetMirrorMode(m);
+
+	if (m_stateDisabled)
+		m_stateDisabled->GetUIStaticItem().SetMirrorMode(m);
+
+	if (m_stateHighlighted)
+		m_stateHighlighted->GetUIStaticItem().SetMirrorMode(m);
+
+	if (m_stateTouched)
+		m_stateTouched->GetUIStaticItem().SetMirrorMode(m);
+}
