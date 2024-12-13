@@ -844,7 +844,6 @@ bool CWeaponMagazinedWGrenade::GetBriefInfo(II_BriefInfo& info)
 	if (!IsGrenadeLauncherAttached())
 	{
 		info.grenade = "";
-		return false;
 	}
 
 	int total2 = m_bGrenadeMode ? GetAmmoCount(0) : GetAmmoCount2(0);
