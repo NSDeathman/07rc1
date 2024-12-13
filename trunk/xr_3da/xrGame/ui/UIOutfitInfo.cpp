@@ -14,7 +14,7 @@ CUIOutfitInfo::CUIOutfitInfo()
 
 CUIOutfitInfo::~CUIOutfitInfo()
 {
-	for(u32 i=_item_start; i<_max_item_index; ++i)
+	for (u32 i = ALife::eHitTypeBurn; i <= ALife::eHitTypeFireWound; ++i)
 	{
 		CUIStatic* _s			= m_items[i];
 		xr_delete				(_s);
@@ -23,9 +23,9 @@ CUIOutfitInfo::~CUIOutfitInfo()
 
 LPCSTR _imm_names []={
 	"burn_immunity",
-	"strike_immunity",
 	"shock_immunity",
-	"wound_immunity",		
+	"strike_immunity",
+	"wound_immunity",
 	"radiation_immunity",
 	"telepatic_immunity",
 	"chemical_burn_immunity",
@@ -35,8 +35,8 @@ LPCSTR _imm_names []={
 
 LPCSTR _imm_st_names[]={
 	"ui_inv_outfit_burn_protection",
-	"ui_inv_outfit_strike_protection",
 	"ui_inv_outfit_shock_protection",
+	"ui_inv_outfit_strike_protection",
 	"ui_inv_outfit_wound_protection",
 	"ui_inv_outfit_radiation_protection",
 	"ui_inv_outfit_telepatic_protection",
@@ -57,7 +57,7 @@ void CUIOutfitInfo::InitFromXml(CUIXml& xml_doc)
 	strconcat					(sizeof(_buff),_buff, _base, ":scroll_view");
 	CUIXmlInit::InitScrollView	(xml_doc, _buff, 0, m_listWnd);
 
-	for(u32 i=ALife::eHitTypeBurn; i<= ALife::eHitTypeFireWound; ++i)
+	for (u32 i = ALife::eHitTypeBurn; i <= ALife::eHitTypeFireWound; ++i)
 	{
 		m_items[i]				= xr_new<CUIStatic>();
 		CUIStatic* _s			= m_items[i];
@@ -72,13 +72,13 @@ void CUIOutfitInfo::Update(CCustomOutfit* outfit)
 {
 	m_outfit				= outfit;
 
-    SetItem(ALife::eHitTypeBurn,		false);
-	SetItem(ALife::eHitTypeShock,		false);
+	SetItem(ALife::eHitTypeBurn,		false);
 	SetItem(ALife::eHitTypeStrike,		false);
+	SetItem(ALife::eHitTypeShock,		false);
 	SetItem(ALife::eHitTypeWound,		false);
 	SetItem(ALife::eHitTypeRadiation,	false);
 	SetItem(ALife::eHitTypeTelepatic,	false);
-    SetItem(ALife::eHitTypeChemicalBurn,false);
+	SetItem(ALife::eHitTypeChemicalBurn,false);
 	SetItem(ALife::eHitTypeExplosion,	false);
 	SetItem(ALife::eHitTypeFireWound,	false);
 }
