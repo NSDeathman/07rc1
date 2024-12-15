@@ -728,7 +728,7 @@ void CUICarBodyWnd::ColorizeItem(CUICellItem* itm)
 {
 	CInventoryItem* jitem = (CInventoryItem*)itm->m_pData;
 	if (jitem->m_eItemPlace == eItemPlaceBelt || jitem->m_eItemPlace == eItemPlaceSlot)
-		itm->SetColor(color_rgba(180, 255, 180, 255));
+		itm->SetTextureColor(color_rgba(180, 255, 180, 255));
 }
 
 void CUICarBodyWnd::DetachAddon(const char* addon_name)

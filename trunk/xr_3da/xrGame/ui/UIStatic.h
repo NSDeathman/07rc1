@@ -44,15 +44,13 @@ public:
 	// IUISingleTextureOwner--------------------------------------------------------------------------------
 	virtual void		CreateShader				(const char* tex, const char* sh = "hud\\default");
 	virtual ref_shader& GetShader					();
-	virtual void		SetTextureColor				(u32 color);
-	virtual u32			GetTextureColor				() const;
 	virtual void		SetOriginalRect				(const Frect& r)			{m_UIStaticItem.SetOriginalRect(r);}
 	virtual void		SetOriginalRectEx			(const Frect& r)			{m_UIStaticItem.SetOriginalRectEx(r);}
 	//
-			void		SetVTextAlignment(EVTextAlignment al);
-	virtual void		SetColor					(u32 color)					{ m_UIStaticItem.SetColor(color);		}
-	u32					GetColor					() const					{ return m_UIStaticItem.GetColor();		}
-	u32&				GetColorRef					()							{ return m_UIStaticItem.GetColorRef();	}
+			void		SetVTextAlignment			(EVTextAlignment al);
+	virtual void		SetTextureColor				(u32 color)					{ m_UIStaticItem.SetTextureColor(color);		}
+	u32					GetTextureColor				() const					{ return m_UIStaticItem.GetTextureColor();		}
+	u32&				GetTextureColorRef			()							{ return m_UIStaticItem.GetTextureColorRef();	}
 	virtual void		InitTexture					(LPCSTR tex_name);
 	virtual void		InitTextureEx				(LPCSTR tex_name, LPCSTR sh_name="hud\\default");
 	CUIStaticItem*		GetStaticItem				()							{return &m_UIStaticItem;}

@@ -112,15 +112,6 @@ ref_shader& CUIStatic::GetShader(){
 	return m_UIStaticItem.GetShader();
 }
 
-
-void CUIStatic::SetTextureColor(u32 color){
-	m_UIStaticItem.SetColor(color);
-}
-
-u32 CUIStatic::GetTextureColor() const{
-	return m_UIStaticItem.GetColor();
-}
-
 void CUIStatic::InitTextureEx(LPCSTR tex_name, LPCSTR sh_name)
 {
 
@@ -220,9 +211,9 @@ void CUIStatic::Update()
 
 			if(m_lanim_clr.m_lanimFlags.test(LA_TEXTURECOLOR))
 				if(m_lanim_clr.m_lanimFlags.test(LA_ONLYALPHA))
-					SetColor				(subst_alpha(GetColor(), color_get_A(clr)));
+					SetTextureColor				(subst_alpha(GetTextureColor(), color_get_A(clr)));
 				else
-					SetColor				(clr);
+					SetTextureColor				(clr);
 
 			if(m_lanim_clr.m_lanimFlags.test(LA_TEXTCOLOR))
 				if(m_lanim_clr.m_lanimFlags.test(LA_ONLYALPHA))

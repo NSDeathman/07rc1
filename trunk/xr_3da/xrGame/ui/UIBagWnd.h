@@ -9,14 +9,14 @@ class CUITabButtonMP;
 
 #define PRICE_RESTR_COLOR			(0xffff8080)
 
-#define SET_RANK_RESTR_COLOR(x)		x->SetColor(0x88ff9999)
-#define SET_PRICE_RESTR_COLOR(x)	x->SetColor(PRICE_RESTR_COLOR)
-#define SET_NO_RESTR_COLOR(x)		x->SetColor(0xffffffff)
-#define SET_EXTERNAL_COLOR(x)		x->SetColor(0xff9696ff)
+#define SET_RANK_RESTR_COLOR(x)		x->SetTextureColor(0x88ff9999)
+#define SET_PRICE_RESTR_COLOR(x)	x->SetTextureColor(PRICE_RESTR_COLOR)
+#define SET_NO_RESTR_COLOR(x)		x->SetTextureColor(0xffffffff)
+#define SET_EXTERNAL_COLOR(x)		x->SetTextureColor(0xff9696ff)
 
 #define HIGHTLIGHT_ITEM(x)			x->SetClrLightAnim("ui_slow_blinking", true, true, false, true)
 #define UNHIGHTLIGHT_ITEM(x)		x->SetClrLightAnim(NULL, true, true, false, true); \
-									x->SetColor(0xffffffff)
+									x->SetTextureColor(0xffffffff)
 
 
 enum Groups {

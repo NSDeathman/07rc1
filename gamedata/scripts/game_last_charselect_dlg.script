@@ -117,12 +117,12 @@ end
 
 function char_dialog:highlightItem(itm)
     local s = self:GetStatic(itm)
-    s:SetColor(GetARGB(255,255,255,255) ) --white
+    s:SetTextureColor(GetARGB(255,255,255,255) ) --white
 end
 
 function char_dialog:unHighlightItem(itm)
     local s = self:GetStatic(itm)
-    s:SetColor(GetARGB(255,128,128,128) ) --grayed
+    s:SetTextureColor(GetARGB(255,128,128,128) ) --grayed
 end
 
 function char_dialog:On_char_1_focused()

@@ -22,7 +22,7 @@ function test_dialog:InitControls()
    txt_main:SetAutoDelete(true)              --always
    txt_main:SetWindowName("static_0")
    txt_main:Init("ui\\ui_map_escape",0,0,500,500) --init texture and position relatively parent
---   txt_main:SetColor(GetARGB(255,0,0,255))
+--   txt_main:SetTextureColor(GetARGB(255,0,0,255))
    txt_main:ClipperOn()
    self:AttachChild(txt_main)
 ---------------------------------------

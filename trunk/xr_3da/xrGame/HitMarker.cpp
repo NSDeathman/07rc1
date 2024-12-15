@@ -73,8 +73,8 @@ SHitMark::SHitMark		(const ref_shader& sh, const Fvector& dir)
 void SHitMark::UpdateAnim	()
 {
 	int frame;
-	u32 clr			= m_lanim->CalculateRGB(Device.fTimeGlobal-m_StartTime,frame);
-	m_UIStaticItem->SetColor		(subst_alpha(m_UIStaticItem->GetColor(), color_get_A(clr)));
+	u32 clr							= m_lanim->CalculateRGB(Device.fTimeGlobal-m_StartTime,frame);
+	m_UIStaticItem->SetTextureColor	(subst_alpha(m_UIStaticItem->GetTextureColor(), color_get_A(clr)));
 }
 
 SHitMark::~SHitMark		()

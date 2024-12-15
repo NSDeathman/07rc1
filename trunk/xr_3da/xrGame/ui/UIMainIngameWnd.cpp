@@ -282,7 +282,7 @@ void CUIMainIngameWnd::Draw()
 	else {
 		u32		alpha			= clampr(iFloor(255.f*(1.f-(Device.fTimeGlobal-UIStaticDiskIO_start_time)/1.f)),0,255);
 		UIStaticDiskIO.Show		( true  ); 
-		UIStaticDiskIO.SetColor	(color_rgba(255,255,255,alpha));
+		UIStaticDiskIO.SetTextureColor(color_rgba(255,255,255,alpha));
 	}
 	FS.dwOpenCounter = 0;
 
@@ -949,7 +949,7 @@ void CUIMainIngameWnd::SetWarningIconColor(CUIStatic* s, const u32 cl)
 	bool bIsShown = s->IsShown();
 
 	if(bOn)
-		s->SetColor	(cl);
+		s->SetTextureColor(cl);
 
 	if(bOn&&!bIsShown){
 		m_UIIcons->AddWindow	(s, false);
@@ -1123,7 +1123,7 @@ void CUIMainIngameWnd::UpdatePickUpItem	()
 		m_iPickUpItemIconY + 
 		(m_iPickUpItemIconHeight - UIPickUpItemIcon.GetHeight())/2);
 
-	UIPickUpItemIcon.SetColor(color_rgba(255,255,255,192));
+	UIPickUpItemIcon.SetTextureColor(color_rgba(255,255,255,192));
 	UIPickUpItemIcon.Show(true);
 };
 

@@ -201,5 +201,5 @@ void CUIFrameRect::Draw(float x, float y){
 void CUIFrameRect::SetTextureColor(u32 cl)
 {
 	for (int i = 0; i < fmMax; ++i)
-		frame[i].SetColor(cl);
+		frame[i].SetTextureColor(cl);
 }

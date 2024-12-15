@@ -25,8 +25,6 @@ public:
 
 	virtual void	SetWidth					(float width);
 	virtual void	SetHeight					(float height);
-	
-			void	SetColor					(u32 cl);
 
 	virtual void	Draw						();
 	virtual void	Update						();

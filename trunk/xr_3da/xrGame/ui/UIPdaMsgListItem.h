@@ -14,7 +14,7 @@ public:
 	virtual void		InitCharacter					(CInventoryOwner* pInvOwner);
 	virtual void		SetTextColor					(u32 color);
 	virtual void		SetFont							(CGameFont* pFont);
-	virtual void		SetColor						(u32 color);
+	virtual void		SetTextureColor					(u32 color);
 	
 	//информация о персонаже
 	CUIStatic			UIIcon;

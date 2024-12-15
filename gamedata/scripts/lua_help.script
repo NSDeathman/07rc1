@@ -5940,7 +5940,7 @@ C++ class CUI3tButton : CUIButton {
     function Enable(boolean);
     function SetHeight(number);
     function GetText();
-    function GetColor() const;
+    function GetTextureColor() const;
     function GetWidth() const;
     function SetTextX(number);
     function DetachChild(CUIWindow*);
@@ -5956,7 +5956,7 @@ C++ class CUI3tButton : CUIButton {
     function GetHeading();
     function EnableTextHighlighting(boolean);
     function SetStretchTexture(boolean);
-    function SetColor(number);
+    function SetTextureColor(number);
     function ClipperOn();
     function GetFont();
     function SetAutoDelete(boolean);
@@ -5994,7 +5994,7 @@ C++ class CUIButton : CUIStatic {
     function Enable(boolean);
     function SetHeight(number);
     function GetText();
-    function GetColor() const;
+    function GetTextureColor() const;
     function GetWidth() const;
     function GetClipperState();
     function DetachChild(CUIWindow*);
@@ -6037,7 +6037,7 @@ C++ class CUIButton : CUIStatic {
     function SetHeading(number);
     function SetWndSize(number, number);
     function SetTextAlign(number);
-    function SetColor(number);
+    function SetTextureColor(number);
 };
 
 C++ class CUICaption {
@@ -6053,7 +6053,7 @@ C++ class CUICheckButton : CUI3tButton {
     function Enable(boolean);
     function SetHeight(number);
     function GetText();
-    function GetColor() const;
+    function GetTextureColor() const;
     function GetWidth() const;
     function GetClipperState();
     function GetCheck();
@@ -6099,7 +6099,7 @@ C++ class CUICheckButton : CUI3tButton {
     function SetHeading(number);
     function SetWndSize(number, number);
     function SetTextAlign(number);
-    function SetColor(number);
+    function SetTextureColor(number);
 };
 
 C++ class CUIComboBox : CUIWindow {
@@ -6372,7 +6372,7 @@ C++ class CUIFrameLineWnd : CUIWindow {
     function SetOrientation(boolean);
     function GetTitleStatic();
     function AttachChild(CUIWindow*);
-    function SetColor(number);
+    function SetTextureColor(number);
     function SetWndPos(number, number);
     function Init(number, number, number, number);
     function Init(Frect*);
@@ -6404,7 +6404,7 @@ C++ class CUIFrameWindow : CUIWindow {
     function SetAutoDelete(boolean);
     function GetTitleStatic();
     function AttachChild(CUIWindow*);
-    function SetColor(number);
+    function SetTextureColor(number);
     function SetWndPos(number, number);
     function Init(number, number, number, number);
     function Init(Frect*);
@@ -6470,7 +6470,7 @@ C++ class CUILabel : CUIFrameLineWnd {
     function IsEnabled();
     function SetWndSize(number, number);
     function GetWidth() const;
-    function SetColor(number);
+    function SetTextureColor(number);
 };
 
 C++ class CUIListItem : CUIButton {
@@ -6481,7 +6481,7 @@ C++ class CUIListItem : CUIButton {
     function Enable(boolean);
     function SetHeight(number);
     function GetText();
-    function GetColor() const;
+    function GetTextureColor() const;
     function GetWidth() const;
     function SetTextX(number);
     function DetachChild(CUIWindow*);
@@ -6497,7 +6497,7 @@ C++ class CUIListItem : CUIButton {
     function GetHeading();
     function EnableTextHighlighting(boolean);
     function SetStretchTexture(boolean);
-    function SetColor(number);
+    function SetTextureColor(number);
     function ClipperOn();
     function GetFont();
     function SetAutoDelete(boolean);
@@ -6536,7 +6536,7 @@ C++ class CUIListItemEx : CUIListItem {
     function Enable(boolean);
     function SetHeight(number);
     function GetText();
-    function GetColor() const;
+    function GetTextureColor() const;
     function GetWidth() const;
     function GetClipperState();
     function DetachChild(CUIWindow*);
@@ -6579,7 +6579,7 @@ C++ class CUIListItemEx : CUIListItem {
     function SetHeading(number);
     function SetWndSize(number, number);
     function SetTextAlign(number);
-    function SetColor(number);
+    function SetTextureColor(number);
 };
 
 C++ class CUIListItemPair : CUIListItemEx {
@@ -6591,7 +6591,7 @@ C++ class CUIListItemPair : CUIListItemEx {
     function Enable(boolean);
     function SetHeight(number);
     function GetText();
-    function GetColor() const;
+    function GetTextureColor() const;
     function GetWidth() const;
     function SetTextX(number);
     function SetTextFileName(string);
@@ -6615,7 +6615,7 @@ C++ class CUIListItemPair : CUIListItemEx {
     function SetStretchTexture(boolean);
     function SetTextDateTime(string);
     function GetTextFileName();
-    function SetColor(number);
+    function SetTextureColor(number);
     function ClipperOn();
     function GetFont();
     function SetAutoDelete(boolean);
@@ -6803,7 +6803,7 @@ C++ class CUIMessageBox : CUIStatic {
     function Enable(boolean);
     function SetHeight(number);
     function GetText();
-    function GetColor() const;
+    function GetTextureColor() const;
     function GetWidth() const;
     function GetClipperState();
     function DetachChild(CUIWindow*);
@@ -6848,7 +6848,7 @@ C++ class CUIMessageBox : CUIStatic {
     function SetHeading(number);
     function SetWndSize(number, number);
     function SetTextAlign(number);
-    function SetColor(number);
+    function SetTextureColor(number);
 };
 
 C++ class CUIMessageBoxEx : CUIDialogWnd {
@@ -6965,7 +6965,7 @@ C++ class CUIPropertiesBox : CUIFrameWindow {
     function IsEnabled();
     function SetWndSize(number, number);
     function GetWidth() const;
-    function SetColor(number);
+    function SetTextureColor(number);
 };
 
 C++ class CUIScrollView : CUIWindow {
@@ -7103,7 +7103,7 @@ C++ class CUIStatic : CUIWindow {
     function Enable(boolean);
     function SetHeight(number);
     function GetText();
-    function GetColor() const;
+    function GetTextureColor() const;
     function GetWidth() const;
     function SetTextX(number);
     function DetachChild(CUIWindow*);
@@ -7139,7 +7139,7 @@ C++ class CUIStatic : CUIWindow {
     function SetTextY(number);
     function SetWndRect(Frect);
     function SetWndRect(number, number, number, number);
-    function SetColor(number);
+    function SetTextureColor(number);
     function SetText(string);
     function InitTexture(string);
     function SetWindowName(string);
@@ -7156,7 +7156,7 @@ C++ class CUITabButton : CUIButton {
     function Enable(boolean);
     function SetHeight(number);
     function GetText();
-    function GetColor() const;
+    function GetTextureColor() const;
     function GetWidth() const;
     function SetTextX(number);
     function DetachChild(CUIWindow*);
@@ -7172,7 +7172,7 @@ C++ class CUITabButton : CUIButton {
     function GetHeading();
     function EnableTextHighlighting(boolean);
     function SetStretchTexture(boolean);
-    function SetColor(number);
+    function SetTextureColor(number);
     function ClipperOn();
     function GetFont();
     function SetAutoDelete(boolean);

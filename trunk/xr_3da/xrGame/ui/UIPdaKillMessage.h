@@ -18,13 +18,13 @@ public:
 			void Init(KillMessageStruct& msg);
 	virtual void SetFont(CGameFont* pFont);
 	virtual void SetTextColor(u32 color);
-	virtual void SetColor(u32 color);
+	virtual void SetTextureColor(u32 color);
 
 protected:
 			float InitText(CUIStatic& refStatic, float x, PlayerInfo& info);
 			float InitIcon(CUIStatic& refStatic, float x, IconInfo& info);
 
-    CUIStatic	m_victim_name;
+	CUIStatic	m_victim_name;
 	CUIStatic	m_initiator;
 	CUIStatic	m_killer_name;
 	CUIStatic	m_ext_info;

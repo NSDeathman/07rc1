@@ -825,7 +825,7 @@ bool CUIXmlInit::InitFrameLine(CUIXml& xml_doc, LPCSTR path, int index, CUIFrame
 	}
 */
 	u32 color		= GetColor	(xml_doc, buf, index, 0xff);
-	pWnd->SetColor	(color);
+	pWnd->SetTextureColor	(color);
 
 	pWnd->Init(*base_name, x, y, width, height, !vertical);
 

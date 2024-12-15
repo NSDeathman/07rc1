@@ -46,10 +46,10 @@ void CUIFrameLine::InitTexture(const char* texture){
 
 //////////////////////////////////////////////////////////////////////////
 
-void CUIFrameLine::SetColor(u32 cl)
+void CUIFrameLine::SetTextureColor(u32 cl)
 {
 	for (int i = 0; i < flMax; ++i)
-		elements[i].SetColor(cl);
+		elements[i].SetTextureColor(cl);
 }
 
 //////////////////////////////////////////////////////////////////////////

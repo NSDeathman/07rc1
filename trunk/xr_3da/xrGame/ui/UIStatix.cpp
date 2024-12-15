@@ -22,16 +22,16 @@ void CUIStatix::stop_anim()
 
 void CUIStatix::Update(){
 
-	SetColor(0xffffffff);
+	SetTextureColor(0xffffffff);
 
 	if (m_bCursorOverWindow)
 	{
-		SetColor(0xff349F06);
+		SetTextureColor(0xff349F06);
 	}
 
 	if (!IsEnabled())
 	{
-		SetColor(0x80ffffff);
+		SetTextureColor(0x80ffffff);
 	};
 	
 	CUIStatic::Update();
@@ -40,17 +40,17 @@ void CUIStatix::Update(){
 void CUIStatix::OnFocusLost()
 {
 	CUIStatic::OnFocusLost	();
-	SetColor				(0xffffffff);
+	SetTextureColor				(0xffffffff);
 	if (!IsEnabled())
 	{
-		SetColor(0x80ffffff);
-	};
+		SetTextureColor(0x80ffffff);
+	}
 }
 
 void CUIStatix::OnFocusReceive()
 {
 	CUIStatic::OnFocusReceive	();
-	ResetClrAnimation				();
+	ResetClrAnimation			();
 }
 
 bool CUIStatix::OnMouseDown(int mouse_btn)

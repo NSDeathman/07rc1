@@ -32,8 +32,6 @@ public:
 			void	SetAlphaRef		(int val)											{alpha_ref=val;};
 	virtual void	CreateShader	(const char* tex, const char* sh = "hud\\default");
 	virtual void	SetShader		(const ref_shader& sh);
-	virtual void	SetTextureColor	(u32 color)											{SetColor(color);}
-	virtual u32		GetTextureColor	()											const	{return GetColor();}
 	virtual	void	SetOriginalRect	(const Frect& r)									{iOriginalRect = r; uFlags|=flValidOriginalRect;}
 	virtual void	SetOriginalRectEx(const Frect& r)									{iOriginalRect = r; uFlags|=flValidOriginalRect; SetRect(0,0,r.width(),r.height());}
 
@@ -53,11 +51,11 @@ public:
 	IC float		GetPosX			()							{return iPos.x;}
 	IC float		GetPosY			()							{return iPos.y;}
 
-	IC void			SetColor		(u32 clr)					{dwColor= clr;}
-	IC void			SetColor		(Fcolor clr)				{dwColor= clr.get();}
-	IC u32			GetColor		() const					{return dwColor;}
-	IC u32&			GetColorRef		()							{return dwColor;}
-	IC ref_shader&	GetShader		()							{return hShader;}
+	IC void			SetTextureColor		(u32 clr)					{dwColor= clr;}
+	IC void			SetTextureColor		(Fcolor clr)				{dwColor= clr.get();}
+	IC u32			GetTextureColor		() const					{return dwColor;}
+	IC u32&			GetTextureColorRef	()							{return dwColor;}
+	IC ref_shader&	GetShader			()							{return hShader;}
 
 	IC virtual void			SetMirrorMode	(EUIMirroring m)	{ eMirrorMode = m; }
 	IC virtual EUIMirroring GetMirrorMode	() const			{ return eMirrorMode; }

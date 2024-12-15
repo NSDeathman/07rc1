@@ -135,7 +135,7 @@ void CUIWeaponCellItem::CreateIcon(eAddonType t)
 	m_addons[t]->SetAutoDelete	(true);
 	AttachChild					(m_addons[t]);
 	m_addons[t]->SetShader		(InventoryUtilities::GetEquipmentIconsShader());
-	m_addons[t]->SetColor		(GetColor());
+	m_addons[t]->SetTextureColor(GetTextureColor());
 }
 
 void CUIWeaponCellItem::DestroyIcon(eAddonType t)
@@ -247,11 +247,11 @@ CUIDragItem* CUIWeaponCellItem::CreateDragItem()
 
 	if(GetIcon(eSilencer))
 	{
-		s				= xr_new<CUIStatic>(); s->SetAutoDelete(true);
-		s->SetShader	(InventoryUtilities::GetEquipmentIconsShader());
-		InitAddon		(s, *object()->GetSilencerName(), m_addon_offset[eSilencer]);
-		s->SetColor		(i->wnd()->GetColor());
-		i->wnd			()->AttachChild	(s);
+		s					= xr_new<CUIStatic>(); s->SetAutoDelete(true);
+		s->SetShader		(InventoryUtilities::GetEquipmentIconsShader());
+		InitAddon			(s, *object()->GetSilencerName(), m_addon_offset[eSilencer]);
+		s->SetTextureColor	(i->wnd()->GetTextureColor());
+		i->wnd				()->AttachChild	(s);
 	}
 	
 	if(GetIcon(eScope))
@@ -259,17 +259,17 @@ CUIDragItem* CUIWeaponCellItem::CreateDragItem()
 		s				= xr_new<CUIStatic>(); s->SetAutoDelete(true);
 		s->SetShader	(InventoryUtilities::GetEquipmentIconsShader());
 		InitAddon		(s,	*object()->GetScopeName(),		m_addon_offset[eScope]);
-		s->SetColor		(i->wnd()->GetColor());
+		s->SetTextureColor		(i->wnd()->GetTextureColor());
 		i->wnd			()->AttachChild	(s);
 	}
 
 	if(GetIcon(eLauncher))
 	{
-		s				= xr_new<CUIStatic>(); s->SetAutoDelete(true);
-		s->SetShader	(InventoryUtilities::GetEquipmentIconsShader());
-		InitAddon		(s, *object()->GetGrenadeLauncherName(),m_addon_offset[eLauncher]);
-		s->SetColor		(i->wnd()->GetColor());
-		i->wnd			()->AttachChild	(s);
+		s					= xr_new<CUIStatic>(); s->SetAutoDelete(true);
+		s->SetShader		(InventoryUtilities::GetEquipmentIconsShader());
+		InitAddon			(s, *object()->GetGrenadeLauncherName(),m_addon_offset[eLauncher]);
+		s->SetTextureColor	(i->wnd()->GetTextureColor());
+		i->wnd				()->AttachChild	(s);
 	}
 	return				i;
 }

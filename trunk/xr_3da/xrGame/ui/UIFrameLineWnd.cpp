@@ -97,7 +97,7 @@ void CUIFrameLineWnd::SetOrientation(bool horizontal)
 
 //////////////////////////////////////////////////////////////////////////
 
-void CUIFrameLineWnd::SetColor(u32 cl)
+void CUIFrameLineWnd::SetTextureColor(u32 cl)
 {
-	UIFrameLine.SetColor(cl);
+	UIFrameLine.SetTextureColor(cl);
 }

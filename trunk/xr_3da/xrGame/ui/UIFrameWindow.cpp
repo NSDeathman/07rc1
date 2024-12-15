@@ -67,11 +67,6 @@ void CUIFrameWindow::SetHeight(float height)
 	m_UIWndFrame.SetHeight(height);
 }
 
-void CUIFrameWindow::SetColor(u32 cl)
-{
-	m_UIWndFrame.SetTextureColor(cl);
-}
-
 void CUIFrameWindow::FrameClip(const Frect parentAbsR)
 {
 	using std::min;

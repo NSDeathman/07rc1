@@ -42,11 +42,11 @@ void SBinocVisibleObj::create_default(u32 color)
 	m_rb.SetOriginalRect(RECT_SIZE,	RECT_SIZE,	RECT_SIZE,	RECT_SIZE);
 
 
-	u32 clr			= subst_alpha(color,128);
-	m_lt.SetColor	(clr);
-	m_lb.SetColor	(clr);
-	m_rt.SetColor	(clr);
-	m_rb.SetColor	(clr);
+	u32 clr					= subst_alpha(color,128);
+	m_lt.SetTextureColor	(clr);
+	m_lb.SetTextureColor	(clr);
+	m_rt.SetTextureColor	(clr);
+	m_rb.SetTextureColor	(clr);
 
 	cur_rect.set	(0,0, UI_BASE_WIDTH,UI_BASE_HEIGHT);
 
@@ -109,7 +109,7 @@ void SBinocVisibleObj::Update()
 		if (mn.similar(cur_rect.lt,2.f)&&mx.similar(cur_rect.rb,2.f)){ 
 			// target locked
 			m_flags.set(flTargetLocked,TRUE);
-			u32 clr	= subst_alpha(m_lt.GetColor(),255);
+			u32 clr	= subst_alpha(m_lt.GetTextureColor(),255);
 
 			//-----------------------------------------------------
 			CActor* pActor = NULL;
@@ -157,10 +157,10 @@ void SBinocVisibleObj::Update()
 				}
 			}
 
-			m_lt.SetColor	(clr);
-			m_lb.SetColor	(clr);
-			m_rt.SetColor	(clr);
-			m_rb.SetColor	(clr);
+			m_lt.SetTextureColor	(clr);
+			m_lb.SetTextureColor	(clr);
+			m_rt.SetTextureColor	(clr);
+			m_rb.SetTextureColor	(clr);
 		}
 	}
 

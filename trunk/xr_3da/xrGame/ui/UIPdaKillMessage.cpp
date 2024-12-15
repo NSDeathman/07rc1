@@ -76,19 +76,22 @@ float CUIPdaKillMessage::InitText(CUIStatic& refStatic, float x, PlayerInfo& inf
 	return		width;
 }
 
-void CUIPdaKillMessage::SetTextColor(u32 color){	
+void CUIPdaKillMessage::SetTextColor(u32 color)
+{
 	m_victim_name.SetTextColor(subst_alpha(m_victim_name.GetTextColor(),color_get_A(color)));
 	m_killer_name.SetTextColor(subst_alpha(m_killer_name.GetTextColor(),color_get_A(color)));
 	CUIStatic::SetTextColor(color);
 }
 
-void CUIPdaKillMessage::SetColor(u32 color){	
-	m_initiator.SetColor(color);
-	m_ext_info.SetColor(color);
-	CUIStatic::SetColor(color);
+void CUIPdaKillMessage::SetTextureColor(u32 color)
+{
+	m_initiator.SetTextureColor(color);
+	m_ext_info.SetTextureColor(color);
+	CUIStatic::SetTextureColor(color);
 }
 
-float CUIPdaKillMessage::InitIcon(CUIStatic& refStatic, float x, IconInfo& info){
+float CUIPdaKillMessage::InitIcon(CUIStatic& refStatic, float x, IconInfo& info)
+{
 	if ( 0 == info.m_rect.width())
 		return 0;
 
@@ -117,7 +120,8 @@ float CUIPdaKillMessage::InitIcon(CUIStatic& refStatic, float x, IconInfo& info)
 	return width;
 }
 
-void CUIPdaKillMessage::SetFont(CGameFont* pFont){
+void CUIPdaKillMessage::SetFont(CGameFont* pFont)
+{
 	m_victim_name.SetFont(pFont);
 	m_killer_name.SetFont(pFont);
 	CUIStatic::SetFont(pFont);
