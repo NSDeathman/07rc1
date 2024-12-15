@@ -60,7 +60,7 @@ public:
 
 	void			SetItemHeight			(float iItemHeight); 
 	float			GetItemHeight			()							{return m_iItemHeight;}
-    virtual void	SetHeight				(float height);
+	virtual void	SetHeight				(float height);
 
 	void			SetAlwaysShowScroll		(bool flag = true)			{m_bAlwaysShowScroll = flag;}
 	void			EnableAlwaysShowScroll	(bool flag)					{m_bAlwaysShowScroll_enable = flag;}
@@ -84,8 +84,11 @@ public:
 
 	virtual void	SetWidth				(float width);
 
-	void			SetTextColor			(u32 color)						{m_dwFontColor = color;} 
-	u32				GetTextColor			()								{return m_dwFontColor;}
+	void			SetTextColor			(u32 color)						{m_dwFontColor = color;}
+	u32				GetTextColor			() const						{return m_dwFontColor;}
+
+	void			SetBaseTextColor		(u32 color)						{m_dwFontColor = color; m_dwFontBaseColor = color;}
+	u32				GetBaseTextColor		() const						{return m_dwFontBaseColor;}
 
 	//делает активными (как кнопки) элементы списка
 	void 			ActivateList			(bool activity);
@@ -147,6 +150,7 @@ protected:
 
 	//текущий цвет текста
 	u32		m_dwFontColor;
+	u32		m_dwFontBaseColor;
 	bool	m_bListActivity;
 
 	//переворот списка по вертикали

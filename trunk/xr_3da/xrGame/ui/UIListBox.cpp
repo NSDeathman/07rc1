@@ -49,7 +49,7 @@ CUIListBoxItem* CUIListBox::AddItem(LPCSTR text)
 	CUIListBoxItem* pItem		= xr_new<CUIListBoxItem>();
 	pItem->Init					(0,0,this->GetDesiredChildWidth() - 5, m_def_item_height);
 	if (!m_selection_texture)
-        pItem->InitDefault		();
+		pItem->InitDefault		();
 	else
 		pItem->InitTexture		(*m_selection_texture);
 
@@ -73,7 +73,7 @@ void CUIListBox::SendMessage(CUIWindow* pWnd, s16 msg, void* pData)
 				break;
 			case LIST_ITEM_FOCUS_RECEIVED:
 				if (m_bImmediateSelection)
-                    SetSelected(pWnd);
+					SetSelected(pWnd);
 				break;
 		}		
 	}
@@ -262,6 +262,23 @@ void CUIListBox::SetTextColorS(u32 color)
 u32 CUIListBox::GetTextColor()
 {
 	return m_text_color;
+}
+
+void CUIListBox::SetBaseTextColor(u32 color)
+{
+	m_text_color = color;
+	m_base_text_color = color;
+}
+
+void CUIListBox::SetBaseTextColorS(u32 color)
+{
+	m_text_color_s = color;
+	m_base_text_color = color;
+}
+
+u32 CUIListBox::GetBaseTextColor()
+{
+	return m_base_text_color;
 }
 
 void CUIListBox::SetFont(CGameFont* pFont)

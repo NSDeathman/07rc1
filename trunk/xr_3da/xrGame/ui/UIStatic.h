@@ -97,6 +97,8 @@ public:
 	virtual LPCSTR			GetText					();
 	virtual void			SetTextColor			(u32 color);
 	virtual u32				GetTextColor			();
+	virtual void			SetBaseTextColor		(u32 color);
+	virtual u32				GetBaseTextColor		();
 	virtual void			SetFont					(CGameFont* pFont);
 	virtual CGameFont*		GetFont					();
 	virtual void			SetTextAlignment		(ETextAlignment alignment);
@@ -107,7 +109,9 @@ public:
 			void	SetTextAlign_script			(u32 align);
 			u32		GetTextAlign_script			();
 			void	SetTextColor_script			(int a, int r, int g, int b){SetTextColor(color_argb(a,r,g,b));}
+			void	SetBaseTextColor_script		(int a, int r, int g, int b){SetTextColor(color_argb(a,r,g,b)); SetBaseTextColor(color_argb(a,r,g,b));}
 			u32&	GetTextColorRef				();
+			u32&	GetBaseTextColorRef			();
 //#pragma todo("Satan->Satan : delete next two functions")
 //	virtual void			SetTextAlign		(CGameFont::EAligment align);
 //	CGameFont::EAligment	GetTextAlign		();
@@ -168,6 +172,7 @@ public:
 	} E4States;
 
 	void SetTextColor(u32 color, E4States state);
+	void SetBaseTextColorS(u32 color, E4States state);
 
 	CUILines*				m_pLines;
 protected:
@@ -178,6 +183,7 @@ protected:
 	// this array of color will be useful in CUI3tButton class
 	// but we really need to declare it directly there because it must be initialized in CUIXmlInit::InitStatic
 	u32  m_dwTextColor[4];
+	u32  m_dwBaseTextColor[4];
 	bool m_bUseTextColor[4]; // note: 0 index will be ignored
 
 	bool m_bClipper;

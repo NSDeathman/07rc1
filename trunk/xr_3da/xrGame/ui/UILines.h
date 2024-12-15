@@ -22,17 +22,20 @@ public:
 	virtual ~CUILines();
 
 	// IUITextControl methods
-	virtual void			SetText(const char* text);
-	virtual const char*		GetText();
-	virtual void			SetTextColor(u32 color);
-	virtual u32				GetTextColor()								{return m_dwTextColor;}
-			u32&			GetTextColorRef()							{return m_dwTextColor;}
-	virtual void			SetFont(CGameFont* pFont);
-	virtual CGameFont*		GetFont()									{return m_pFont;}
-	virtual void			SetTextAlignment(ETextAlignment al)			{m_eTextAlign = al;}
-	virtual ETextAlignment	GetTextAlignment()							{return m_eTextAlign;}
-			void			SetVTextAlignment(EVTextAlignment al)		{m_eVTextAlign = al;}
-			EVTextAlignment GetVTextAlignment()							{return m_eVTextAlign;}
+	virtual void			SetText										(const char* text);
+	virtual const char*		GetText										();
+	virtual void			SetTextColor								(u32 color);
+	virtual void			SetBaseTextColor							(u32 color);
+	virtual u32				GetTextColor								()						{return m_dwTextColor;}
+	virtual u32				GetBaseTextColor							()						{return m_dwBaseTextColor;}
+			u32&			GetTextColorRef								()						{return m_dwTextColor;}
+			u32&			GetBaseTextColorRef							()						{return m_dwBaseTextColor;}
+	virtual void			SetFont										(CGameFont* pFont);
+	virtual CGameFont*		GetFont										()									{return m_pFont;}
+	virtual void			SetTextAlignment							(ETextAlignment al)			{m_eTextAlign = al;}
+	virtual ETextAlignment	GetTextAlignment							()							{return m_eTextAlign;}
+			void			SetVTextAlignment							(EVTextAlignment al)		{m_eVTextAlign = al;}
+			EVTextAlignment GetVTextAlignment							()							{return m_eVTextAlign;}
 
 	// additional
 			void			SetCursorColor								(u32 color)			{m_dwCursorColor = color;}
@@ -48,7 +51,7 @@ public:
 			void			SetCutWordsMode								(bool mode);
 			void			SetUseNewLineMode							(bool mode);
 
-    // IUISimpleWindow methods
+	// IUISimpleWindow methods
 	virtual void			Init										(float x, float y, float width, float height);
 	virtual void			Draw										();
 	virtual void			Draw										(float x, float y);
@@ -56,7 +59,7 @@ public:
 IC			void			SetWndSize_inline							(const Fvector2& wnd_size);
 
 
-    // CDeviceResetNotifier methods
+	// CDeviceResetNotifier methods
 	virtual void			OnDeviceReset								();
 
 	// own methods
@@ -90,6 +93,7 @@ protected:
 	ETextAlignment			m_eTextAlign;
 	EVTextAlignment			m_eVTextAlign;
 	u32						m_dwTextColor;
+	u32						m_dwBaseTextColor;
 	u32						m_dwCursorColor;
 
 	CGameFont*				m_pFont;
@@ -114,6 +118,8 @@ public:
 	// IUIFontControl{
 	virtual void			SetTextColor					(u32 color)						{m_lines.SetTextColor(color);}
 	virtual u32				GetTextColor					()								{return m_lines.GetTextColor();}
+	virtual void			SetBaseTextColor				(u32 color)						{m_lines.SetBaseTextColor(color); m_lines.SetTextColor(color);}
+	virtual u32				GetBaseTextColor				()								{return m_lines.GetBaseTextColor();}
 	virtual void			SetFont							(CGameFont* pFont)				{m_lines.SetFont(pFont);}
 	virtual CGameFont*		GetFont							()								{return m_lines.GetFont();}
 	virtual void			SetTextAlignment				(ETextAlignment alignment)		{m_lines.SetTextAlignment(alignment);}

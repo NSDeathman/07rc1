@@ -13,6 +13,8 @@ public:
 	virtual ~IUIFontControl()											 {};
 	virtual void			SetTextColor(u32 color)						= 0;
 	virtual u32				GetTextColor()								= 0;
+	virtual void			SetBaseTextColor(u32 color)					= 0;
+	virtual u32				GetBaseTextColor()							= 0;
 	virtual void			SetFont(CGameFont* pFont)					= 0;
 	virtual CGameFont*		GetFont()									= 0;
 	virtual void			SetTextAlignment(ETextAlignment alignment)	= 0;

@@ -37,7 +37,10 @@ virtual void		SendMessage						(CUIWindow* pWnd, s16 msg, void* pData = 0);
 	// IUIFontControl
 	virtual void			SetTextColor			(u32 color);
 			void			SetTextColorS			(u32 color);
+	virtual void			SetBaseTextColor		(u32 color);
+			void			SetBaseTextColorS		(u32 color);
 	virtual u32				GetTextColor			();
+	virtual u32				GetBaseTextColor		();
 	virtual void			SetFont					(CGameFont* pFont);
 	virtual CGameFont*		GetFont					();
 	virtual void			SetTextAlignment		(ETextAlignment alignment);
@@ -48,6 +51,8 @@ protected:
 	int				m_last_selection;
 	u32				m_text_color;
 	u32				m_text_color_s;
+	u32				m_base_text_color;
+	u32				m_base_text_color_s;
 	ETextAlignment	m_text_al;
 	shared_str		m_selection_texture;
 

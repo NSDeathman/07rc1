@@ -35,8 +35,8 @@ CUI3tButton::~CUI3tButton()
 
 void CUI3tButton::OnClick()
 {
-    CUIButton::OnClick	();
-    PlaySoundT			();
+	CUIButton::OnClick	();
+	PlaySoundT			();
 }
 
 bool CUI3tButton::OnMouse(float x, float y, EUIMessages mouse_action)
@@ -93,7 +93,7 @@ void CUI3tButton::InitSoundT(LPCSTR sound_file)
 void CUI3tButton::PlaySoundT()
 {
 	if (m_sound_t._handle())
-        m_sound_t.play(NULL, sm_2D);
+		m_sound_t.play(NULL, sm_2D);
 }
 
 void CUI3tButton::PlaySoundH()
@@ -105,7 +105,7 @@ void CUI3tButton::PlaySoundH()
 void CUI3tButton::Init(float x, float y, float width, float height)
 {
 	m_background.Init			(0, 0, width, height);
-    CUIButton::Init				(x, y, width, height);
+	CUIButton::Init				(x, y, width, height);
 }
 
 void CUI3tButton::SetWidth(float width)
@@ -161,7 +161,7 @@ void CUI3tButton::InitTexture(LPCSTR tex_enabled,
 
 void CUI3tButton::SetTextColor(u32 color)
 {
-    m_dwTextColor[E] = color;
+	m_dwTextColor[E] = color;
 }
 
 void CUI3tButton::SetTextColorD(u32 color)
@@ -177,6 +177,26 @@ void CUI3tButton::SetTextColorH(u32 color)
 void CUI3tButton::SetTextColorT(u32 color)
 {
 	SetTextColor(color, CUIStatic::T);
+}
+
+void CUI3tButton::SetBaseTextColor(u32 color)
+{
+	m_dwBaseTextColor[E] = color;
+}
+
+void CUI3tButton::SetBaseTextColorD(u32 color)
+{
+	SetBaseTextColorS(color, CUIStatic::D);
+}
+
+void CUI3tButton::SetBaseTextColorH(u32 color)
+{
+	SetBaseTextColorS(color, CUIStatic::H);
+}
+
+void CUI3tButton::SetBaseTextColorT(u32 color)
+{
+	SetBaseTextColorS(color, CUIStatic::T);
 }
 
 void CUI3tButton::SetTextureOffset(float x, float y)
@@ -215,7 +235,7 @@ void CUI3tButton::Update()
 	if(m_bTextureEnable)
 	{
 		if (!m_bIsEnabled){
-            m_background.SetState(S_Disabled);
+			m_background.SetState(S_Disabled);
 		}
 		else if (CUIButton::BUTTON_PUSHED == m_eButtonState){
 			m_background.SetState(S_Touched);

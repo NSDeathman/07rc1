@@ -29,6 +29,10 @@ public:
 			void 	SetTextColorH				(u32 color);
 			void 	SetTextColorD				(u32 color);
 			void 	SetTextColorT				(u32 color);
+			void 	SetBaseTextColor			(u32 color);
+			void 	SetBaseTextColorH			(u32 color);
+			void 	SetBaseTextColorD			(u32 color);
+			void 	SetBaseTextColorT			(u32 color);
 	virtual void 	SetTextureOffset			(float x, float y);
 	virtual void 	SetBaseTextureOffset		(float x, float y);
 	virtual void 	SetTextureOffset			(Fvector2 offset);

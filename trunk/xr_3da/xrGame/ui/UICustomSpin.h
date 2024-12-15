@@ -36,6 +36,9 @@ public:
 			void	SetTextColor		(u32 color);
 			void	SetTextColorD		(u32 color);
 
+			void	SetBaseTextColor	(u32 color);
+			void	SetBaseTextColorD	(u32 color);
+
 protected:
 	virtual bool		CanPressUp			()	= 0;
 	virtual bool		CanPressDown		()	= 0;
@@ -52,4 +55,5 @@ protected:
 	u32					m_u_delay;
 
 	u32					m_textColor[2];
+	u32					m_BasetextColor[2];
 };

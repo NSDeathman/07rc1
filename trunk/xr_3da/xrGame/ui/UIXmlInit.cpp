@@ -245,7 +245,7 @@ bool CUIXmlInit::InitSpin(CUIXml& xml_doc, LPCSTR path, int index, CUICustomSpin
 	if (xml_doc.NavigateToNode(foo, index))
 	{
 		color				= GetColor(xml_doc, foo, index, 0x00);
-		pWnd->SetTextColor	(color);
+		pWnd->SetBaseTextColor(color);
 	}
 	strconcat				(sizeof(foo), foo, path, ":text_color:d");
 	if (xml_doc.NavigateToNode(foo, index))
@@ -286,7 +286,7 @@ bool CUIXmlInit::InitText(CUIXml& xml_doc, LPCSTR path, int index, IUITextContro
 	u32 color;
 	CGameFont *pTmpFont = NULL;
 	InitFont(xml_doc, path, index, color, pTmpFont);
-	pWnd->SetTextColor(color);
+	pWnd->SetBaseTextColor(color);
 	if (pTmpFont)
 		pWnd->SetFont(pTmpFont);
 	// Load font alignment
@@ -511,7 +511,7 @@ bool CUIXmlInit::InitListWnd(CUIXml& xml_doc, LPCSTR path, int index, CUIListWnd
 	if (LocalFont)
 	{
 		pWnd->SetFont(LocalFont);
-		pWnd->SetTextColor(cl);
+		pWnd->SetBaseTextColor(cl);
 	}
 
 	pWnd->SetScrollBarProfile			(xml_doc.ReadAttrib(path, index, "scroll_profile", "default"));
@@ -869,7 +869,7 @@ bool CUIXmlInit::InitCustomEdit(CUIXml& xml_doc, LPCSTR path, int index, CUICust
 	if (xml_doc.NavigateToNode(foo, index))
 	{
 		color				= GetColor(xml_doc, foo, index, 0x00);
-		pWnd->SetTextColor	(color);
+		pWnd->SetBaseTextColor(color);
 	}
 
 // 	strconcat				(sizeof(foo),foo,path,":text_color:d");
@@ -1173,28 +1173,28 @@ bool CUIXmlInit::InitMultiText(CUIXml& xml_doc, LPCSTR path, int index, CUIStati
 	if (xml_doc.NavigateToNode(buf, index))
 	{
 		color			= GetColor(xml_doc, buf, index, 0x00);
-		pWnd->SetTextColor(color, CUIStatic::E);
+		pWnd->SetBaseTextColorS(color, CUIStatic::E);
 	}
 
 	strconcat(sizeof(buf), buf, path, ":text_color:d");
 	if (xml_doc.NavigateToNode(buf, index))
 	{
 		color			= GetColor(xml_doc, buf, index, 0x00);
-		pWnd->SetTextColor(color, CUIStatic::D);
+		pWnd->SetBaseTextColorS(color, CUIStatic::D);
 	}
 
 	strconcat(sizeof(buf), buf, path, ":text_color:t");
 	if (xml_doc.NavigateToNode(buf, index))
 	{
 		color			= GetColor(xml_doc, buf, index, 0x00);
-		pWnd->SetTextColor(color, CUIStatic::T);
+		pWnd->SetBaseTextColorS(color, CUIStatic::T);
 	}
 
 	strconcat(sizeof(buf), buf, path, ":text_color:h");
 	if (xml_doc.NavigateToNode(buf, index))
 	{
 		color			= GetColor(xml_doc, buf, index, 0x00);
-		pWnd->SetTextColor(color, CUIStatic::H);
+		pWnd->SetBaseTextColorS(color, CUIStatic::H);
 	}
 
 	return true;
@@ -1353,7 +1353,7 @@ bool CUIXmlInit::InitListBox(CUIXml& xml_doc, LPCSTR path, int index, CUIListBox
 	strconcat(sizeof(_path), _path, path, ":font");
 	InitFont(xml_doc, _path, index, t_color, pFnt);
 
-	pWnd->SetTextColor(t_color);
+	pWnd->SetBaseTextColor(t_color);
 	pWnd->SetFont(pFnt);
 
 	strconcat(sizeof(_path), _path, path, ":font_s");

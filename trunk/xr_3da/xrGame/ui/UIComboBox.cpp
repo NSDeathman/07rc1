@@ -55,8 +55,8 @@ void CUIComboBox::Init(float x, float y, float width){
 
 
 	// Edit Box on left side of frame line
-	m_text.Init							(0, 0, width, CB_HEIGHT); 
-	m_text.SetTextColor					(m_textColor[0]);
+	m_text.Init							(0, 0, width, CB_HEIGHT);
+	m_text.SetBaseTextColor				(m_textColor[0]);
 	m_text.Enable						(false);
 	// Button on right side of frame line
 //.	m_btn.Init							("ui_cb_button", width, 0, BTN_SIZE, BTN_SIZE);
@@ -66,7 +66,7 @@ void CUIComboBox::Init(float x, float y, float width){
 	float item_height					= CUITextureMaster::GetTextureHeight("ui_cb_listline_b");
 	m_list.Init							(0, CB_HEIGHT, width, item_height*m_iListHeight);
 	m_list.Init							();
-	m_list.SetTextColor					(m_textColor[0]);
+	m_list.SetBaseTextColor				(m_textColor[0]);
 	m_list.SetSelectionTexture			("ui_cb_listline");
 	m_list.SetItemHeight				(CUITextureMaster::GetTextureHeight("ui_cb_listline_b"));
 	// frame(texture) for list

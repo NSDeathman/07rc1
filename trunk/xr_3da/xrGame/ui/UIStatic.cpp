@@ -407,18 +407,39 @@ LPCSTR CUIStatic::GetText(){
 		return &empty;
 }
 
-void CUIStatic::SetTextColor(u32 color){
+void CUIStatic::SetTextColor(u32 color)
+{
 	CREATE_LINES;
 	m_pLines->SetTextColor(color);
 }
 
-u32 CUIStatic::GetTextColor(){
+u32 CUIStatic::GetTextColor()
+{
 	CREATE_LINES;
 	return m_pLines->GetTextColor();
 }
 
-u32& CUIStatic::GetTextColorRef(){
+u32& CUIStatic::GetTextColorRef()
+{
 	return m_pLines->GetTextColorRef();
+}
+
+void CUIStatic::SetBaseTextColor(u32 color)
+{
+	CREATE_LINES;
+	m_pLines->SetBaseTextColor(color);
+	m_pLines->SetTextColor(color);
+}
+
+u32 CUIStatic::GetBaseTextColor()
+{
+	CREATE_LINES;
+	return m_pLines->GetBaseTextColor();
+}
+
+u32& CUIStatic::GetBaseTextColorRef()
+{
+	return m_pLines->GetBaseTextColorRef();
 }
 
 void CUIStatic::SetText(LPCSTR str)
@@ -429,8 +450,16 @@ void CUIStatic::SetText(LPCSTR str)
 	m_pLines->SetText(str);
 }
 
-void CUIStatic::SetTextColor(u32 color, E4States state){
+void CUIStatic::SetTextColor(u32 color, E4States state)
+{
 	m_dwTextColor[state] = color;
+	m_bUseTextColor[state] = true;
+}
+
+void CUIStatic::SetBaseTextColorS(u32 color, E4States state)
+{
+	m_dwTextColor[state] = color;
+	m_dwBaseTextColor[state] = color;
 	m_bUseTextColor[state] = true;
 }
 
