@@ -52,6 +52,15 @@ void CUIFrameLine::SetTextureColor(u32 cl)
 		elements[i].SetTextureColor(cl);
 }
 
+void CUIFrameLine::SetBaseTextureColor(u32 cl)
+{
+	for (int i = 0; i < flMax; ++i)
+	{
+		elements[i].SetTextureColor(cl);
+		elements[i].SetBaseTextureColor(cl);
+	}
+}
+
 //////////////////////////////////////////////////////////////////////////
 
 void CUIFrameLine::UpdateSize()

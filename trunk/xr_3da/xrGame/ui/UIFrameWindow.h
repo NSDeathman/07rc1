@@ -22,6 +22,7 @@ public:
 
 	virtual void	InitTexture					(const char* texture);
 			void	SetTextureColor				(u32 color)										{m_UIWndFrame.SetTextureColor(color);}
+			void	SetBaseTextureColor			(u32 color)										{m_UIWndFrame.SetTextureColor(color); m_UIWndFrame.SetBaseTextureColor(color);}
 
 	virtual void	SetWidth					(float width);
 	virtual void	SetHeight					(float height);

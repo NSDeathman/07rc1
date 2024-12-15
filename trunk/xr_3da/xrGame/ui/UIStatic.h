@@ -51,6 +51,9 @@ public:
 	virtual void		SetTextureColor				(u32 color)					{ m_UIStaticItem.SetTextureColor(color);		}
 	u32					GetTextureColor				() const					{ return m_UIStaticItem.GetTextureColor();		}
 	u32&				GetTextureColorRef			()							{ return m_UIStaticItem.GetTextureColorRef();	}
+	virtual void		SetBaseTextureColor			(u32 color)					{ m_UIStaticItem.SetBaseTextureColor(color); m_UIStaticItem.SetTextureColor(color);		}
+	u32					GetBaseTextureColor			() const					{ return m_UIStaticItem.GetBaseTextureColor();		}
+	u32&				GetBaseTextureColorRef		()							{ return m_UIStaticItem.GetBaseTextureColorRef();	}
 	virtual void		InitTexture					(LPCSTR tex_name);
 	virtual void		InitTextureEx				(LPCSTR tex_name, LPCSTR sh_name="hud\\default");
 	CUIStaticItem*		GetStaticItem				()							{return &m_UIStaticItem;}
@@ -189,7 +192,7 @@ protected:
 	bool			m_bHeading;
 	float			m_fHeading;
 
-    // Для вывода текстуры с обрезанием по маске используем CUIFrameWindow
+	// Для вывода текстуры с обрезанием по маске используем CUIFrameWindow
 	CUIFrameWindow	*m_pMask;
 	Fvector2		m_TextureOffset;
 	Fvector2		m_BaseTextureOffset;

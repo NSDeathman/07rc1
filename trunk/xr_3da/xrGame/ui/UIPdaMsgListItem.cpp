@@ -50,8 +50,15 @@ void CUIPdaMsgListItem::SetTextColor(u32 color){
 	UIMsgText.SetTextColor	(color);
 }
 
-void CUIPdaMsgListItem::SetTextureColor(u32 color){
+void CUIPdaMsgListItem::SetTextureColor(u32 color)
+{
 	UIIcon.SetTextureColor(color);
+}
+
+void CUIPdaMsgListItem::SetBaseTextureColor(u32 color)
+{
+	UIIcon.SetTextureColor(color);
+	UIIcon.SetBaseTextureColor(color);
 }
 
 void CUIPdaMsgListItem::InitCharacter(CInventoryOwner* pInvOwner)

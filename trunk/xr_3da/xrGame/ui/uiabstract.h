@@ -40,7 +40,9 @@ public:
 	virtual void		CreateShader(const char* tex, const char* sh = "hud\\default")	= 0;
 	virtual void		SetShader(const ref_shader& sh)									= 0;
 	virtual void		SetTextureColor(u32 color)										= 0;
-	virtual u32			GetTextureColor()										const	= 0;
+	virtual u32			GetTextureColor() const											= 0;
+	virtual void		SetBaseTextureColor(u32 color)									= 0;
+	virtual u32			GetBaseTextureColor() const										= 0;
 	virtual void		SetOriginalRect(const Frect& r)									= 0;
 	virtual void		SetOriginalRectEx(const Frect& r)								= 0;
 };
@@ -94,7 +96,7 @@ class IUISimpleWindow :public boost::noncopyable{
 public:
 						IUISimpleWindow						()			{};		
 	virtual				~IUISimpleWindow					()			{};
-    
+	
 	virtual void		Init(float x, float y, float width, float height)= 0;
 	virtual void		Draw()											= 0;
 	virtual void		Draw(float x, float y)							= 0;

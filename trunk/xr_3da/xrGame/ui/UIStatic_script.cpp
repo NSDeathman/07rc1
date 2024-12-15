@@ -22,6 +22,8 @@ void CUIStatic::script_register(lua_State *L)
 		
 		.def("SetTextureColor",			&CUIStatic::SetTextureColor)
 		.def("GetTextureColor",			&CUIStatic::GetTextureColor)
+		.def("SetBaseTextureColor",		&CUIStatic::SetBaseTextureColor)
+		.def("GetBaseTextureColor",		&CUIStatic::GetBaseTextureColor)
 		.def("SetTextColor",			&CUIStatic::SetTextColor_script)
 		.def("Init",					(void(CUIStatic::*)(float,float,float,float))&CUIStatic::Init )
 		.def("Init",					(void(CUIStatic::*)(LPCSTR,float,float,float,float))&CUIStatic::Init )

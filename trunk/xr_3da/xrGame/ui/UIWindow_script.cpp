@@ -144,6 +144,7 @@ void CUIWindow::script_register(lua_State *L)
 		.def("SetWidth",				&CUIFrameWindow::SetWidth)
 		.def("SetHeight",				&CUIFrameWindow::SetHeight)
 		.def("SetTextureColor",			&CUIFrameWindow::SetTextureColor)
+		.def("SetBaseTextureColor",		&CUIFrameWindow::SetBaseTextureColor)
 		.def("GetTitleStatic",			&CUIFrameWindow::GetTitleStatic)
 		.def("Init",					(void(CUIFrameWindow::*)(LPCSTR,float,float,float,float))&CUIFrameWindow::Init),
 
@@ -153,6 +154,7 @@ void CUIWindow::script_register(lua_State *L)
 		.def("SetHeight",						&CUIFrameLineWnd::SetHeight)
 		.def("SetOrientation",					&CUIFrameLineWnd::SetOrientation)
 		.def("SetTextureColor",					&CUIFrameLineWnd::SetTextureColor)
+		.def("SetBaseTextureColor",				&CUIFrameLineWnd::SetBaseTextureColor)
 		.def("GetTitleStatic",					&CUIFrameLineWnd::GetTitleStatic)
 		.def("Init",							(void(CUIFrameLineWnd::*)(LPCSTR,float,float,float,float,bool))&CUIFrameLineWnd::Init),
 

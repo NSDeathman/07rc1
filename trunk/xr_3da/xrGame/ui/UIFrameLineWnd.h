@@ -18,6 +18,7 @@ public:
 	virtual void SetOrientation(bool horizontal);
 			float GetTextureHeight();
 	void SetTextureColor(u32 cl);
+	void SetBaseTextureColor(u32 cl);
 
 	// Also we can display textual caption on the frame
 	CUIStatic		UITitleText;

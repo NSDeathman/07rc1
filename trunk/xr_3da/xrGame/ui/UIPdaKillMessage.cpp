@@ -85,9 +85,9 @@ void CUIPdaKillMessage::SetTextColor(u32 color)
 
 void CUIPdaKillMessage::SetTextureColor(u32 color)
 {
-	m_initiator.SetTextureColor(color);
-	m_ext_info.SetTextureColor(color);
-	CUIStatic::SetTextureColor(color);
+	m_initiator.SetBaseTextureColor(color);
+	m_ext_info.SetBaseTextureColor(color);
+	CUIStatic::SetBaseTextureColor(color);
 }
 
 float CUIPdaKillMessage::InitIcon(CUIStatic& refStatic, float x, IconInfo& info)

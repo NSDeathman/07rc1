@@ -825,7 +825,7 @@ bool CUIXmlInit::InitFrameLine(CUIXml& xml_doc, LPCSTR path, int index, CUIFrame
 	}
 */
 	u32 color		= GetColor	(xml_doc, buf, index, 0xff);
-	pWnd->SetTextureColor	(color);
+	pWnd->SetBaseTextureColor	(color);
 
 	pWnd->Init(*base_name, x, y, width, height, !vertical);
 
@@ -1082,7 +1082,7 @@ bool CUIXmlInit::InitTexture(CUIXml& xml_doc, LPCSTR path, int index, IUISingleT
 	pWnd->SetStretchTexture(stretch_flag);
 
 	u32 color = GetColor(xml_doc, buf, index, 0xff);
-	pWnd->SetTextureColor(color);
+	pWnd->SetBaseTextureColor(color);
 
 	if (rect.width() != 0 && rect.height() != 0)
 		pWnd->SetOriginalRect(rect);

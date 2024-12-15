@@ -203,3 +203,12 @@ void CUIFrameRect::SetTextureColor(u32 cl)
 	for (int i = 0; i < fmMax; ++i)
 		frame[i].SetTextureColor(cl);
 }
+
+void CUIFrameRect::SetBaseTextureColor(u32 cl)
+{
+	for (int i = 0; i < fmMax; ++i)
+	{
+		frame[i].SetBaseTextureColor(cl);
+		frame[i].SetTextureColor(cl);
+	}
+}

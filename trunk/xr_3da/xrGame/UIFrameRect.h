@@ -30,6 +30,7 @@ public:
 	virtual void		SetHeight		(float height);
 	virtual void		Update			();
 			void		SetTextureColor	(u32 cl);
+			void		SetBaseTextureColor	(u32 cl);
 			void		SetVisiblePart	(EFramePart p, BOOL b)	{m_itm_mask.set(u16(1<<p), b);};
 protected:
 	CUIStaticItem	frame[fmMax];

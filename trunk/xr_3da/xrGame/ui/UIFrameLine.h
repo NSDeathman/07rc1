@@ -41,16 +41,17 @@ protected:
 	u8			uFlags;
 	bool		bHorizontalOrientation;
 
-	void		UpdateSize		();
+	void		UpdateSize			();
 public:
-				CUIFrameLine	();
-	void		Init			(LPCSTR base_name, float x, float y, float size, bool horizontal, DWORD align);
-	void		InitTexture		(const char* texture);
+				CUIFrameLine		();
+	void		Init				(LPCSTR base_name, float x, float y, float size, bool horizontal, DWORD align);
+	void		InitTexture			(const char* texture);
 	void		SetTextureColor		(u32 cl);
-	IC void		SetPos			(float left, float top)		{ iPos.set(left,top);	uFlags &=~ flValidSize; }
-	IC void		SetSize			(float size)				{ iSize = size;			uFlags &=~ flValidSize; }
-	IC void		SetOrientation	(bool bIsHorizontal)	{ bHorizontalOrientation = bIsHorizontal; uFlags &=~ flValidSize; }
-	void		Render			();
+	void		SetBaseTextureColor	(u32 cl);
+	IC void		SetPos				(float left, float top)		{ iPos.set(left,top);	uFlags &=~ flValidSize; }
+	IC void		SetSize				(float size)				{ iSize = size;			uFlags &=~ flValidSize; }
+	IC void		SetOrientation		(bool bIsHorizontal)	{ bHorizontalOrientation = bIsHorizontal; uFlags &=~ flValidSize; }
+	void		Render				();
 };
 
 #endif	// UI_FRAME_LINE_H_

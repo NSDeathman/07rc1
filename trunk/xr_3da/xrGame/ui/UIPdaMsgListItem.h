@@ -15,6 +15,7 @@ public:
 	virtual void		SetTextColor					(u32 color);
 	virtual void		SetFont							(CGameFont* pFont);
 	virtual void		SetTextureColor					(u32 color);
+	virtual void		SetBaseTextureColor				(u32 color);
 	
 	//информация о персонаже
 	CUIStatic			UIIcon;

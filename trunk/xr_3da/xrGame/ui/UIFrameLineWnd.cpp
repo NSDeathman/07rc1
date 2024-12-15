@@ -101,3 +101,9 @@ void CUIFrameLineWnd::SetTextureColor(u32 cl)
 {
 	UIFrameLine.SetTextureColor(cl);
 }
+
+void CUIFrameLineWnd::SetBaseTextureColor(u32 cl)
+{
+	UIFrameLine.SetTextureColor(cl);
+	UIFrameLine.SetBaseTextureColor(cl);
+}
