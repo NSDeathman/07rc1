@@ -1,11 +1,7 @@
 #pragma once
 
-#define UI_BASE_WIDTH	1024.0f
-#define UI_BASE_HEIGHT	768.0f
-
 struct CFontManager;
 class CUICursor;
-
 
 class CDeviceResetNotifier :public pureDeviceReset
 {

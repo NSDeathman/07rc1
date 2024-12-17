@@ -174,7 +174,7 @@ void CConsole::OutFont( LPCSTR text, float& pos_y )
 		int ln	= 0;
 		PSTR one_line = (PSTR)_alloca( (CONSOLE_BUF_SIZE + 1) * sizeof(char) );
 		
-		while( text[sz] && (ln + sz < CONSOLE_BUF_SIZE-5) )// перенос строк
+		while( text[sz] && (ln + sz < CONSOLE_BUF_SIZE-5) )// РїРµСЂРµРЅРѕСЃ СЃС‚СЂРѕРє
 		{
 			one_line[ln+sz]   = text[sz];
 			one_line[ln+sz+1] = 0;
@@ -415,8 +415,8 @@ void CConsole::DrawBackgrounds( bool bGame )
 	pr.x1 = ioc_w + cur_cmd_w;
 	pr.x2 = pr.x1 + list_w;
 	
-	pr.y1 = /*UI_BASE_HEIGHT*/768 * 0.5f;
-	pr.y1 *= float(Device.dwHeight)/ 768/*UI_BASE_HEIGHT*/;
+	pr.y1 = UI_BASE_HEIGHT * 0.5f;
+	pr.y1 *= float(Device.dwHeight)/ UI_BASE_HEIGHT;
 	
 	pr.y2 = pr.y1 + tips_h;
 	
