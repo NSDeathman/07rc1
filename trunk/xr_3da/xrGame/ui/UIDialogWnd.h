@@ -19,6 +19,7 @@ protected:
 	bool			IR_process					();
 public:
 	bool										m_bWorkInPause;
+	bool										m_bNeedToCenter;
 	CUIDialogWnd								();
 	virtual ~ CUIDialogWnd						();
 
@@ -34,12 +35,14 @@ public:
 	virtual bool OnKeyboard						(int dik, EUIMessages keyboard_action);
 	virtual bool OnKeyboardHold					(int dik);
 
-	CDialogHolder* GetHolder					()					{return m_pHolder;};
-			void SetHolder						(CDialogHolder* h)	{m_pHolder = h;};
-	virtual bool StopAnyMove					(){return true;}
+	CDialogHolder* GetHolder					() { return m_pHolder; }
+			void SetHolder						(CDialogHolder* h) { m_pHolder = h; }
+	virtual bool StopAnyMove					() { return true;}
 	virtual bool NeedCursor						()const {return true;}
-	virtual bool WorkInPause					()const {return m_bWorkInPause;}
-	virtual bool Dispatch						(int cmd, int param)				{return true;}
+	virtual bool NeedCenterCursor				() const {return m_bNeedToCenter; }
+	virtual void SetCenterCursor				(bool value) { m_bNeedToCenter = value; }
+	virtual bool WorkInPause					() const { return m_bWorkInPause; }
+	virtual bool Dispatch						(int cmd, int param) { return true; }
 };
 
 #endif // _UI_DIALOG_WND_H_

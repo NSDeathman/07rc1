@@ -10,8 +10,8 @@ class "main_menu" (CUIScriptWnd)
 
 function main_menu:__init() super()
 	self.mbox_mode = 0
-   self:InitControls()
-   self:InitCallBacks()
+	self:InitControls()
+	self:InitCallBacks()
 end
 
 function main_menu:__finalize()
@@ -39,6 +39,7 @@ function main_menu:InitControls()
 	local mm						= _G.main_menu.get_main_menu()
 	_ver:SetText					("ver. " .. mm:GetGSVer())
 	
+	self:NeedCenterCursor(true)
 end
 
 function main_menu:Show(f)

@@ -136,6 +136,7 @@ void CUIWindow::script_register(lua_State *L)
 		.def("RemoveDialogToRender",	&CDialogHolder::RemoveDialogToRender),
 
 		class_<CUIDialogWnd, CUIWindow>("CUIDialogWnd")
+		.def("NeedCenterCursor",		&CUIDialogWnd::SetCenterCursor)
 		.def("GetHolder",				&CUIDialogWnd::GetHolder)
 		.def("SetHolder",				&CUIDialogWnd::SetHolder),
 

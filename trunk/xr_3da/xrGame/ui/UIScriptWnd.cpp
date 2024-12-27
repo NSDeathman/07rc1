@@ -16,6 +16,7 @@ struct event_comparer{
 
 CUIDialogWndEx::CUIDialogWndEx():inherited()
 {
+	inherited::SetCenterCursor(false);
 	Hide();
 }
 
