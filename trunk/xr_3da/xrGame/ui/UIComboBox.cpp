@@ -55,7 +55,7 @@ void CUIComboBox::Init(float x, float y, float width){
 
 
 	// Edit Box on left side of frame line
-	m_text.Init							(0, 0, width, CB_HEIGHT);
+	m_text.Init							(0, CB_HEIGHT * 0.24f, width, CB_HEIGHT);
 	m_text.SetBaseTextColor				(m_textColor[0]);
 	m_text.Enable						(false);
 	// Button on right side of frame line
@@ -94,7 +94,7 @@ CUIListBoxItem* CUIComboBox::AddItem_(LPCSTR str, int _data)
 
 void CUIComboBox::OnListItemSelect()
 {
-	m_text.SetText			(m_list.GetSelectedText());    
+	m_text.SetText			(m_list.GetSelectedText());
 	CUIListBoxItem* itm		= m_list.GetSelectedItem();
 	
 	int bk_itoken_id		= m_itoken_id;
