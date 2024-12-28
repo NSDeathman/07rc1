@@ -6,7 +6,7 @@
 
 CUITabControl::CUITabControl()
 	: m_iPushedIndex		(0),
-      m_iPrevPushedIndex	(0),
+	  m_iPrevPushedIndex	(0),
 	  m_cGlobalTextColor	(0xFFFFFFFF),
 	  m_cActiveTextColor	(0xFFFFFFFF),
 	  m_cActiveButtonColor	(0xFFFFFFFF),
@@ -62,7 +62,7 @@ bool CUITabControl::AddItem(CUITabButton *pButton)
 
 	// Нажимаем кнопку по умолчанию
 	if (m_iPushedIndex == static_cast<int>(m_TabsArr.size() - 1))
-        m_TabsArr[m_iPushedIndex]->SendMessage(m_TabsArr[m_iPushedIndex], TAB_CHANGED, NULL);
+		m_TabsArr[m_iPushedIndex]->SendMessage(m_TabsArr[m_iPushedIndex], TAB_CHANGED, NULL);
 
 	AttachChild					(pButton);
 	m_TabsArr.push_back			(pButton);
@@ -108,7 +108,7 @@ void CUITabControl::SendMessage(CUIWindow *pWnd, s16 msg, void *pData)
 				m_iPushedIndex = i;
 				if (m_iPrevPushedIndex == m_iPushedIndex)
 					return; // return if nothing was changed
-                
+				
 				OnTabChange(m_iPushedIndex, m_iPrevPushedIndex);
 				m_iPrevPushedIndex = m_iPushedIndex;							
 				break;
@@ -124,7 +124,7 @@ void CUITabControl::SendMessage(CUIWindow *pWnd, s16 msg, void *pData)
 			if (pWnd == m_TabsArr[i])
 			{				
 				if (msg == STATIC_FOCUS_RECEIVED)
-                    OnStaticFocusReceive(pWnd);
+					OnStaticFocusReceive(pWnd);
 				else
 					OnStaticFocusLost(pWnd);
 
@@ -156,15 +156,14 @@ void CUITabControl::SetNewActiveTab(const int iNewTab)
 {
 	if (m_iPushedIndex == iNewTab)
 		return;
-    
+	
 	m_iPushedIndex = iNewTab;
 	OnTabChange(m_iPushedIndex, m_iPrevPushedIndex);
 	m_iPrevPushedIndex = m_iPushedIndex;
 }
 
-bool CUITabControl::OnKeyboard(int dik, EUIMessages keyboard_action)
+bool CUITabControl::OnKeyboardAction(int dik, EUIMessages keyboard_action)
 {
-
 	if (GetAcceleratorsMode() && WINDOW_KEY_PRESSED == keyboard_action)
 	{
 		for (u32 i = 0; i < m_TabsArr.size(); ++i)

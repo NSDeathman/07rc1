@@ -72,23 +72,23 @@ void CUIChangeMap::Init(CUIXml& xml_doc)
 }
 
 #include <dinput.h>
-bool CUIChangeMap::OnKeyboard(int dik, EUIMessages keyboard_action)
+bool CUIChangeMap::OnKeyboardAction(int dik, EUIMessages keyboard_action)
 {
 	if (dik == DIK_ESCAPE)
 	{
 		OnBtnCancel();
 		return true;
 	}
-	return CUIDialogWnd::OnKeyboard(dik, keyboard_action);
+	return CUIDialogWnd::OnKeyboardAction(dik, keyboard_action);
 }
 
 void CUIChangeMap::SendMessage(CUIWindow* pWnd, s16 msg, void* pData)
 {
-	if (LIST_ITEM_SELECT==msg && pWnd==lst)
+	if (LIST_ITEM_SELECT == msg && pWnd == lst)
 	{		
 		OnItemSelect();
-	}else
-	if (LIST_ITEM_DB_CLICKED==msg && pWnd==lst)
+	}
+	else if (LIST_ITEM_DB_CLICKED == msg && pWnd == lst)
 	{		
 		OnItemSelect();
 		OnBtnOk();
@@ -129,7 +129,7 @@ void CUIChangeMap::OnBtnOk()
 		const shared_str& name		= M.m_map_names[idx];
 
 		string512					command;
-        sprintf_s						(command, "cl_votestart changemap %s", name.c_str());
+		sprintf_s						(command, "cl_votestart changemap %s", name.c_str());
 		Console->Execute			(command);
 		GetHolder()->StartStopMenu	(this, true);
 	}

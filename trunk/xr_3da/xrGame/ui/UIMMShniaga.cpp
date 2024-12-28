@@ -305,9 +305,10 @@ void CUIMMShniaga::OnBtnClick(){
 
 #include <dinput.h>
 
-bool CUIMMShniaga::OnKeyboard(int dik, EUIMessages keyboard_action){
-
-	if (WINDOW_KEY_PRESSED == keyboard_action){
+bool CUIMMShniaga::OnKeyboardAction(int dik, EUIMessages keyboard_action)
+{
+	if (WINDOW_KEY_PRESSED == keyboard_action)
+	{
 		switch (dik){
 			case DIK_UP:
 				if (m_selected_btn > 0)
@@ -328,7 +329,7 @@ bool CUIMMShniaga::OnKeyboard(int dik, EUIMessages keyboard_action){
 	}
 
 
-	return CUIWindow::OnKeyboard(dik, keyboard_action);
+	return CUIWindow::OnKeyboardAction(dik, keyboard_action);
 }
 
 int CUIMMShniaga::BtnCount(){

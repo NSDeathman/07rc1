@@ -125,7 +125,7 @@ public:
 	CUIWindow*				GetMessageTarget	();
 
 	//реакция на клавиатуру
-	virtual bool			OnKeyboard			(int dik, EUIMessages keyboard_action);
+	virtual bool			OnKeyboardAction	(int dik, EUIMessages keyboard_action);
 	virtual bool			OnKeyboardHold		(int dik);
 	virtual void			SetKeyboardCapture	(CUIWindow* pChildWindow, bool capture_status);
 

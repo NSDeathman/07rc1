@@ -74,7 +74,7 @@ bool CUIDialogWnd::IR_OnKeyboardPress(int dik)
 			return true;
 	}
 
-	if (OnKeyboard(dik, WINDOW_KEY_PRESSED))
+	if (OnKeyboardAction(dik, WINDOW_KEY_PRESSED))
 		return true;
 
 	if (!StopAnyMove() && g_pGameLevel)
@@ -105,7 +105,7 @@ bool CUIDialogWnd::IR_OnKeyboardRelease(int dik)
 			return true;
 	}
 
-	if (OnKeyboard(dik,	WINDOW_KEY_RELEASED))
+	if (OnKeyboardAction(dik,	WINDOW_KEY_RELEASED))
 		return true;
 
 	if (!StopAnyMove() && g_pGameLevel)
@@ -171,11 +171,11 @@ bool CUIDialogWnd::OnKeyboardHold(int dik)
 	return inherited::OnKeyboardHold(dik);
 }
 
-bool CUIDialogWnd::OnKeyboard(int dik, EUIMessages keyboard_action)
+bool CUIDialogWnd::OnKeyboardAction(int dik, EUIMessages keyboard_action)
 {
 	if (!IR_process())
 		return false;
-	if (inherited::OnKeyboard(dik, keyboard_action))
+	if (inherited::OnKeyboardAction(dik, keyboard_action))
 		return true;
 	return false;
 }

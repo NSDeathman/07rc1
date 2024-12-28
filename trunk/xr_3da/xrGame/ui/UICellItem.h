@@ -30,7 +30,7 @@ public:
 							CUICellItem				();
 	virtual					~CUICellItem			();
 
-	virtual		bool		OnKeyboard				(int dik, EUIMessages keyboard_action);
+	virtual		bool		OnKeyboardAction		(int dik, EUIMessages keyboard_action);
 	virtual		bool		OnMouseAction			(float x, float y, EUIMessages mouse_action);
 	virtual		void		Draw					();
 	virtual		void		Update					()						{inherited::Update(); m_b_already_drawn=false;};

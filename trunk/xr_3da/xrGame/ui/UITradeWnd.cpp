@@ -630,9 +630,9 @@ void CUITradeWnd::ColorizeItem(CUICellItem* itm, bool b)
 	}
 }
 
-bool CUITradeWnd::OnKeyboard(int dik, EUIMessages keyboard_action)
+bool CUITradeWnd::OnKeyboardAction(int dik, EUIMessages keyboard_action)
 {
-	if (inherited::OnKeyboard(dik, keyboard_action))
+	if (inherited::OnKeyboardAction(dik, keyboard_action))
 		return true;
 
 	if (keyboard_action == WINDOW_KEY_PRESSED)

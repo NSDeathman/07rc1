@@ -84,8 +84,8 @@ public:
 	virtual void				SendMessage					(CUIWindow* pWnd, s16 msg, void* pData = NULL);
 	
 	//
-	virtual void				Update						();				
-	virtual bool 				OnKeyboard					(int dik, EUIMessages keyboard_action);
+	virtual void				Update						();
+	virtual bool 				OnKeyboardAction			(int dik, EUIMessages keyboard_action);
 
 public:
 	virtual void 				Init						(const shared_str& sectionName, const shared_str& sectionPrice);

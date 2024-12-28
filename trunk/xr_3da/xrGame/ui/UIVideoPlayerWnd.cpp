@@ -102,7 +102,7 @@ void CUIVideoPlayerWnd::OnTabChanged			(CUIWindow* pWnd, void* pData)
 void CUIVideoPlayerWnd::Play	()
 {
 	if (m_sound._handle())
-        m_sound.play(NULL, sm_2D);
+		m_sound.play(NULL, sm_2D);
 
 	if(m_texture){
 		if(!m_texture->video_IsPlaying())
@@ -114,7 +114,7 @@ void CUIVideoPlayerWnd::Play	()
 void CUIVideoPlayerWnd::Stop	()
 {
 	if (m_sound._handle())
-        m_sound.stop();
+		m_sound.stop();
 
 	if(m_texture){
 		if(m_texture->video_IsPlaying())
@@ -142,13 +142,15 @@ void CUIActorSleepVideoPlayer::DeActivate	()
 	}
 }
 
-bool CUIActorSleepVideoPlayer::OnKeyboard(int dik, EUIMessages keyboard_action)
+bool CUIActorSleepVideoPlayer::OnKeyboardAction(int dik, EUIMessages keyboard_action)
 {
-	if(keyboard_action==WINDOW_KEY_PRESSED){
-		if(dik==DIK_ESCAPE){
+	if (keyboard_action == WINDOW_KEY_PRESSED)
+	{
+		if (dik == DIK_ESCAPE)
+		{
 			DeActivate	();
 			return true;
 		}
 	}
-	return inherited::OnKeyboard(dik, keyboard_action);
+	return inherited::OnKeyboardAction(dik, keyboard_action);
 }

@@ -8,7 +8,7 @@
 CUIEditKeyBind::CUIEditKeyBind(bool bPrim)
 {
 	m_bPrimary					= bPrim;
-    m_bEditMode					= false;
+	m_bEditMode					= false;
 
 	m_pAnimation				= xr_new<CUIColorAnimatorWrapper>("ui_map_area_anim");
 	m_pAnimation->Cyclic		(true);
@@ -106,10 +106,11 @@ bool CUIEditKeyBind::OnMouseDown(int mouse_btn)
 	return CUILabel::OnMouseDown(mouse_btn);
 }
 
-bool CUIEditKeyBind::OnKeyboard(int dik, EUIMessages keyboard_action){
+bool CUIEditKeyBind::OnKeyboardAction(int dik, EUIMessages keyboard_action)
+{
 	if (dik == MOUSE_1 || dik == MOUSE_2 || dik == MOUSE_3)
 		return false;
-	if (CUILabel::OnKeyboard(dik, keyboard_action))
+	if (CUILabel::OnKeyboardAction(dik, keyboard_action))
 		return true;
 
 	string64 message;
@@ -170,7 +171,7 @@ void CUIEditKeyBind::SaveValue()
 {
 	CUIOptionsItem::SaveValue();
 
-    BindAction2Key		();
+	BindAction2Key		();
 	m_bChanged			= false;
 }
 
@@ -209,7 +210,7 @@ void CUIEditKeyBind::OnMessage(const char* message){
 	strcpy				(command, message);
 	command[eq]			= 0;
 
-    if (0 == xr_strcmp(m_action->action_name, command))
+	if (0 == xr_strcmp(m_action->action_name, command))
 		return;// fuck
 
 	_action* other_action	= action_name_to_ptr(command);

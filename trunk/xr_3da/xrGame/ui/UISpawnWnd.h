@@ -12,7 +12,7 @@ class CUIScrollView;
 //typedef	void (*ButtonClickCallback) (int);
 typedef enum{
 	TEAM_MENU_BACK = 0,
-    TEAM_MENU_SPECTATOR,
+	TEAM_MENU_SPECTATOR,
 	TEAM_MENU_AUTOSELECT
 } ETEAMMENU_BTN;
 
@@ -21,17 +21,17 @@ class CUISpawnWnd: public CUIDialogWnd
 private:
 	typedef CUIDialogWnd inherited;
 public:
-	CUISpawnWnd();
-	virtual ~CUISpawnWnd();
+					CUISpawnWnd			();
+	virtual			~CUISpawnWnd		();
 
-	virtual void Init();
-	virtual void SendMessage(CUIWindow *pWnd, s16 msg, void *pData);
-	virtual bool OnKeyboard(int dik, EUIMessages keyboard_action);
-			void SetVisibleForBtn(ETEAMMENU_BTN btn, bool state);
-			void SetCurTeam(int team);
+	virtual void	Init				();
+	virtual void	SendMessage			(CUIWindow *pWnd, s16 msg, void *pData);
+	virtual bool	OnKeyboardAction	(int dik, EUIMessages keyboard_action);
+			void	SetVisibleForBtn	(ETEAMMENU_BTN btn, bool state);
+			void	SetCurTeam			(int team);
 
 protected:
-			void InitTeamLogo();
+			void	InitTeamLogo		();
 
 	// Установка нового режима отображения
 //	void SetDisplayMode(bool bDual = false);

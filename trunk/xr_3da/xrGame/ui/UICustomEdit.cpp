@@ -133,7 +133,7 @@ bool CUICustomEdit::OnMouseAction(float x, float y, EUIMessages mouse_action)
 }
 
 
-bool CUICustomEdit::OnKeyboard( int dik, EUIMessages keyboard_action )
+bool CUICustomEdit::OnKeyboardAction(int dik, EUIMessages keyboard_action)
 {	
 	if ( !m_bInputFocus )
 	{

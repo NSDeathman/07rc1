@@ -492,9 +492,9 @@ bool CUIListWnd::OnMouseAction(float x, float y, EUIMessages mouse_action)
 	return inherited::OnMouseAction(x, y, mouse_action);
 }
 
-bool CUIListWnd::OnKeyboard	(int dik, EUIMessages keyboard_action)
+bool CUIListWnd::OnKeyboardAction(int dik, EUIMessages keyboard_action)
 {
-	return inherited::OnKeyboard(dik, keyboard_action);
+	return inherited::OnKeyboardAction(dik, keyboard_action);
 }
 //////////////////////////////////////////////////////////////////////////
 

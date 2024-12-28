@@ -110,7 +110,7 @@ CUIWindow::CUIWindow()
 	m_pKeyboardCapturer		=  NULL;
 	SetWndRect				(0,0,0,0);
 	m_bAutoDelete			= false;
-    Show					(true);
+	Show					(true);
 	Enable					(true);
 	m_bCursorOverWindow		= false;
 	m_bClickable			= false;
@@ -290,7 +290,7 @@ bool CUIWindow::OnMouseAction(float x, float y, EUIMessages mouse_action)
 
 		if( (_last_db_click_frame!=Device.dwFrame) && (dwCurTime-m_dwLastClickTime < DOUBLE_CLICK_TIME) )
 		{
-            mouse_action			= WINDOW_LBUTTON_DB_CLICK;
+			mouse_action			= WINDOW_LBUTTON_DB_CLICK;
 			_last_db_click_frame	= Device.dwFrame;
 		}
 
@@ -300,7 +300,7 @@ bool CUIWindow::OnMouseAction(float x, float y, EUIMessages mouse_action)
 	if(GetParent()== NULL)
 	{
 		if(!wndRect.in(m_cursor_pos))
-            return false;
+			return false;
 		//получить координаты относительно окна
 		m_cursor_pos.x -= wndRect.left;
 		m_cursor_pos.y -= wndRect.top;
@@ -334,7 +334,7 @@ bool CUIWindow::OnMouseAction(float x, float y, EUIMessages mouse_action)
 		case WINDOW_LBUTTON_DB_CLICK:
 			if (OnDbClick())						return true;	break;
 		default:
-            break;
+			break;
 	}
 
 	//Проверка на попадание мыши в окно,
@@ -441,7 +441,7 @@ void CUIWindow::SetCapture(CUIWindow *pChildWindow, bool capture_status)
 
 
 //реакция на клавиатуру
-bool CUIWindow::OnKeyboard(int dik, EUIMessages keyboard_action)
+bool CUIWindow::OnKeyboardAction(int dik, EUIMessages keyboard_action)
 {
 	bool result;
 
@@ -449,7 +449,7 @@ bool CUIWindow::OnKeyboard(int dik, EUIMessages keyboard_action)
 	//сообщение направляем ему сразу
 	if(NULL!=m_pKeyboardCapturer)
 	{
-		result = m_pKeyboardCapturer->OnKeyboard(dik, keyboard_action);
+		result = m_pKeyboardCapturer->OnKeyboardAction(dik, keyboard_action);
 		
 		if(result) return true;
 	}
@@ -460,7 +460,7 @@ bool CUIWindow::OnKeyboard(int dik, EUIMessages keyboard_action)
 	{
 		if((*it)->IsEnabled())
 		{
-			result = (*it)->OnKeyboard(dik, keyboard_action);
+			result = (*it)->OnKeyboardAction(dik, keyboard_action);
 			
 			if(result)	return true;
 		}
@@ -549,7 +549,7 @@ CUIWindow* CUIWindow::GetChildMouseHandler(){
 		}
 	}
 
-    return this;
+	return this;
 }
 
 //перемесчтить окно на вершину.

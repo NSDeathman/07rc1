@@ -55,7 +55,7 @@ bool CUICellItem::OnMouseAction(float x, float y, EUIMessages mouse_action)
 	return false;
 };
 
-bool CUICellItem::OnKeyboard(int dik, EUIMessages keyboard_action)
+bool CUICellItem::OnKeyboardAction(int dik, EUIMessages keyboard_action)
 {
 	if (WINDOW_KEY_PRESSED == keyboard_action)
 	{
@@ -65,7 +65,7 @@ bool CUICellItem::OnKeyboard(int dik, EUIMessages keyboard_action)
 			return		true;
 		}
 	}
-	return inherited::OnKeyboard(dik, keyboard_action);
+	return inherited::OnKeyboardAction(dik, keyboard_action);
 }
 
 CUIDragItem* CUICellItem::CreateDragItem()

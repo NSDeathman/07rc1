@@ -61,7 +61,7 @@ public:
 				CUIBagWnd				();
 				~CUIBagWnd				();
 
-    // own
+	// own
 	void		Init					(CUIXml& xml, LPCSTR path, const shared_str& sectionName, const shared_str& sectionPrice);
 	void		HideAll					();
 	void		ShowSection				(int iSection);
@@ -117,7 +117,7 @@ CUICellItem*	CreateItem				(const shared_str& name_sect);
 	bool xr_stdcall	OnItemRButtonClick	(CUICellItem* itm);
 
 	// CUIWindow
-	virtual bool	OnKeyboard			(int dik, EUIMessages keyboard_action);
+	virtual bool	OnKeyboardAction	(int dik, EUIMessages keyboard_action);
 	virtual void	SendMessage			(CUIWindow* pWnd, s16 msg, void* pData = 0);
 	void			UpdateBuyPossibility();
 	virtual void	Update				();

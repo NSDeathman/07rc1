@@ -111,7 +111,7 @@ void CUISpawnWnd::SendMessage(CUIWindow *pWnd, s16 msg, void *pData)
 
 ////////////////////////////////////////////////////////////////////////////////
 
-bool CUISpawnWnd::OnKeyboard(int dik, EUIMessages keyboard_action)
+bool CUISpawnWnd::OnKeyboardAction(int dik, EUIMessages keyboard_action)
 {
 	if (WINDOW_KEY_PRESSED != keyboard_action)
 	{
@@ -127,7 +127,7 @@ bool CUISpawnWnd::OnKeyboard(int dik, EUIMessages keyboard_action)
 
 	if (dik == DIK_TAB)
 	{
-        ShowChildren(false);
+		ShowChildren(false);
 		game_cl_mp* game = smart_cast<game_cl_mp*>(&Game());
 		game->OnKeyboardPress(kSCORES);
 		UI()->GetUICursor()->Hide();
@@ -163,11 +163,11 @@ bool CUISpawnWnd::OnKeyboard(int dik, EUIMessages keyboard_action)
 		else if (m_pImage2->GetSelectedState())
 			dm->OnTeamSelect(1);
 		else
-			dm->OnTeamSelect(-1);		
+			dm->OnTeamSelect(-1);
 		return true;
 	}
 
-	return inherited::OnKeyboard(dik, keyboard_action);
+	return inherited::OnKeyboardAction(dik, keyboard_action);
 }
 
 void CUISpawnWnd::SetVisibleForBtn(ETEAMMENU_BTN btn, bool state){
@@ -184,7 +184,7 @@ void CUISpawnWnd::SetVisibleForBtn(ETEAMMENU_BTN btn, bool state){
 void CUISpawnWnd::SetCurTeam(int team){
 	R_ASSERT2(team >= -1 && team <= 1, "Invalid team number");
 
-    m_iCurTeam = team;
+	m_iCurTeam = team;
 	m_pImage1->SetSelectedState(0 == team ? true : false);
 	m_pImage2->SetSelectedState(1 == team ? true : false);
 }

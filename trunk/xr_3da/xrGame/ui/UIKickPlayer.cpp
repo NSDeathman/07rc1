@@ -67,7 +67,7 @@ void CUIKickPlayer::Init(CUIXml& xml_doc)
 void CUIKickPlayer::InitBan(CUIXml& xml_doc)
 {
 	CUIXmlInit::InitStatic		(xml_doc, "kick_ban:header_ban", 0, header);
-    Init						(xml_doc);
+	Init						(xml_doc);
 	mode						= MODE_BAN;
 	m_spin_ban_sec->Show		(true);
 	m_ban_sec_label->Show		(true);
@@ -83,14 +83,14 @@ void CUIKickPlayer::InitKick(CUIXml& xml_doc)
 }
 
 #include <dinput.h>
-bool CUIKickPlayer::OnKeyboard(int dik, EUIMessages keyboard_action)
+bool CUIKickPlayer::OnKeyboardAction(int dik, EUIMessages keyboard_action)
 {
 	if (dik == DIK_ESCAPE)
 	{
 		OnBtnCancel	();
 		return		true;
 	}
-	return CUIDialogWnd::OnKeyboard(dik, keyboard_action);
+	return CUIDialogWnd::OnKeyboardAction(dik, keyboard_action);
 }
 
 void CUIKickPlayer::SendMessage(CUIWindow* pWnd, s16 msg, void* pData)
@@ -119,7 +119,7 @@ void CUIKickPlayer::OnBtnOk()
 		switch (mode)
 		{
 			case MODE_KICK:
-                sprintf_s(command, "cl_votestart kick %s", item->GetText());
+				sprintf_s(command, "cl_votestart kick %s", item->GetText());
 				break;
 			case MODE_BAN:
 				{
@@ -136,7 +136,7 @@ void CUIKickPlayer::OnBtnOk()
 
 void CUIKickPlayer::OnBtnCancel()
 {
-    game_cl_mp* game				= smart_cast<game_cl_mp*>(&Game());
+	game_cl_mp* game				= smart_cast<game_cl_mp*>(&Game());
 	game->StartStopMenu				(this, true);
 }
 

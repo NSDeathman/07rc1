@@ -371,7 +371,7 @@ bool CUIMapWnd::OnKeyboardHold(int dik)
 	return false;
 }
 
-bool CUIMapWnd::OnKeyboard				(int dik, EUIMessages keyboard_action)
+bool CUIMapWnd::OnKeyboardAction(int dik, EUIMessages keyboard_action)
 {
 	switch(dik){
 		case DIK_NUMPADMINUS:
@@ -388,7 +388,7 @@ bool CUIMapWnd::OnKeyboard				(int dik, EUIMessages keyboard_action)
 			}break;
 	}
 	
-	return inherited::OnKeyboard	(dik, keyboard_action);
+	return inherited::OnKeyboardAction(dik, keyboard_action);
 }
 
 bool CUIMapWnd::OnMouseAction(float x, float y, EUIMessages mouse_action)

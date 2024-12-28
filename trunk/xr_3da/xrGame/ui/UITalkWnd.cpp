@@ -366,7 +366,7 @@ bool CUITalkWnd::IR_OnKeyboardPress(int dik)
 	return inherited::IR_OnKeyboardPress(dik);
 }
 
-bool CUITalkWnd::OnKeyboard(int dik, EUIMessages keyboard_action)
+bool CUITalkWnd::OnKeyboardAction(int dik, EUIMessages keyboard_action)
 {
 	if (HUD().GetUI()->MainInputReceiver() == this && keyboard_action == WINDOW_KEY_PRESSED)
 	{
@@ -383,7 +383,7 @@ bool CUITalkWnd::OnKeyboard(int dik, EUIMessages keyboard_action)
 			}
 		}
 	}
-	return inherited::OnKeyboard(dik,keyboard_action);
+	return inherited::OnKeyboardAction(dik,keyboard_action);
 }
 
 void CUITalkWnd::PlaySnd(LPCSTR text)

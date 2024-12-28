@@ -206,7 +206,7 @@ EListType CUIInventoryWnd::GetType(CUIDragDropListEx* l)
 void CUIInventoryWnd::PlaySnd(eInventorySndAction a)
 {
 	if (sounds[a]._handle())
-        sounds[a].play					(NULL, sm_2D);
+		sounds[a].play					(NULL, sm_2D);
 }
 
 CUIInventoryWnd::~CUIInventoryWnd()
@@ -306,7 +306,7 @@ void CUIInventoryWnd::Show()
 		string256 _path;		
 		if (GameID() != GAME_DEATHMATCH){
 			if (1==team)
-		        sprintf_s(_path, "ui_hud_status_green_0%d", rank+1);
+				sprintf_s(_path, "ui_hud_status_green_0%d", rank+1);
 			else
 				sprintf_s(_path, "ui_hud_status_blue_0%d", rank+1);
 		}
@@ -465,13 +465,13 @@ void CUIInventoryWnd::BindDragDropListEvents(CUIDragDropListEx* lst)
 #include "../xr_level_controller.h"
 #include <dinput.h>
 
-bool CUIInventoryWnd::OnKeyboard(int dik, EUIMessages keyboard_action)
+bool CUIInventoryWnd::OnKeyboardAction(int dik, EUIMessages keyboard_action)
 {
 	if(m_b_need_reinit)
 		return true;
 
 	if (UIPropertiesBox.GetVisible())
-		UIPropertiesBox.OnKeyboard(dik, keyboard_action);
+		UIPropertiesBox.OnKeyboardAction(dik, keyboard_action);
 
 	if ( is_binded(kDROP, dik) )
 	{
@@ -495,7 +495,8 @@ bool CUIInventoryWnd::OnKeyboard(int dik, EUIMessages keyboard_action)
 		}
 #endif
 	}
-	if( inherited::OnKeyboard(dik,keyboard_action) )return true;
+	if (inherited::OnKeyboardAction(dik, keyboard_action))
+		return true;
 
 	return false;
 }

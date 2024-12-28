@@ -70,14 +70,18 @@ void CUIChangeWeather::SendMessage(CUIWindow* pWnd, s16 msg, void* pData){
 
 #include <dinput.h>
 
-bool CUIChangeWeather::OnKeyboard(int dik, EUIMessages keyboard_action){
-	CUIDialogWnd::OnKeyboard(dik, keyboard_action);
-	if (WINDOW_KEY_PRESSED == keyboard_action){
-		if (DIK_ESCAPE == dik){
+bool CUIChangeWeather::OnKeyboardAction(int dik, EUIMessages keyboard_action)
+{
+	CUIDialogWnd::OnKeyboardAction(dik, keyboard_action);
+	if (WINDOW_KEY_PRESSED == keyboard_action)
+	{
+		if (DIK_ESCAPE == dik)
+		{
 			OnBtnCancel();
 			return true;
 		}
-		if (dik >= DIK_1 && dik <= DIK_4){
+		if (dik >= DIK_1 && dik <= DIK_4)
+		{
 			OnBtn(dik - DIK_1);
 			return true;
 		}

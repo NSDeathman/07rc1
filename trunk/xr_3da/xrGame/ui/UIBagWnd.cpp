@@ -538,7 +538,7 @@ MENU_LEVELS CUIBagWnd::GetMenuLevel()
 	return m_mlCurrLevel;
 }
 
-bool CUIBagWnd::OnKeyboard(int dik, EUIMessages keyboard_action)
+bool CUIBagWnd::OnKeyboardAction(int dik, EUIMessages keyboard_action)
 {
 	int iGroup;
 

@@ -32,7 +32,7 @@ CUIMapDesc::CUIMapDesc(){
 
 	m_pMapInfo		= xr_new<CUIMapInfo>();		AttachChild(m_pMapInfo);
 
-    Init();
+	Init();
 }
 
 CUIMapDesc::~CUIMapDesc(){
@@ -103,7 +103,7 @@ void CUIMapDesc::SendMessage(CUIWindow* pWnd,s16 msg, void* pData){
 
 }
 
-bool CUIMapDesc::OnKeyboard(int dik, EUIMessages keyboard_action){
+bool CUIMapDesc::OnKeyboardAction(int dik, EUIMessages keyboard_action){
 	if (WINDOW_KEY_RELEASED == keyboard_action) 
 	{
 		if (dik == DIK_TAB)
@@ -119,7 +119,7 @@ bool CUIMapDesc::OnKeyboard(int dik, EUIMessages keyboard_action){
 
 	if (dik == DIK_TAB)
 	{
-        ShowChildren(false);
+		ShowChildren(false);
 		game_cl_mp* game = smart_cast<game_cl_mp*>(&Game());
 		game->OnKeyboardPress(kSCORES);
 		UI()->GetUICursor()->Hide();
@@ -145,7 +145,7 @@ bool CUIMapDesc::OnKeyboard(int dik, EUIMessages keyboard_action){
 	{
 	}
 
-    return false;
+	return false;
 }
 
 

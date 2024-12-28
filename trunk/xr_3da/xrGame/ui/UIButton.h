@@ -22,7 +22,7 @@ public:
 
 	virtual void	Update					();
 	virtual void	Enable					(bool status);
-	virtual bool	OnKeyboard				(int dik, EUIMessages keyboard_action);
+	virtual bool	OnKeyboardAction		(int dik, EUIMessages keyboard_action);
 	virtual void	OnFocusLost				();
 	IC void			SetMirrorMode			(EUIMirroring m) { eMirrorMode = m; }
 	IC EUIMirroring GetMirrorMode			() const { return eMirrorMode; }

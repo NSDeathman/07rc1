@@ -13,30 +13,30 @@
 #include "../object_broker.h"
 #include <dinput.h>
 
-bool CUIMpTradeWnd::OnKeyboard(int dik, EUIMessages keyboard_action)
+bool CUIMpTradeWnd::OnKeyboardAction(int dik, EUIMessages keyboard_action)
 {
 #ifdef DEBUG
 	//for debug only
-	if(keyboard_action==WINDOW_KEY_PRESSED && dik==DIK_NUMPAD7)
+	if (keyboard_action == WINDOW_KEY_PRESSED && dik == DIK_NUMPAD7)
 	{
-		if(GetRank()>0)
-			SetRank( clampr(u32(GetRank()-1),u32(0),u32(4) ) );
+		if (GetRank() > 0)
+			SetRank(clampr(u32(GetRank() - 1), u32(0), u32(4)));
 	}
-	if(keyboard_action==WINDOW_KEY_PRESSED && dik==DIK_NUMPAD8)
+	if (keyboard_action == WINDOW_KEY_PRESSED && dik == DIK_NUMPAD8)
 	{
-		SetRank( clampr(u32(GetRank()+1),u32(0),u32(4) ) );
+		SetRank(clampr(u32(GetRank() + 1), u32(0), u32(4)));
 	}
 #endif
 
-	if(!m_store_hierarchy->CurrentIsRoot())
+	if (!m_store_hierarchy->CurrentIsRoot())
 	{
-		if (m_shop_wnd->OnKeyboard(dik, keyboard_action) )
+		if (m_shop_wnd->OnKeyboardAction(dik, keyboard_action))
 			return true;
 
-		m_root_tab_control->SetAcceleratorsMode		(false);
+		m_root_tab_control->SetAcceleratorsMode(false);
 	}
 
-	bool res =  inherited::OnKeyboard(dik, keyboard_action);
+	bool res =  inherited::OnKeyboardAction(dik, keyboard_action);
 
 	m_root_tab_control->SetAcceleratorsMode		(true);
 

@@ -8,16 +8,17 @@ class CUI3tButton;
 class CUIMapInfo;
 class CUIStatsPlayerList;
 
-class CUIMapDesc : public CUIDialogWnd {
+class CUIMapDesc : public CUIDialogWnd
+{
 public:
-	CUIMapDesc();
-	~CUIMapDesc();
+					CUIMapDesc		();
+					~CUIMapDesc		();
 
-    virtual void SendMessage(CUIWindow* pWnd, s16 msg, void *pData = 0);
-	virtual bool OnKeyboard(int dik, EUIMessages keyboard_action);
+	virtual void	SendMessage		(CUIWindow* pWnd, s16 msg, void *pData = 0);
+	virtual bool	OnKeyboardAction(int dik, EUIMessages keyboard_action);
 
 private:
-	void	Init();
+			void	Init			();
 	
 
 	CUIStatic*		m_pCaption;

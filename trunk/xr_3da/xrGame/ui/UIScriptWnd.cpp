@@ -81,12 +81,11 @@ void CUIDialogWndEx::AddCallback (LPCSTR control_id, s16 event, const luabind::f
 	c->m_event			= event;
 }
 
-
-
-bool CUIDialogWndEx::OnKeyboard(int dik, EUIMessages keyboard_action)
+bool CUIDialogWndEx::OnKeyboardAction(int dik, EUIMessages keyboard_action)
 {
-	return inherited::OnKeyboard(dik,keyboard_action);
+	return inherited::OnKeyboardAction(dik,keyboard_action);
 }
+
 void CUIDialogWndEx::Update()
 {
 	inherited::Update();

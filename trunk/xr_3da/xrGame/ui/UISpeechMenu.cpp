@@ -19,7 +19,7 @@ CUISpeechMenu::CUISpeechMenu(LPCSTR section_name){
 	m_text_color = 0xffffffff;
 	SetFont(UI()->Font()->pFontLetterica18Russian);
 	CUIXmlInit::InitFont(xml_doc,"speech_menu:text",0,m_text_color,m_pFont);	
-    InitList(section_name);
+	InitList(section_name);
 }
 
 CUISpeechMenu::~CUISpeechMenu()
@@ -45,7 +45,7 @@ void CUISpeechMenu::InitList(LPCSTR section_name){
 		if (pSettings->line_exist(section_name, phrase))
 		{
 			
-            LPCSTR s = pSettings->r_string(section_name, phrase);
+			LPCSTR s = pSettings->r_string(section_name, phrase);
 			_GetItem(s,0,phrase);
 			sprintf_s(str, "%d. %s",i+1, *st.translate(phrase));
 
@@ -58,9 +58,10 @@ void CUISpeechMenu::InitList(LPCSTR section_name){
 	}
 }
 
-bool CUISpeechMenu::OnKeyboard(int dik, EUIMessages keyboard_action){
-    if (dik < DIK_1 || dik > DIK_0)
-		return CUIDialogWnd::OnKeyboard(dik, keyboard_action);
+bool CUISpeechMenu::OnKeyboardAction(int dik, EUIMessages keyboard_action)
+{
+	if (dik < DIK_1 || dik > DIK_0)
+		return CUIDialogWnd::OnKeyboardAction(dik, keyboard_action);
 
 	game_cl_mp* game = smart_cast<game_cl_mp*>(&Game());
 
