@@ -115,6 +115,7 @@ CUIWindow::CUIWindow()
 	m_bCursorOverWindow		= false;
 	m_bClickable			= false;
 	m_bPP					= false;
+	m_bIsCenterFromScreen	= false;
 	m_dwFocusReceiveTime	= 0;
 #ifdef LOG_ALL_WNDS
 	ListWndCount++;

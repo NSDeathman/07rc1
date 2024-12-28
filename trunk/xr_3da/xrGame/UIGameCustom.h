@@ -16,15 +16,16 @@ class CUIWindow;
 class CUIXml;
 
 struct SDrawStaticStruct :public IPureDestroyableObject{
-	SDrawStaticStruct	();
-	virtual	void	destroy			();
 	CUIStatic*		m_static;
 	float			m_endTime;
 	shared_str		m_name;
-	void			Draw();
-	void			Update();
-	CUIStatic*		wnd()		{return m_static;}
-	bool			IsActual();
+					SDrawStaticStruct	();
+	virtual	void	destroy				();
+	void			Draw				();
+	void			Update				();
+	CUIStatic*		wnd					()		{return m_static;}
+	bool			IsActual			();
+	void			SetWndPos			(float x, float y);
 	bool operator ==(LPCSTR str){
 		return (m_name == str);
 	}

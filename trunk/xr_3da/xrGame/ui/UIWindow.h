@@ -141,7 +141,12 @@ public:
 
 	//запрещение/разрешение на ввод с клавиатуры
 	virtual void			Enable				(bool status)									{m_bIsEnabled=status;}
-	virtual bool			IsEnabled			()												{return m_bIsEnabled;}
+			bool			IsEnabled			() const										{ return m_bIsEnabled; }
+
+	//задание позиции относительно центра (прибавляется UI_BASE_WIDTH / 2.f и UI_BASE_HEIGHT / 2.f)
+	//можно задавать также отрицательные координаты
+	virtual void			SetCenterFromScreen	(bool status)									{ m_bIsCenterFromScreen = status; }
+	virtual bool			IsCenterFromScreen	() const										{ return m_bIsCenterFromScreen; }
 
 	//убрать/показать окно и его дочерние окна
 	virtual void			Show				(bool status)									{SetVisible(status); Enable(status); }
@@ -151,10 +156,17 @@ public:
 	//абсолютные координаты
 	IC void					GetAbsoluteRect		(Frect& r) ;
 	IC void					GetAbsolutePos		(Fvector2& p) 	{Frect abs; GetAbsoluteRect(abs); p.set(abs.x1,abs.y1);}
-
-
-			void			SetWndRect_script(float x, float y, float width, float height)		{CUISimpleWindow::SetWndRect(x,y,width,height);}
-			void			SetWndRect_script(Frect rect)										{CUISimpleWindow::SetWndRect(rect);}
+	
+			void			Init				(float x, float y, float w, float h)	{ m_bIsCenterFromScreen ? CUISimpleWindow::SetWndPosFromCenter(Fvector2().set(x, y)) : CUISimpleWindow::SetWndPos(Fvector2().set(x, y)); CUISimpleWindow::SetWndSize(Fvector2().set(w, h)); }
+			void			Init_script			(float x, float y, float w, float h)	{ m_bIsCenterFromScreen ? CUISimpleWindow::SetWndPosFromCenter(Fvector2().set(x, y)) : CUISimpleWindow::SetWndPos(Fvector2().set(x, y)); CUISimpleWindow::SetWndSize(Fvector2().set(w, h)); }
+			void			SetWndRect_script	(float x, float y, float w, float h)	{ m_bIsCenterFromScreen ? CUISimpleWindow::SetWndPosFromCenter(Fvector2().set(x, y)) : CUISimpleWindow::SetWndPos(Fvector2().set(x, y)); CUISimpleWindow::SetWndSize(Fvector2().set(w, h)); }
+			void			SetWndRect_script	(Frect rect)							{ CUISimpleWindow::SetWndRect(rect); }
+			void			SetWndPos			(float x, float y)						{ m_bIsCenterFromScreen ? CUISimpleWindow::SetWndPosFromCenter(Fvector2().set(x, y)) : CUISimpleWindow::SetWndPos(Fvector2().set(x, y)); }
+			void			SetWndPos			(Fvector2 pos)							{ m_bIsCenterFromScreen ? CUISimpleWindow::SetWndPosFromCenter(pos) : CUISimpleWindow::SetWndPos(pos); }
+			void			SetWndPos_script	(float x, float y)						{ m_bIsCenterFromScreen ? CUISimpleWindow::SetWndPosFromCenter(Fvector2().set(x, y)) : CUISimpleWindow::SetWndPos(Fvector2().set(x, y)); }
+			void			SetWndSize_script	(float w, float h)						{ CUISimpleWindow::SetWndSize(Fvector2().set(w, h)); }
+			void			SetWndPos_script	(Fvector2 pos)							{ m_bIsCenterFromScreen ? CUISimpleWindow::SetWndPosFromCenter(pos) : CUISimpleWindow::SetWndPos(pos); }
+			void			SetWndSize_script	(Fvector2 size)							{ CUISimpleWindow::SetWndSize(size); }
 
 	//прорисовка окна
 	virtual void			Draw				();
@@ -236,6 +248,8 @@ protected:
 	bool					m_bPP;
 	//разрешен ли ввод пользователя
 	bool					m_bIsEnabled;
+	//включено ли задание позиции от центра экрана
+	bool					m_bIsCenterFromScreen;
 
 	// Если курсор над окном
 	bool					m_bCursorOverWindow;

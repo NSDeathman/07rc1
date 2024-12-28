@@ -92,6 +92,7 @@ bool CUIXmlInit::InitWindow(CUIXml& xml_doc, LPCSTR path, int index, CUIWindow* 
 	InitAlignment(xml_doc, path, index, x, y, pWnd);
 	float width = xml_doc.ReadAttribFlt(path, index, "width");
 	float height = xml_doc.ReadAttribFlt(path, index, "height");
+	pWnd->SetCenterFromScreen(xml_doc.ReadAttribInt(path, index, "center_from_screen", 0) == 1);
 	pWnd->Init(x, y, width, height);
 
 	string512 buf;
@@ -171,6 +172,7 @@ bool CUIXmlInit::InitOptionsItem(CUIXml& xml_doc, LPCSTR paht, int index, CUIOpt
 bool CUIXmlInit::InitStatic(CUIXml& xml_doc, LPCSTR path, int index, CUIStatic* pWnd)
 {
 	R_ASSERT3(xml_doc.NavigateToNode(path, index), "XML node not found", path);
+	pWnd->SetCenterFromScreen(xml_doc.ReadAttribInt(path, index, "center_from_screen", 0) == 1);
 
 	InitWindow			(xml_doc, path, index, pWnd);
 	InitMultiText		(xml_doc, path, index, pWnd);
@@ -547,6 +549,7 @@ bool CUIXmlInit::InitProgressBar(CUIXml& xml_doc, LPCSTR path, int index, CUIPro
 	
 	float x = xml_doc.ReadAttribFlt(path, index, "x");
 	float y = xml_doc.ReadAttribFlt(path, index, "y");
+	pWnd->SetCenterFromScreen(xml_doc.ReadAttribInt(path, index, "center_from_screen", 0) == 1);
 
 	InitAlignment(xml_doc, path, index, x, y, pWnd);
 

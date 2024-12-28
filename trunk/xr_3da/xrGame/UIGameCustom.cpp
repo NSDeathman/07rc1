@@ -210,6 +210,14 @@ bool SDrawStaticStruct::IsActual()
 	return Device.fTimeGlobal < m_endTime;
 }
 
+void SDrawStaticStruct::SetWndPos(float x, float y)
+{
+	if (m_static)
+	{
+		m_static->IsCenterFromScreen() ? m_static->SetWndPosFromCenter(x, y) : m_static->SetWndPos(x, y);
+	}
+}
+
 void SDrawStaticStruct::Draw()
 {
 	if(m_static)

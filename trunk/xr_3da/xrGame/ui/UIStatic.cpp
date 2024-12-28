@@ -562,7 +562,7 @@ void CUIStatic::OnFocusReceive()
 {
 	inherited::OnFocusReceive();
 	if (GetMessageTarget())
-        GetMessageTarget()->SendMessage(this, STATIC_FOCUS_RECEIVED, NULL);
+		GetMessageTarget()->SendMessage(this, STATIC_FOCUS_RECEIVED, NULL);
 }
 
 void CUIStatic::OnFocusLost(){
