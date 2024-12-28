@@ -214,9 +214,10 @@ void	CUICustomMap::SendMessage			(CUIWindow* pWnd, s16 msg, void* pData)
 	CUIWndCallback::OnEvent(pWnd, msg, pData);
 }
 
-bool CUIGlobalMap::OnMouse	(float x, float y, EUIMessages mouse_action)
+bool CUIGlobalMap::OnMouseAction(float x, float y, EUIMessages mouse_action)
 {
-	if(inherited::OnMouse(x,y,mouse_action)) return true;
+	if(inherited::OnMouseAction(x,y,mouse_action))
+		return true;
 	if(mouse_action==WINDOW_MOUSE_MOVE && (FALSE==pInput->iGetAsyncBtnState(0)))
 	{
 		if( MapWnd() )
@@ -291,11 +292,11 @@ void CUIGlobalMap::MoveWndDelta(const Fvector2& d)
 
 float CUIGlobalMap::CalcOpenRect(const Fvector2& center_point, Frect& map_desired_rect, float tgt_zoom)
 {
-    Fvector2                    new_center_pt;
+	Fvector2                    new_center_pt;
 	// calculate desired rect in new zoom
-    map_desired_rect.set		(0.0f,0.0f, BoundRect().width()*tgt_zoom,BoundRect().height()*tgt_zoom);
+	map_desired_rect.set		(0.0f,0.0f, BoundRect().width()*tgt_zoom,BoundRect().height()*tgt_zoom);
 	// calculate center point in new zoom (center_point is in identity global map space)
-    new_center_pt.set           (center_point.x*tgt_zoom,center_point.y*tgt_zoom);
+	new_center_pt.set           (center_point.x*tgt_zoom,center_point.y*tgt_zoom);
 	// get vis width & height
 	Frect vis_abs_rect			= m_mapWnd->ActiveMapRect();
 	float vis_w					= vis_abs_rect.width();
@@ -457,10 +458,12 @@ void CUILevelMap::Update()
 
 }
 
-bool CUILevelMap::OnMouse	(float x, float y, EUIMessages mouse_action)
+bool CUILevelMap::OnMouseAction(float x, float y, EUIMessages mouse_action)
 {
-	if (inherited::OnMouse(x,y,mouse_action))	return true;
-	if (MapWnd()->GlobalMap()->Locked())		return true;
+	if (inherited::OnMouseAction(x,y,mouse_action))
+		return true;
+	if (MapWnd()->GlobalMap()->Locked())
+		return true;
 /*
 	if (MapWnd()->m_flags.is_any(CUIMapWnd::lmZoomIn+CUIMapWnd::lmZoomOut))	return false;
 

@@ -113,7 +113,7 @@ void CUICustomEdit::SendMessage(CUIWindow* pWnd, s16 msg, void* pData)
 //	}
 }
 
-bool CUICustomEdit::OnMouse(float x, float y, EUIMessages mouse_action)
+bool CUICustomEdit::OnMouseAction(float x, float y, EUIMessages mouse_action)
 {
 //	if (m_bFocusByDbClick)
 	{

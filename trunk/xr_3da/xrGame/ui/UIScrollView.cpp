@@ -10,7 +10,7 @@ CUIScrollView::CUIScrollView()
 	m_rightIndent		= 0.0f;
 	m_leftIndent		= 0.0f;
 	m_vertInterval		= 0.0f;
-   	m_upIndent			= 0.0f;
+	m_upIndent			= 0.0f;
 	m_downIndent		= 0.0f;
 	m_flags.zero		();
 	SetFixedScrollBar	(true);
@@ -38,19 +38,19 @@ void CUIScrollView::Init				()
 {
 	if (!m_pad)
 	{
-        m_pad						= xr_new<CUIWindow>(); m_pad->SetAutoDelete(true);
+		m_pad						= xr_new<CUIWindow>(); m_pad->SetAutoDelete(true);
 		AttachChild					(m_pad);
 	}
 	m_pad->SetWndPos			(0.0f,0.0f);
 	if (!m_VScrollBar)
 	{
-        m_VScrollBar				= xr_new<CUIScrollBar>();m_VScrollBar->SetAutoDelete(true);
+		m_VScrollBar				= xr_new<CUIScrollBar>();m_VScrollBar->SetAutoDelete(true);
 		AttachChild					(m_VScrollBar);
 		Register					(m_VScrollBar);
 		AddCallback					("scroll_v",	SCROLLBAR_VSCROLL, CUIWndCallback::void_function (this, &CUIScrollView::OnScrollV) );
 	}
 	if (!!m_scrollbar_profile)
-        m_VScrollBar->Init			(GetWndSize().x, 0.0f, GetWndSize().y, false, *m_scrollbar_profile);
+		m_VScrollBar->Init			(GetWndSize().x, 0.0f, GetWndSize().y, false, *m_scrollbar_profile);
 	else
 		m_VScrollBar->Init			(GetWndSize().x, 0.0f, GetWndSize().y, false);
 	m_VScrollBar->SetWndPos			(m_VScrollBar->GetWndPos().x - m_VScrollBar->GetWndSize().x, m_VScrollBar->GetWndPos().y);
@@ -181,7 +181,7 @@ void CUIScrollView::Draw				()
 		(*it)->GetAbsoluteRect(item_rect);
 		if(visible_rect.intersected		(item_rect)){
 			if ((*it)->GetVisible())
-                (*it)->Draw();
+				(*it)->Draw();
 			iDone						= 1;
 		}else
 			if(iDone==1)	break;
@@ -203,9 +203,10 @@ void CUIScrollView::OnScrollV			(CUIWindow*, void*)
 	m_pad->SetWndPos			(w_pos.x,float(-s_pos));
 }
 
-bool CUIScrollView::OnMouse(float x, float y, EUIMessages mouse_action)
+bool CUIScrollView::OnMouseAction(float x, float y, EUIMessages mouse_action)
 {
-	if(inherited::OnMouse(x,y,mouse_action)) return true;
+	if (inherited::OnMouseAction(x,y,mouse_action))
+		return true;
 
 	switch (mouse_action){
 		case WINDOW_MOUSE_WHEEL_UP:
@@ -308,7 +309,7 @@ CUIWindow* CUIScrollView::GetItem		(u32 idx)
 
 float CUIScrollView::GetDesiredChildWidth(){
 	if (NeedShowScrollBar())
-        return GetWidth() - m_VScrollBar->GetWidth() - m_rightIndent - m_leftIndent;
+		return GetWidth() - m_VScrollBar->GetWidth() - m_rightIndent - m_leftIndent;
 	else
 		return GetWidth() - m_rightIndent - m_leftIndent;
 }

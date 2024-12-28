@@ -85,7 +85,7 @@ void CUIComboBox::Init(float x, float y, float width, float height)
 #include "uilistboxitem.h"
 CUIListBoxItem* CUIComboBox::AddItem_(LPCSTR str, int _data)
 {
-    R_ASSERT2			(m_bInited, "Can't add item to ComboBox before Initialization");
+	R_ASSERT2			(m_bInited, "Can't add item to ComboBox before Initialization");
 	CUIListBoxItem* itm = m_list.AddItem(str);
 	itm->SetData		((void*)(__int64)_data);
 	return				itm;
@@ -174,7 +174,7 @@ void CUIComboBox::OnBtnClicked()
 
 void CUIComboBox::ShowList(bool bShow)
 {
-    if (bShow)
+	if (bShow)
 	{
 		SetHeight			(m_text.GetHeight() + m_list.GetHeight());
 
@@ -217,19 +217,20 @@ void CUIComboBox::OnFocusLost()
 {
 	CUIWindow::OnFocusLost();
 	if (m_bIsEnabled)
-        SetState(S_Enabled);
+		SetState(S_Enabled);
 
 }
 
 void CUIComboBox::OnFocusReceive()
 {
 	CUIWindow::OnFocusReceive();
-    if (m_bIsEnabled)
-        SetState(S_Highlighted);
+	if (m_bIsEnabled)
+		SetState(S_Highlighted);
 }
 
-bool CUIComboBox::OnMouse(float x, float y, EUIMessages mouse_action){
-	if(CUIWindow::OnMouse(x, y, mouse_action)) 
+bool CUIComboBox::OnMouseAction(float x, float y, EUIMessages mouse_action)
+{
+	if(CUIWindow::OnMouseAction(x, y, mouse_action))
 		return true;
 
 	bool bCursorOverScb = false;
@@ -243,7 +244,7 @@ bool CUIComboBox::OnMouse(float x, float y, EUIMessages mouse_action){
 
 			if (  (!bCursorOverScb) &&  mouse_action == WINDOW_LBUTTON_DOWN)
 			{
-                ShowList(false);
+				ShowList(false);
 				return true;
 			}
 			break;
@@ -258,7 +259,7 @@ bool CUIComboBox::OnMouse(float x, float y, EUIMessages mouse_action){
 	}	
 	 
 
-        return false;
+		return false;
 }
 
 void CUIComboBox::SetState(UIState state)

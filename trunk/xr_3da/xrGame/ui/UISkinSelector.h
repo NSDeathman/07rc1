@@ -22,7 +22,7 @@ class CExtraContentFilter;
 
 typedef enum{
 	SKIN_MENU_BACK = 0,
-    SKIN_MENU_SPECTATOR,
+	SKIN_MENU_SPECTATOR,
 	SKIN_MENU_AUTOSELECT
 } ESKINMENU_BTN;
 
@@ -32,27 +32,27 @@ class CUISkinSelectorWnd: public CUIDialogWnd
 
 	CExtraContentFilter*	m_pExtraContentFilter;
 public:	
-	CUISkinSelectorWnd(const char* strSectionName, s16 team);
-	~CUISkinSelectorWnd();
+			CUISkinSelectorWnd			(const char* strSectionName, s16 team);
+			~CUISkinSelectorWnd			();
 	
-	virtual void	Init(const char* strSectionName);
-	virtual void	SendMessage(CUIWindow *pWnd, s16 msg, void *pData = NULL);
-	virtual bool	OnMouse(float x, float y, EUIMessages mouse_action);
-	virtual bool	OnKeyboard(int dik, EUIMessages keyboard_action);
-			void	SetVisibleForBtn(ESKINMENU_BTN btn, bool state);
-			void	SetCurSkin(int skin);
+	virtual void	Init				(const char* strSectionName);
+	virtual void	SendMessage			(CUIWindow *pWnd, s16 msg, void *pData = NULL);
+	virtual bool	OnMouseAction		(float x, float y, EUIMessages mouse_action);
+	virtual bool	OnKeyboard			(int dik, EUIMessages keyboard_action);
+			void	SetVisibleForBtn	(ESKINMENU_BTN btn, bool state);
+			void	SetCurSkin			(int skin);
 
-	int				GetActiveIndex();
+	int				GetActiveIndex		();
 	s16				GetTeam()				{return m_team;};
-	virtual void	Update			();
+	virtual void	Update				();
 protected:
-			void	OnBtnOK();
-			void	OnBtnCancel();
-			void	OnKeyLeft();
-			void	OnKeyRight();
+			void	OnBtnOK				();
+			void	OnBtnCancel			();
+			void	OnKeyLeft			();
+			void	OnKeyRight			();
 
-			void	InitSkins();
-			void	UpdateSkins();
+			void	InitSkins			();
+			void	UpdateSkins			();
 	CUIStatic*		m_pCaption;
 	CUIStatic*		m_pBackground;
 	CUIStatic*		m_pFrames;

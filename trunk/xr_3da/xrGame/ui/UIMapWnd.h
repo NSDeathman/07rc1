@@ -92,7 +92,7 @@ public:
 			void				ShowHint				(CUIWindow* parent, LPCSTR text);
 			void				HideHint				(CUIWindow* parent);
 			void				Hint					(const shared_str& text);
-	virtual bool				OnMouse					(float x, float y, EUIMessages mouse_action);
+	virtual bool				OnMouseAction			(float x, float y, EUIMessages mouse_action);
 	virtual bool				OnKeyboard				(int dik, EUIMessages keyboard_action);
 	virtual bool				OnKeyboardHold			(int dik);
 

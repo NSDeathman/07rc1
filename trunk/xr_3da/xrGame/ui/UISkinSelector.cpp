@@ -85,7 +85,7 @@ void CUISkinSelectorWnd::UpdateSkins(){
 	for (int i = 0; i<4; i++)
 	{
 		if (!!m_shader)
-            m_pImage[i]->InitTextureEx(m_skins[i + m_firstSkin].c_str(), *m_shader);
+			m_pImage[i]->InitTextureEx(m_skins[i + m_firstSkin].c_str(), *m_shader);
 		else
 			m_pImage[i]->InitTexture(m_skins[i + m_firstSkin].c_str());
 		m_pImage[i]->RescaleRelative2Rect(m_pImage[i]->GetStaticItem()->GetOriginalRect());
@@ -173,7 +173,7 @@ void CUISkinSelectorWnd::SendMessage(CUIWindow *pWnd, s16 msg, void *pData)
 				dm->OnSkinMenuBack();				
 			}
 			else
-                for (int i = 0; i<4; i++)
+				for (int i = 0; i<4; i++)
 					if (pWnd == m_pImage[i])
 					{
 						m_iActiveIndex = m_firstSkin+i;
@@ -197,7 +197,7 @@ void CUISkinSelectorWnd::SendMessage(CUIWindow *pWnd, s16 msg, void *pData)
 }
 
 void CUISkinSelectorWnd::OnBtnCancel(){
-    Game().StartStopMenu(this,true);
+	Game().StartStopMenu(this,true);
 	game_cl_mp* mp = smart_cast<game_cl_mp*>(&(Game()));
 	mp->OnSkinMenu_Cancel();
 }
@@ -213,9 +213,9 @@ void CUISkinSelectorWnd::OnBtnOK(){
 	dm->OnSkinMenu_Ok();
 }
 
-bool CUISkinSelectorWnd::OnMouse(float x, float y, EUIMessages mouse_action)
+bool CUISkinSelectorWnd::OnMouseAction(float x, float y, EUIMessages mouse_action)
 {
-	return CUIWindow::OnMouse(x,y,mouse_action);	
+	return CUIWindow::OnMouseAction(x,y,mouse_action);
 }
 
 bool CUISkinSelectorWnd::OnKeyboard(int dik, EUIMessages keyboard_action)
@@ -235,7 +235,7 @@ bool CUISkinSelectorWnd::OnKeyboard(int dik, EUIMessages keyboard_action)
 
 	if (dik == DIK_TAB)
 	{
-        ShowChildren(false);
+		ShowChildren(false);
 		game_cl_mp* game = smart_cast<game_cl_mp*>(&Game());
 		game->OnKeyboardPress(kSCORES);
 		UI()->GetUICursor()->Hide();
@@ -307,7 +307,7 @@ int	CUISkinSelectorWnd::GetActiveIndex(){
 	if (-1 == m_iActiveIndex)
 		return -1;
 	else
-        return m_iActiveIndex; 
+		return m_iActiveIndex; 
 } 	
 
 void CUISkinSelectorWnd::SetVisibleForBtn(ESKINMENU_BTN btn, bool state){
@@ -331,7 +331,7 @@ void CUISkinSelectorWnd::SetCurSkin(int skin){
 		if (m_iActiveIndex > (int)m_skins.size() - 4)
 			m_firstSkin = (int)m_skins.size() - 4;
 		else
-            m_firstSkin = m_iActiveIndex;
+			m_firstSkin = m_iActiveIndex;
 	}
 	UpdateSkins();
 }

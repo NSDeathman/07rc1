@@ -58,11 +58,12 @@ void CUIButton::Enable(bool status){
 		m_bCursorOverWindow		= false;
 }
 
-bool  CUIButton::OnMouse(float x, float y, EUIMessages mouse_action)
+bool  CUIButton::OnMouseAction(float x, float y, EUIMessages mouse_action)
 {
 	m_bButtonClicked			= false;
 
-	if( inherited::OnMouse(x, y, mouse_action) ) return true;
+	if (inherited::OnMouseAction(x, y, mouse_action))
+		return true;
 
 	if ( (	WINDOW_LBUTTON_DOWN==mouse_action	||
 			WINDOW_LBUTTON_UP==mouse_action		||

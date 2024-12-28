@@ -215,7 +215,7 @@ CUIInventoryWnd::~CUIInventoryWnd()
 	ClearAllLists						();
 }
 
-bool CUIInventoryWnd::OnMouse(float x, float y, EUIMessages mouse_action)
+bool CUIInventoryWnd::OnMouseAction(float x, float y, EUIMessages mouse_action)
 {
 	if(m_b_need_reinit)
 		return true;
@@ -230,7 +230,7 @@ bool CUIInventoryWnd::OnMouse(float x, float y, EUIMessages mouse_action)
 		}
 	}
 
-	CUIWindow::OnMouse					(x, y, mouse_action);
+	CUIWindow::OnMouseAction(x, y, mouse_action);
 
 	return true; // always returns true, because ::StopAnyMove() == true;
 }

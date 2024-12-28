@@ -275,7 +275,7 @@ void CUIWindow::GetAbsoluteRect(Frect& r)
 
 #define DOUBLE_CLICK_TIME 250
 
-bool CUIWindow::OnMouse(float x, float y, EUIMessages mouse_action)
+bool CUIWindow::OnMouseAction(float x, float y, EUIMessages mouse_action)
 {	
 	Frect	wndRect = GetWndRect();
 
@@ -311,7 +311,7 @@ bool CUIWindow::OnMouse(float x, float y, EUIMessages mouse_action)
 	//сообщение направляем ему сразу
 	if(m_pMouseCapturer)
 	{
-		m_pMouseCapturer->OnMouse(m_cursor_pos.x - m_pMouseCapturer->GetWndRect().left, 
+		m_pMouseCapturer->OnMouseAction(m_cursor_pos.x - m_pMouseCapturer->GetWndRect().left,
 								  m_cursor_pos.y - m_pMouseCapturer->GetWndRect().top, 
 								  mouse_action);
 		return true;
@@ -350,13 +350,13 @@ bool CUIWindow::OnMouse(float x, float y, EUIMessages mouse_action)
 		{
 			if(w->IsEnabled())
 			{
-				if( w->OnMouse(m_cursor_pos.x -w->GetWndRect().left, 
+				if( w->OnMouseAction(m_cursor_pos.x -w->GetWndRect().left,
 							   m_cursor_pos.y -w->GetWndRect().top, mouse_action))return true;
 			}
 		}
 		else if (w->IsEnabled() && w->CursorOverWindow())
 		{
-			if( w->OnMouse(m_cursor_pos.x -w->GetWndRect().left, 
+			if( w->OnMouseAction(m_cursor_pos.x -w->GetWndRect().left,
 						   m_cursor_pos.y -w->GetWndRect().top, mouse_action))return true;
 		}
 	}

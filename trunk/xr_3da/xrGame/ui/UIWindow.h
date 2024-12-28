@@ -104,7 +104,7 @@ public:
 	
 
 
-	virtual bool 			OnMouse				(float x, float y, EUIMessages mouse_action);
+	virtual bool 			OnMouseAction		(float x, float y, EUIMessages mouse_action);
 	virtual void 			OnMouseMove			();
 	virtual void 			OnMouseScroll		(float iDirection);
 	virtual bool 			OnDbClick			();

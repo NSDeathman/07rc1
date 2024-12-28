@@ -70,7 +70,7 @@ bool CUIDialogWnd::IR_OnKeyboardPress(int dik)
 	{
 		Fvector2 cp = GetUICursor()->GetCursorPosition();
 		EUIMessages action = (dik == MOUSE_1) ? WINDOW_LBUTTON_DOWN : (dik == MOUSE_2) ? WINDOW_RBUTTON_DOWN : WINDOW_CBUTTON_DOWN;
-		if (OnMouse(cp.x,cp.y, action))
+		if (OnMouseAction(cp.x,cp.y, action))
 			return true;
 	}
 
@@ -101,7 +101,7 @@ bool CUIDialogWnd::IR_OnKeyboardRelease(int dik)
 	{
 		Fvector2 cp = GetUICursor()->GetCursorPosition();
 		EUIMessages action = (dik == MOUSE_1) ? WINDOW_LBUTTON_UP : (dik == MOUSE_2) ? WINDOW_RBUTTON_UP : WINDOW_CBUTTON_UP;
-		if (OnMouse(cp.x, cp.y, action))
+		if (OnMouseAction(cp.x, cp.y, action))
 			return true;
 	}
 
@@ -129,9 +129,9 @@ bool CUIDialogWnd::IR_OnMouseWheel (int direction)
 	Fvector2 pos = GetUICursor()->GetCursorPosition();
 
 	if (direction > 0)
-		OnMouse(pos.x,pos.y,WINDOW_MOUSE_WHEEL_UP);
+		OnMouseAction(pos.x,pos.y,WINDOW_MOUSE_WHEEL_UP);
 	else
-		OnMouse(pos.x,pos.y,WINDOW_MOUSE_WHEEL_DOWN);
+		OnMouseAction(pos.x,pos.y,WINDOW_MOUSE_WHEEL_DOWN);
 
 	return true;
 }
@@ -146,7 +146,7 @@ bool CUIDialogWnd::IR_OnMouseMove(int dx, int dy)
 		GetUICursor()->UpdateCursorPosition();
 		Fvector2 cPos = GetUICursor()->GetCursorPosition();
 
-		OnMouse(cPos.x, cPos.y , WINDOW_MOUSE_MOVE);
+		OnMouseAction(cPos.x, cPos.y , WINDOW_MOUSE_MOVE);
 	}
 	else if (!StopAnyMove() && g_pGameLevel)
 	{

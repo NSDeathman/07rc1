@@ -34,9 +34,9 @@ CUITrackBar::CUITrackBar()
 //.	m_pSlider->SetOwner				(this);
 }
 
-bool CUITrackBar::OnMouse(float x, float y, EUIMessages mouse_action)
+bool CUITrackBar::OnMouseAction(float x, float y, EUIMessages mouse_action)
 {
-	CUIWindow::OnMouse(x, y, mouse_action);
+	CUIWindow::OnMouseAction(x, y, mouse_action);
 
 	if (m_bCursorOverWindow)
 	{
@@ -61,7 +61,7 @@ void CUITrackBar::Init(float x, float y, float width, float height){
 
 	strconcat			(sizeof(buf),buf,SLIDER_TEXTURE,"_e");
 	item_width			= CUITextureMaster::GetTextureWidth(buf);
-    item_height			= CUITextureMaster::GetTextureHeight(buf);
+	item_height			= CUITextureMaster::GetTextureHeight(buf);
 	m_pSlider->Init		(0, (height - item_height)/2, item_width, item_height);
 	m_pSlider->InitTexture(SLIDER_TEXTURE);
 }	
@@ -219,7 +219,7 @@ void CUITrackBar::UpdatePos()
 	float window_width			= GetWidth();		
 	float free_space			= window_width - btn_width;
 	Fvector2 pos				= m_pSlider->GetWndPos();
-    
+	
 	float __fval	= (m_b_is_float)?m_f_val:(float)m_i_val;
 	float __fmax	= (m_b_is_float)?m_f_max:(float)m_i_max;
 	float __fmin	= (m_b_is_float)?m_f_min:(float)m_i_min;

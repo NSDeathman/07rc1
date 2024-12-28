@@ -21,7 +21,7 @@ public:
 	virtual void 		Update					();
 	virtual void 		Draw					();
 
-	virtual bool 		OnMouse					(float x, float y, EUIMessages mouse_action);
+	virtual bool 		OnMouseAction			(float x, float y, EUIMessages mouse_action);
 	virtual bool 		OnKeyboard				(int dik, EUIMessages keyboard_action);
 	virtual void 		SendMessage				(CUIWindow* pWnd, s16 msg, void* pData = 0);
 			void 		SetVisibleMagnifier		(bool f);

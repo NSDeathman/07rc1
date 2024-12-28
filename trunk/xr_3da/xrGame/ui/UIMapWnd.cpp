@@ -329,7 +329,7 @@ void CUIMapWnd::SetTargetMap			(CUICustomMap* m, const Fvector2& pos, bool bZoom
 		Fvector2	_p;gm->GetAbsolutePos(_p);
 		m_tgtCenter.sub					(_p);
 		m_tgtCenter.div					(gm->GetCurrentZoom());
- 	}else{
+	}else{
 
 		if(bZoomIn && fsimilar(GlobalMap()->GetCurrentZoom(), GlobalMap()->GetMinZoom(),EPS_L ))
 			SetZoom(GlobalMap()->GetMaxZoom());
@@ -391,9 +391,10 @@ bool CUIMapWnd::OnKeyboard				(int dik, EUIMessages keyboard_action)
 	return inherited::OnKeyboard	(dik, keyboard_action);
 }
 
-bool CUIMapWnd::OnMouse(float x, float y, EUIMessages mouse_action)
+bool CUIMapWnd::OnMouseAction(float x, float y, EUIMessages mouse_action)
 {
-	if(inherited::OnMouse(x,y,mouse_action)) return true;
+	if(inherited::OnMouseAction(x,y,mouse_action))
+		return true;
 	Fvector2 cursor_pos = GetUICursor()->GetCursorPosition();
 
 	if(GlobalMap() && !GlobalMap()->Locked() && ActiveMapRect().in( cursor_pos ) ){

@@ -29,17 +29,17 @@ CUIFrameWindow* CUITabButton::GetAssociatedWindow(){
 
 void CUITabButton::ShowAssociatedWindow(bool bShow){
 	if (this->m_pAssociatedWindow)
-        this->m_pAssociatedWindow->Show(bShow);
+		this->m_pAssociatedWindow->Show(bShow);
 }
 */
-bool CUITabButton::OnMouse(float x, float y, EUIMessages mouse_action){
-	return CUIWindow::OnMouse(x, y, mouse_action);
+bool CUITabButton::OnMouseAction(float x, float y, EUIMessages mouse_action){
+	return CUIWindow::OnMouseAction(x, y, mouse_action);
 }
 
 bool CUITabButton::OnMouseDown(int mouse_btn){
 	if (mouse_btn==MOUSE_1)
 	{
-		GetMessageTarget()->SendMessage(this, TAB_CHANGED);		
+		GetMessageTarget()->SendMessage(this, TAB_CHANGED);
 		return true;
 	}else
 		return false;
@@ -58,7 +58,7 @@ void CUITabButton::SendMessage(CUIWindow* pWnd, s16 msg, void* pData){
 	case TAB_CHANGED:
 		if (this == pWnd)
 		{
-            m_eButtonState = BUTTON_PUSHED;			
+			m_eButtonState = BUTTON_PUSHED;			
 //.			ShowAssociatedWindow(true);
 			OnClick();
 		}

@@ -738,22 +738,22 @@ void CUIBagWnd::ShowSectionEx(int iSection){
 
 void CUIBagWnd::OnBtnShotgunsClicked(){
 	m_boxesDefs[0].pButton->OnClick();
-	m_boxesDefs[0].pButton->OnMouse(-1, -1, WINDOW_MOUSE_MOVE);
+	m_boxesDefs[0].pButton->OnMouseAction(-1, -1, WINDOW_MOUSE_MOVE);
 	ShowSectionEx(GROUP_31);
 }
 void CUIBagWnd::OnBtnMachinegunsClicked(){
 	m_boxesDefs[1].pButton->OnClick();
-	m_boxesDefs[1].pButton->OnMouse(-1, -1, WINDOW_MOUSE_MOVE);
+	m_boxesDefs[1].pButton->OnMouseAction(-1, -1, WINDOW_MOUSE_MOVE);
 	ShowSectionEx(GROUP_32);
 }
 void CUIBagWnd::OnBtnSniperClicked(){
 	m_boxesDefs[2].pButton->OnClick();
-	m_boxesDefs[2].pButton->OnMouse(-1, -1, WINDOW_MOUSE_MOVE);
+	m_boxesDefs[2].pButton->OnMouseAction(-1, -1, WINDOW_MOUSE_MOVE);
 	ShowSectionEx(GROUP_33);
 }
 void CUIBagWnd::OnBtnHeavyClicked(){
 	m_boxesDefs[3].pButton->OnClick();
-	m_boxesDefs[3].pButton->OnMouse(-1, -1, WINDOW_MOUSE_MOVE);
+	m_boxesDefs[3].pButton->OnMouseAction(-1, -1, WINDOW_MOUSE_MOVE);
 	ShowSectionEx(GROUP_34);
 }
 

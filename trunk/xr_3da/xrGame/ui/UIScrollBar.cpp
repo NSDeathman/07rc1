@@ -31,13 +31,13 @@ void CUIScrollBar::Init(float x, float y, float length, bool bIsHorizontal, LPCS
 	R_ASSERT(xml_doc.Init	(CONFIG_PATH, UI_PATH, "scroll_bar.xml"));
 
 	float height = xml_doc.ReadAttribFlt(profile, 0, "height", 16);
-    	
+		
 	m_bIsHorizontal = bIsHorizontal;
 	if(m_bIsHorizontal)
 	{
 		CUIWindow::Init				(x,y, length, height);
 
-        strconcat					(sizeof(_path),_path, profile, ":left_arrow");
+		strconcat					(sizeof(_path),_path, profile, ":left_arrow");
 		CUIXmlInit::Init3tButton	(xml_doc, _path, 0, m_DecButton);
 		m_DecButton->SetWndPos		(0.0f, 0.0f);
 
@@ -64,7 +64,7 @@ void CUIScrollBar::Init(float x, float y, float length, bool bIsHorizontal, LPCS
 		m_DecButton->SetWndPos		(0.0f, 0.0f);
 
 		strconcat					(sizeof(_path),_path, profile, ":down_arrow");
- 		CUIXmlInit::Init3tButton	(xml_doc, _path, 0, m_IncButton);
+		CUIXmlInit::Init3tButton	(xml_doc, _path, 0, m_IncButton);
 		m_IncButton->SetWndPos		(0.0f, length - height);
 
 		m_ScrollBox->SetVertical	();
@@ -183,7 +183,7 @@ bool CUIScrollBar::OnKeyboardHold(int dik)
 	return false;
 }
 
-bool CUIScrollBar::OnMouse(float x, float y, EUIMessages mouse_action)
+bool CUIScrollBar::OnMouseAction(float x, float y, EUIMessages mouse_action)
 {
 	switch(mouse_action){
 		case WINDOW_MOUSE_WHEEL_DOWN:
@@ -195,7 +195,7 @@ bool CUIScrollBar::OnMouse(float x, float y, EUIMessages mouse_action)
 			return true;
 			break;
 	};
-	return inherited::OnMouse(x, y, mouse_action);
+	return inherited::OnMouseAction(x, y, mouse_action);
 }
 
 

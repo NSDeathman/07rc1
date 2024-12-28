@@ -23,7 +23,7 @@ public:
 	virtual void	InitCustomEdit	(Fvector2 pos, Fvector2 size);
 	virtual void	SendMessage		(CUIWindow* pWnd, s16 msg, void* pData = NULL);
 
-	virtual bool	OnMouse			(float x, float y, EUIMessages mouse_action);
+	virtual bool	OnMouseAction	(float x, float y, EUIMessages mouse_action);
 	virtual bool	OnKeyboard		(int dik, EUIMessages keyboard_action);
 	virtual bool	OnKeyboardHold	(int dik);
 
