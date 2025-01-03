@@ -108,7 +108,7 @@ void CUIInventoryWnd::InitInventory()
 		m_pUIBagList->SetItem			(itm);
 	}
 
-	InventoryUtilities::UpdateWeight					(UIBagWnd, true);
+	InventoryUtilities::UpdateWeight					(UIBagWnd, m_pInv->GetOwner(), true);
 
 	m_b_need_reinit					= false;
 }  
@@ -123,7 +123,7 @@ void CUIInventoryWnd::DropCurrentItem(bool b_all)
 	{
 		SendEvent_Item_Drop		(CurrentIItem());
 		SetCurrentItem			(NULL);
-		InventoryUtilities::UpdateWeight			(UIBagWnd, true);
+		InventoryUtilities::UpdateWeight			(UIBagWnd, m_pInv->GetOwner(), true);
 		return;
 	}
 
@@ -139,7 +139,7 @@ void CUIInventoryWnd::DropCurrentItem(bool b_all)
 
 		SendEvent_Item_Drop					(CurrentIItem());
 		SetCurrentItem						(NULL);
-		InventoryUtilities::UpdateWeight	(UIBagWnd, true);
+		InventoryUtilities::UpdateWeight	(UIBagWnd, m_pInv->GetOwner(), true);
 		return;
 	}
 }

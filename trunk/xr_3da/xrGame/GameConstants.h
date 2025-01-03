@@ -9,4 +9,5 @@ namespace GameConstants
 	bool GetDisableStoppingGrenade			();
 	bool GetMergedAmmoLineWithFiremodes		();
 	bool GetContactsBioShowing				();
+	bool GetPartnerWeightInCarBodyShowing	();
 };

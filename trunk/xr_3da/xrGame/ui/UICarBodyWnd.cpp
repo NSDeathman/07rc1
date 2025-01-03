@@ -10,7 +10,7 @@
 #include "UIItemInfo.h"
 #include "UIPropertiesBox.h"
 #include "../ai/monsters/BaseMonster/base_monster.h"
-#include "../inventory.h"
+#include "../Inventory.h"
 #include "UIInventoryUtilities.h"
 #include "UICellItem.h"
 #include "UICellItemFactory.h"
@@ -25,6 +25,7 @@
 #include "../script_callback_ex.h"
 #include "../script_game_object.h"
 #include "../BottleItem.h"
+#include "../GameConstants.h"
 
 #define				CAR_BODY_XML		"carbody_new.xml"
 #define				CARBODY_ITEM_XML	"carbody_item.xml"
@@ -279,7 +280,14 @@ void CUICarBodyWnd::UpdateLists()
 		m_pUIOthersBagList->SetItem					(itm);
 	}
 
-	InventoryUtilities::UpdateWeight				(*m_pUIOurBagWnd);
+	InventoryUtilities::UpdateWeight				(*m_pUIOurBagWnd, m_pOurObject);
+	if (GameConstants::GetPartnerWeightInCarBodyShowing())
+	{
+		if (m_pOthersObject)
+			InventoryUtilities::UpdateWeight(*m_pUIOthersBagWnd, m_pOthersObject);
+		else
+			InventoryUtilities::UpdateBoxWeight(*m_pUIOthersBagWnd, m_pInventoryBox);
+	}
 	m_b_need_update									= false;
 }
 
@@ -352,7 +360,7 @@ void CUICarBodyWnd::Show()
 	InventoryUtilities::SendInfoToActor		("ui_car_body");
 	inherited::Show							();
 	SetCurrentItem							(NULL);
-	InventoryUtilities::UpdateWeight		(*m_pUIOurBagWnd);
+	InventoryUtilities::UpdateWeight		(*m_pUIOurBagWnd, m_pOurObject);
 	if (&sounds[eCarBodySndOpen])
 		PlaySnd								(eCarBodySndOpen);
 }

@@ -10,6 +10,7 @@
 #include "../string_table.h"
 #include "../Inventory.h"
 #include "../InventoryOwner.h"
+#include "../InventoryBox.h"
 
 #include "../InfoPortion.h"
 #include "../game_base_space.h"
@@ -76,7 +77,7 @@ bool InventoryUtilities::GreaterRoomInRuck(PIItem item1, PIItem item2)
 
 		return				false;
 	}
-   	return					false;
+	return					false;
 }
 
 bool InventoryUtilities::FreeRoom_inBelt	(TIItemContainer& item_list, PIItem _item, int width, int height)
@@ -103,8 +104,8 @@ bool InventoryUtilities::FreeRoom_inBelt	(TIItemContainer& item_list, PIItem _it
 		PIItem pItem = *it;
 		int iWidth	= pItem->GetGridWidth(); 
 		int iHeight = pItem->GetGridHeight();
-		//проверить можно ли разместить элемент,
-		//проверяем последовательно каждую клеточку
+		//РїСЂРѕРІРµСЂРёС‚СЊ РјРѕР¶РЅРѕ Р»Рё СЂР°Р·РјРµСЃС‚РёС‚СЊ СЌР»РµРјРµРЅС‚,
+		//РїСЂРѕРІРµСЂСЏРµРј РїРѕСЃР»РµРґРѕРІР°С‚РµР»СЊРЅРѕ РєР°Р¶РґСѓСЋ РєР»РµС‚РѕС‡РєСѓ
 		found_place = false;
 	
 		for(i=0; (i<height - iHeight +1) && !found_place; ++i)
@@ -132,7 +133,7 @@ bool InventoryUtilities::FreeRoom_inBelt	(TIItemContainer& item_list, PIItem _it
 			}
 		}
 
-		//разместить элемент на найденном месте
+		//СЂР°Р·РјРµСЃС‚РёС‚СЊ СЌР»РµРјРµРЅС‚ РЅР° РЅР°Р№РґРµРЅРЅРѕРј РјРµСЃС‚Рµ
 		if(found_place)
 		{
 			for(k=0; k<iHeight; ++k)
@@ -148,7 +149,7 @@ bool InventoryUtilities::FreeRoom_inBelt	(TIItemContainer& item_list, PIItem _it
 	// remove
 	item_list.erase	(std::remove(item_list.begin(),item_list.end(),_item),item_list.end());
 
-	//для какого-то элемента места не нашлось
+	//РґР»СЏ РєР°РєРѕРіРѕ-С‚Рѕ СЌР»РµРјРµРЅС‚Р° РјРµСЃС‚Р° РЅРµ РЅР°С€Р»РѕСЃСЊ
 	if(!found_place) return false;
 
 	return true;
@@ -299,9 +300,8 @@ LPCSTR InventoryUtilities::GetTimePeriodAsString(LPSTR _buff, u32 buff_sz, ALife
 
 //////////////////////////////////////////////////////////////////////////
 
-void InventoryUtilities::UpdateWeight(CUIStatic &wnd, bool withPrefix)
+void InventoryUtilities::UpdateWeight(CUIStatic &wnd, CInventoryOwner* pInvOwner, bool withPrefix)
 {
-	CInventoryOwner *pInvOwner = smart_cast<CInventoryOwner*>(Level().CurrentEntity());
 	R_ASSERT(pInvOwner);
 	string128 buf;
 	ZeroMemory(buf, sizeof(buf));
@@ -334,6 +334,43 @@ void InventoryUtilities::UpdateWeight(CUIStatic &wnd, bool withPrefix)
 	}
 
 	sprintf_s(buf, "%s%s%3.1f %s/%5.1f", prefix, cl, total, "%c[UI_orange]", max);
+	wnd.SetText(buf);
+	//	UIStaticWeight.ClipperOff();
+}
+
+void InventoryUtilities::UpdateBoxWeight(CUIStatic &wnd, CInventoryBox* pInvBox, bool withPrefix)
+{
+	R_ASSERT(pInvBox);
+	string128 buf;
+	ZeroMemory(buf, sizeof(buf));
+
+	float total = pInvBox->m_fTotalWeight;
+
+	string16 cl;
+	ZeroMemory(cl, sizeof(cl));
+
+	//if (total > max)
+	//{
+	//	strcpy(cl, "%c[red]");
+	//}
+	//else
+	{
+		strcpy(cl, "%c[UI_orange]");
+	}
+
+	string32 prefix;
+	ZeroMemory(prefix, sizeof(prefix));
+
+	if (withPrefix)
+	{
+		sprintf_s(prefix, "%%c[default]%s ", *CStringTable().translate("ui_inv_weight"));
+	}
+	else
+	{
+		strcpy(prefix, "");
+	}
+
+	sprintf_s(buf, "%s%s%3.1f", prefix, cl, total);
 	wnd.SetText(buf);
 	//	UIStaticWeight.ClipperOff();
 }
@@ -449,8 +486,8 @@ LPCSTR InventoryUtilities::GetGoodwillAsText(CHARACTER_GOODWILL goodwill)
 
 
 //////////////////////////////////////////////////////////////////////////
-// специальная функция для передачи info_portions при нажатии кнопок UI 
-// (для tutorial)
+// СЃРїРµС†РёР°Р»СЊРЅР°СЏ С„СѓРЅРєС†РёСЏ РґР»СЏ РїРµСЂРµРґР°С‡Рё info_portions РїСЂРё РЅР°Р¶Р°С‚РёРё РєРЅРѕРїРѕРє UI 
+// (РґР»СЏ tutorial)
 void InventoryUtilities::SendInfoToActor(LPCSTR info_id)
 {
 	if (GameID() != GAME_SINGLE) return;

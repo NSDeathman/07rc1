@@ -1,7 +1,8 @@
 #include "pch_script.h"
 #include "InventoryBox.h"
-#include "level.h"
-#include "actor.h"
+#include "inventory_item.h"
+#include "Level.h"
+#include "Actor.h"
 #include "game_object_space.h"
 
 #include "script_callback_ex.h"
@@ -10,6 +11,7 @@
 CInventoryBox::CInventoryBox()
 {
 	m_in_use = false;
+	m_fTotalWeight = 0.f;
 }
 
 void CInventoryBox::OnEvent(NET_Packet& P, u16 type)
@@ -21,7 +23,7 @@ void CInventoryBox::OnEvent(NET_Packet& P, u16 type)
 	case GE_OWNERSHIP_TAKE:
 		{
 			u16 id;
-            P.r_u16(id);
+			P.r_u16(id);
 			CObject* itm = Level().Objects.net_Find(id);  VERIFY(itm);
 			m_items.push_back	(id);
 			itm->H_SetParent	(this);
@@ -31,7 +33,7 @@ void CInventoryBox::OnEvent(NET_Packet& P, u16 type)
 	case GE_OWNERSHIP_REJECT:
 		{
 			u16 id;
-            P.r_u16(id);
+			P.r_u16(id);
 			CObject* itm = Level().Objects.net_Find(id);  VERIFY(itm);
 			xr_vector<u16>::iterator it;
 			it = std::find(m_items.begin(),m_items.end(),id); VERIFY(it!=m_items.end());
@@ -42,13 +44,13 @@ void CInventoryBox::OnEvent(NET_Packet& P, u16 type)
 
 			itm->H_SetParent	(NULL, dont_create_shell);
 
-			if( m_in_use )
+			if (m_in_use)
 			{
 				CGameObject* GO		= smart_cast<CGameObject*>(itm);
-				Actor()->callback(GameObject::eInvBoxItemTake)( this->lua_game_object(), GO->lua_game_object() );
+				Actor()->callback(GameObject::eInvBoxItemTake)(this->lua_game_object(), GO->lua_game_object());
 			}
 		}break;
-	};
+	}
 }
 
 BOOL CInventoryBox::net_Spawn(CSE_Abstract* DC)
@@ -65,15 +67,17 @@ void CInventoryBox::net_Relcase(CObject* O)
 {
 	inherited::net_Relcase(O);
 }
-#include "inventory_item.h"
-void CInventoryBox::AddAvailableItems(TIItemContainer& items_container) const
+
+void CInventoryBox::AddAvailableItems(TIItemContainer& items_container)
 {
 	xr_vector<u16>::const_iterator it = m_items.begin();
 	xr_vector<u16>::const_iterator it_e = m_items.end();
-
-	for(;it!=it_e;++it)
+	m_fTotalWeight = 0.f;
+	for (; it != it_e; ++it)
 	{
-		PIItem itm = smart_cast<PIItem>(Level().Objects.net_Find(*it));VERIFY(itm);
-		items_container.push_back	(itm);
+		PIItem itm = smart_cast<PIItem>(Level().Objects.net_Find(*it));
+		VERIFY(itm);
+		items_container.push_back(itm);
+		m_fTotalWeight += itm->Weight();
 	}
 }
