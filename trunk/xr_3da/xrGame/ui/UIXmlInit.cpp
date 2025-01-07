@@ -93,6 +93,12 @@ bool CUIXmlInit::InitWindow(CUIXml& xml_doc, LPCSTR path, int index, CUIWindow* 
 	float width = xml_doc.ReadAttribFlt(path, index, "width");
 	float height = xml_doc.ReadAttribFlt(path, index, "height");
 	pWnd->SetCenterFromScreen(xml_doc.ReadAttribInt(path, index, "center_from_screen", 0) == 1);
+	CUIStatic* pStatic = smart_cast<CUIStatic*>(pWnd);
+	if (pStatic)
+	{
+		pStatic->SetScaleTexUsing(xml_doc.ReadAttribInt(path, index, "base_tex_scale_using", 0) == 1);
+		pStatic->SetScaleTex(xml_doc.ReadAttribFlt(path, index, "base_tex_scale", 1.f));
+	}
 	pWnd->Init(x, y, width, height);
 
 	string512 buf;
@@ -1088,7 +1094,7 @@ bool CUIXmlInit::InitTexture(CUIXml& xml_doc, LPCSTR path, int index, IUISingleT
 	pWnd->SetBaseTextureColor(color);
 
 	if (rect.width() != 0 && rect.height() != 0)
-		pWnd->SetOriginalRect(rect);
+		pWnd->SetOriginalRectEx(rect);
 
 	return true;
 }

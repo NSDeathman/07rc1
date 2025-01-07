@@ -58,6 +58,7 @@ public:
 	virtual void		InitTextureEx				(LPCSTR tex_name, LPCSTR sh_name="hud\\default");
 	CUIStaticItem*		GetStaticItem				()							{return &m_UIStaticItem;}
 			void		SetOriginalRect				(float x, float y, float width, float height)	{m_UIStaticItem.SetOriginalRect(x,y,width,height);}
+	virtual Frect		GetBaseTexRect				() const { return m_UIStaticItem.GetBaseTextureRect(); }
 			void		SetHeadingPivot				(const Fvector2& p)			{m_UIStaticItem.SetHeadingPivot(p);}
 			void		SetMask						(CUIFrameWindow *pMask);
 	virtual void		SetTextureOffset			(float x, float y) { m_TextureOffset.set(x, y); }
@@ -106,44 +107,47 @@ public:
 	virtual ETextAlignment	GetTextAlignment		();
 
 	// text additional
-			void	SetTextComplexMode			(bool md);
-			void	SetTextAlign_script			(u32 align);
-			u32		GetTextAlign_script			();
-			void	SetTextColor_script			(int a, int r, int g, int b){SetTextColor(color_argb(a,r,g,b));}
-			void	SetBaseTextColor_script		(int a, int r, int g, int b){SetTextColor(color_argb(a,r,g,b)); SetBaseTextColor(color_argb(a,r,g,b));}
-			u32&	GetTextColorRef				();
-			u32&	GetBaseTextColorRef			();
+			void			SetTextComplexMode		(bool md);
+			void			SetTextAlign_script		(u32 align);
+			u32				GetTextAlign_script		();
+			void			SetTextColor_script		(int a, int r, int g, int b){SetTextColor(color_argb(a,r,g,b));}
+			void			SetBaseTextColor_script	(int a, int r, int g, int b){SetTextColor(color_argb(a,r,g,b)); SetBaseTextColor(color_argb(a,r,g,b));}
+			u32&			GetTextColorRef			();
+			u32&			GetBaseTextColorRef		();
 //#pragma todo("Satan->Satan : delete next two functions")
 //	virtual void			SetTextAlign		(CGameFont::EAligment align);
 //	CGameFont::EAligment	GetTextAlign		();
-			void AdjustHeightToText			();
-			void AdjustWidthToText			();
-			void HighlightText(bool bHighlight) {m_bEnableTextHighlighting = bHighlight;}
-	virtual bool IsHighlightText();
+			void			AdjustHeightToText		();
+			void			AdjustWidthToText		();
+			void			HighlightText			(bool bHighlight) {m_bEnableTextHighlighting = bHighlight;}
+	virtual bool			IsHighlightText			();
 
-	virtual void ClipperOn					();
-	virtual void ClipperOff					();
-	virtual void ClipperOff					(CUIStaticItem& UIStaticItem);
-	virtual bool GetClipperState			()								{return m_bClipper;}
-	void TextureClipper						(float offset_x = 0, float offset_y = 0,Frect* pClipRect = NULL);
-	void TextureClipper						(float offset_x, float offset_y, Frect* pClipRect, CUIStaticItem& UIStaticItem);
+	virtual void			ClipperOn				();
+	virtual void			ClipperOff				();
+	virtual void			ClipperOff				(CUIStaticItem& UIStaticItem);
+	virtual bool			GetClipperState			()								{return m_bClipper;}
+	void					TextureClipper			(float offset_x = 0, float offset_y = 0,Frect* pClipRect = NULL);
+	void					TextureClipper			(float offset_x, float offset_y, Frect* pClipRect, CUIStaticItem& UIStaticItem);
 
 	
-	void			SetShader				(const ref_shader& sh);
-	CUIStaticItem&	GetUIStaticItem			()						{return m_UIStaticItem;}
+	void					SetShader				(const ref_shader& sh);
+	CUIStaticItem&			GetUIStaticItem			()						{return m_UIStaticItem;}
 
-	virtual	void SetTextX					(float text_x)			{m_TextOffset.x = text_x;}
-	virtual	void SetTextY					(float text_y)			{m_TextOffset.y = text_y;}
-	virtual	void SetTextPos					(float x, float y)		{SetTextX(x); SetTextY(y);}
-			float GetTextX					()						{return m_TextOffset.x;}
-			float GetTextY					()						{return m_TextOffset.y;}
+	virtual	void			SetTextX				(float text_x)			{m_TextOffset.x = text_x;}
+	virtual	void			SetTextY				(float text_y)			{m_TextOffset.y = text_y;}
+	virtual	void			SetTextPos				(float x, float y)		{SetTextX(x); SetTextY(y);}
+			float			GetTextX				()						{return m_TextOffset.x;}
+			float			GetTextY				()						{return m_TextOffset.y;}
 
-	virtual	void SetStretchTexture			(bool stretch_texture)	{m_bStretchTexture = stretch_texture;}
-	virtual	bool GetStretchTexture			()						{return m_bStretchTexture;}
+	virtual	void			SetStretchTexture		(bool stretch_texture)	{m_bStretchTexture = stretch_texture;}
+	virtual	bool			GetStretchTexture		()						{return m_bStretchTexture;}
+	virtual void			SetScaleTexUsing		(bool status) { m_bBaseTexScaleUsing = status; }
+	virtual void			SetScaleTex				(float tex_scale) { m_fTexScale = tex_scale; }
+	virtual bool			GetScaleTexUsing		() const { return m_bBaseTexScaleUsing; }
 
-	void		SetClipRect					(Frect r);
-	Frect		GetSelfClipRect				();
-	Frect		GetClipperRect				();	
+	void		SetClipRect							(Frect r);
+	Frect		GetSelfClipRect						();
+	Frect		GetClipperRect						();
 
 	// Анализируем текст на помещаемость его по длинне в заданную ширину, и если нет, то всталяем 
 	// "\n" реализуем таким образом wordwrap
@@ -156,12 +160,12 @@ public:
 		eepCenter
 	};
 
-	void SetElipsis							(EElipsisPosition pos, int indent);
+	void		SetElipsis							(EElipsisPosition pos, int indent);
 	
-	void	SetHeading						(float f)				{m_fHeading = f;};
-	float	GetHeading						()						{return m_fHeading;}
-	bool	Heading							()						{return m_bHeading;}
-	void	EnableHeading					(bool b)				{m_bHeading = b;m_lanim_xform.m_lanimFlags.set((1<<4),b);}
+	void		SetHeading							(float f)				{m_fHeading = f;};
+	float		GetHeading							()						{return m_fHeading;}
+	bool		Heading								()						{return m_bHeading;}
+	void		EnableHeading						(bool b)				{m_bHeading = b;m_lanim_xform.m_lanimFlags.set((1<<4),b);}
 
 	// will be need by CUI3tButton
 	// Don't change order!!!!!
@@ -177,38 +181,40 @@ public:
 
 	CUILines*				m_pLines;
 protected:
-	bool			m_bEnableTextHighlighting;
+	bool					m_bEnableTextHighlighting;
 		// Цвет подсветки
-	u32				m_HighlightColor;
+	u32						m_HighlightColor;
 
 	// this array of color will be useful in CUI3tButton class
 	// but we really need to declare it directly there because it must be initialized in CUIXmlInit::InitStatic
-	u32  m_dwTextColor[4];
-	u32  m_dwBaseTextColor[4];
-	bool m_bUseTextColor[4]; // note: 0 index will be ignored
+	u32						m_dwTextColor[4];
+	u32						m_dwBaseTextColor[4];
+	bool					m_bUseTextColor[4]; // note: 0 index will be ignored
 
-	bool m_bClipper;
-	bool m_bStretchTexture;
-	bool m_bAvailableTexture;
-	bool m_bTextureEnable;
-	CUIStaticItem m_UIStaticItem;
+	bool					m_bClipper;
+	bool					m_bStretchTexture;
+	bool					m_bBaseTexScaleUsing;
+	float					m_fTexScale;
+	bool					m_bAvailableTexture;
+	bool					m_bTextureEnable;
+	CUIStaticItem			m_UIStaticItem;
 
 	
-	Fvector2		m_TextOffset;
+	Fvector2				m_TextOffset;
 
-	bool			m_bHeading;
-	float			m_fHeading;
+	bool					m_bHeading;
+	float					m_fHeading;
 
 	// Для вывода текстуры с обрезанием по маске используем CUIFrameWindow
-	CUIFrameWindow	*m_pMask;
-	Fvector2		m_TextureOffset;
-	Fvector2		m_BaseTextureOffset;
+	CUIFrameWindow*			m_pMask;
+	Fvector2				m_TextureOffset;
+	Fvector2				m_BaseTextureOffset;
 
 	// Обрезка надписи
-	EElipsisPosition	m_ElipsisPos;
+	EElipsisPosition		m_ElipsisPos;
 	void Elipsis(const Frect &rect, EElipsisPosition elipsisPos);
-	int	m_iElipsisIndent;
-	Frect	m_ClipRect;
+	int						m_iElipsisIndent;
+	Frect					m_ClipRect;
 
 private:
 	Frect	m_xxxRect; // need by RescaleRelative2Rect(Frect& r). it is initializes only once in Init(x,y,width,height)

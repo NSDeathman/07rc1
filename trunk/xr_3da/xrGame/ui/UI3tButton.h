@@ -64,6 +64,7 @@ public:
 	CUIIBStatic			m_background;
 protected:
 	bool				m_bCheckMode;
+	bool				m_bWasAppliedBaseTexScaleUsing;
 private:	
 	virtual void	PlaySoundH					();
 	virtual void	PlaySoundT					();

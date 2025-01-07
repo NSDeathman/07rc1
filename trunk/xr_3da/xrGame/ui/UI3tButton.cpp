@@ -11,23 +11,25 @@
 #include "UI3tButton.h"
 #include "UIXmlInit.h"
 
-CUI3tButton::CUI3tButton(){
-	m_bTextureEnable	= false;
-	m_bUseTextColor[D]	= true;
-	m_bUseTextColor[H]	= false;
-	m_bUseTextColor[T]	= false;	
+CUI3tButton::CUI3tButton()
+{
+	m_bTextureEnable				= false;
+	m_bUseTextColor[D]				= true;
+	m_bUseTextColor[H]				= false;
+	m_bUseTextColor[T]				= false;
 
-	m_dwTextColor[E] 	= 0xFFFFFFFF;
-	m_dwTextColor[D] 	= 0xFFAAAAAA;
-	m_dwTextColor[H] 	= 0xFFFFFFFF;
-	m_dwTextColor[T] 	= 0xFFFFFFFF;
+	m_dwTextColor[E] 				= 0xFFFFFFFF;
+	m_dwTextColor[D] 				= 0xFFAAAAAA;
+	m_dwTextColor[H] 				= 0xFFFFFFFF;
+	m_dwTextColor[T] 				= 0xFFFFFFFF;
 
-	AttachChild			(&m_background);
-	AttachChild			(&m_hint);
+	AttachChild						(&m_background);
+	AttachChild						(&m_hint);
 
-	m_bEnableTextHighlighting = false;
-	m_bCheckMode		= false;
-	SetPushOffset		(Fvector2().set(0.0f,0.0f) );
+	m_bEnableTextHighlighting		= false;
+	m_bCheckMode					= false;
+	m_bWasAppliedBaseTexScaleUsing	= false;
+	SetPushOffset					(Fvector2().set(0.0f,0.0f) );
 }
 
 CUI3tButton::~CUI3tButton()
@@ -234,13 +236,25 @@ void CUI3tButton::Update()
 
 	if(m_bTextureEnable)
 	{
-		if (!m_bIsEnabled){
+		if (&m_background)
+		{
+			if (m_bBaseTexScaleUsing && !m_bWasAppliedBaseTexScaleUsing)
+			{
+				m_background.SetScaleTexUsing(m_bBaseTexScaleUsing);
+				m_background.SetScaleTex(m_fTexScale);
+				m_bWasAppliedBaseTexScaleUsing = true;
+			}
+		}
+		if (!m_bIsEnabled)
+		{
 			m_background.SetState(S_Disabled);
 		}
-		else if (CUIButton::BUTTON_PUSHED == m_eButtonState){
+		else if (CUIButton::BUTTON_PUSHED == m_eButtonState)
+		{
 			m_background.SetState(S_Touched);
 		}
-		else if (m_bCursorOverWindow){
+		else if (m_bCursorOverWindow)
+		{
 			m_background.SetState(S_Highlighted);
 		}
 		else{

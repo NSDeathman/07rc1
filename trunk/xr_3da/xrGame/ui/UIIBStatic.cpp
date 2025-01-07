@@ -100,6 +100,42 @@ void CUIIBStatic::SetStretchTexture(bool stretch_texture)
 		m_stateTouched->SetStretchTexture(stretch_texture);
 }
 
+void CUIIBStatic::SetScaleTexUsing(bool status)
+{
+	if (m_stateCurrent)
+		m_stateCurrent->SetScaleTexUsing(status);
+
+	if (m_stateEnabled)
+		m_stateEnabled->SetScaleTexUsing(status);
+
+	if (m_stateDisabled)
+		m_stateDisabled->SetScaleTexUsing(status);
+
+	if (m_stateHighlighted)
+		m_stateHighlighted->SetScaleTexUsing(status);
+
+	if (m_stateTouched)
+		m_stateTouched->SetScaleTexUsing(status);
+}
+
+void CUIIBStatic::SetScaleTex(float tex_scale)
+{
+	if (m_stateCurrent)
+		m_stateCurrent->SetScaleTex(tex_scale);
+
+	if (m_stateEnabled)
+		m_stateEnabled->SetScaleTex(tex_scale);
+
+	if (m_stateDisabled)
+		m_stateDisabled->SetScaleTex(tex_scale);
+
+	if (m_stateHighlighted)
+		m_stateHighlighted->SetScaleTex(tex_scale);
+
+	if (m_stateTouched)
+		m_stateTouched->SetScaleTex(tex_scale);
+}
+
 void CUIIBStatic::SetMirrorMode(EUIMirroring m)
 {
 	if (m_stateCurrent)

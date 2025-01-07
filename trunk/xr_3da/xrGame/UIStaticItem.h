@@ -34,7 +34,7 @@ public:
 	virtual void	CreateShader			(const char* tex, const char* sh = "hud\\default");
 	virtual void	SetShader				(const ref_shader& sh);
 	virtual	void	SetOriginalRect			(const Frect& r)									{iOriginalRect = r; uFlags|=flValidOriginalRect;}
-	virtual void	SetOriginalRectEx		(const Frect& r)									{iOriginalRect = r; uFlags|=flValidOriginalRect; SetRect(0,0,r.width(),r.height());}
+	virtual void	SetOriginalRectEx		(const Frect& r)									{iOriginalRect = r; BaseTextureRect = r; uFlags|=flValidOriginalRect; SetRect(0,0,r.width(),r.height());}
 
 
 	void			Init					(LPCSTR tex, LPCSTR sh, float left, float top, u32 align);
@@ -62,6 +62,8 @@ public:
 	IC u32			GetBaseTextureColor		() const					{return dwBaseColor;}
 	IC u32&			GetBaseTextureColorRef	()							{return dwBaseColor;}
 	IC ref_shader&	GetShader				()							{return hShader;}
+	void			SetBaseTextureRect		(const Frect& r) { BaseTextureRect = r; }
+	const Frect&	GetBaseTextureRect		() const { return BaseTextureRect; };
 
 	IC virtual void			SetMirrorMode	(EUIMirroring m)	{ eMirrorMode = m; }
 	IC virtual EUIMirroring GetMirrorMode	() const			{ return eMirrorMode; }

@@ -23,14 +23,15 @@ public:
 
 	static void ParseShTexInfo			(LPCSTR xml_file);
 
-	static void		InitTexture			(LPCSTR texture_name,		IUISimpleTextureControl* tc);
-	static void		InitTexture			(LPCSTR texture_name, const char* shader_name, IUISimpleTextureControl* tc);
-	static float	GetTextureHeight	(LPCSTR texture_name);
-	static float	GetTextureWidth		(LPCSTR texture_name);
-	static Frect	GetTextureRect		(LPCSTR texture_name);
-	static LPCSTR	GetTextureFileName	(LPCSTR texture_name);
-	static void		GetTextureShader	(LPCSTR texture_name, ref_shader& sh);
-	static TEX_INFO	FindItem			(LPCSTR texture_name, LPCSTR def_texture_name);
+	static void		InitTexture			(const shared_str&, IUISimpleTextureControl* tc);
+	static void		InitTexture			(const shared_str&, const char* shader_name, IUISimpleTextureControl* tc);
+	static float	GetTextureHeight	(const shared_str& texture_name);
+	static float	GetTextureWidth		(const shared_str& texture_name);
+	static Frect	GetTextureRect		(const shared_str& texture_name);
+	static void		GetTextureShader	(const shared_str& texture_name, ref_shader& sh);
+	static LPCSTR	GetTextureFileName	(const shared_str& texture_name);
+	static TEX_INFO	FindItem			(const shared_str& texture_name);
+	static TEX_INFO	FindItem			(const shared_str& texture_name, const shared_str& def_texture_name);
 	static void WriteLog();
 
 protected:

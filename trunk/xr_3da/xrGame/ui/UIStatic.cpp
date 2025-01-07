@@ -18,16 +18,17 @@ const char * const	clDefault	= "default";
 //(1<<4) registered !!!
 void lanim_cont::set_defaults()
 {
-	m_lanim					= NULL;	
+	m_lanim					= NULL;
 	m_lanim_start_time		= -1.0f;
 	m_lanim_delay_time		= 0.0f;
 	m_lanimFlags.zero		();
 }
 
-CUIStatic:: CUIStatic()
+CUIStatic::CUIStatic()
 {
 	m_bAvailableTexture			= false;
 	m_bTextureEnable			= true;
+	m_bBaseTexScaleUsing		= false;
 	m_bClipper					= false;
 	m_bStretchTexture			= false;
 
@@ -187,8 +188,16 @@ void CUIStatic::DrawTexture()
 		GetAbsoluteRect	(rect);
 		m_UIStaticItem.SetPos	(rect.left + m_TextureOffset.x, rect.top + m_TextureOffset.y);
 
-		if(m_bStretchTexture)
-			m_UIStaticItem.SetRect(0, 0, rect.width(), rect.height());
+		if (m_bStretchTexture)
+		{
+			if (GetScaleTexUsing())
+			{
+				rect = m_UIStaticItem.GetBaseTextureRect();
+				m_UIStaticItem.SetRect(0, 0, rect.width() * m_fTexScale, rect.height() * m_fTexScale / UI()->get_current_kx());
+			}
+			else
+				m_UIStaticItem.SetRect(0, 0, rect.width(), rect.height());
+		}
 		else
 		{
 			Frect r = { 0.0f,0.0f,

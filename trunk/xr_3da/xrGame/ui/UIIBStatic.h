@@ -20,5 +20,7 @@ public:
 	virtual void	SetTextureOffset			(Fvector2 offset);
 	virtual void	SetBaseTextureOffset		(Fvector2 offset);
 	virtual void	SetStretchTexture			(bool stretch_texture);
+	void			SetScaleTexUsing			(bool status);
+	void			SetScaleTex					(float tex_scale);
 			void	SetMirrorMode				(EUIMirroring m);
 };

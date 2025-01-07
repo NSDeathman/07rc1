@@ -18,12 +18,14 @@ xr_map<shared_str, TEX_INFO>	CUITextureMaster::m_textures;
 u32									CUITextureMaster::m_time = 0;
 #endif
 
-void CUITextureMaster::WriteLog(){
+void CUITextureMaster::WriteLog()
+{
 #ifdef DEBUG
 	Msg("UI texture manager work time is %d ms", m_time);
 #endif
 }
-void CUITextureMaster::ParseShTexInfo(LPCSTR xml_file){
+void CUITextureMaster::ParseShTexInfo(LPCSTR xml_file)
+{
 	CUIXml xml;
 	xml.Init(CONFIG_PATH, UI_PATH, xml_file);
 	shared_str file = xml.Read("file_name",0,""); 
@@ -55,7 +57,8 @@ bool CUITextureMaster::IsSh(const char* texture_name){
 	return strstr(texture_name,"\\") ? false : true;
 }
 
-void CUITextureMaster::InitTexture(const char* texture_name, IUISimpleTextureControl* tc){
+void CUITextureMaster::InitTexture(const shared_str& texture_name, IUISimpleTextureControl* tc)
+{
 #ifdef DEBUG
 	CTimer T;
 	T.Start();
@@ -74,13 +77,14 @@ void CUITextureMaster::InitTexture(const char* texture_name, IUISimpleTextureCon
 #endif
 		return;
 	}
-	tc->CreateShader(texture_name);
+	tc->CreateShader(texture_name.c_str());
 #ifdef DEBUG
 	m_time += T.GetElapsed_ms();
 #endif
 }
 
-void CUITextureMaster::InitTexture(const char* texture_name, const char* shader_name, IUISimpleTextureControl* tc){
+void CUITextureMaster::InitTexture(const shared_str& texture_name, const char* shader_name, IUISimpleTextureControl* tc)
+{
 #ifdef DEBUG
 	CTimer T;
 	T.Start();
@@ -99,70 +103,66 @@ void CUITextureMaster::InitTexture(const char* texture_name, const char* shader_
 #endif
 		return;
 	}
-	tc->CreateShader(texture_name, shader_name);
+	tc->CreateShader(texture_name.c_str(), shader_name);
 #ifdef DEBUG
 	m_time += T.GetElapsed_ms();
 #endif
 }
 
-float CUITextureMaster::GetTextureHeight(const char* texture_name){
-	xr_map<shared_str, TEX_INFO>::iterator	it;
-	it = m_textures.find(texture_name);
-
-	if (it != m_textures.end())
-		return (*it).second.rect.height();
-	R_ASSERT3(false,"CUITextureMaster::GetTextureHeight Can't find texture", texture_name);
-	return 0;
-}
-
-Frect CUITextureMaster::GetTextureRect(const char* texture_name){
-	xr_map<shared_str, TEX_INFO>::iterator	it;
-	it = m_textures.find(texture_name);
-	if (it != m_textures.end())
-		return (*it).second.rect;
-
-	R_ASSERT3(false,"CUITextureMaster::GetTextureHeight Can't find texture", texture_name);
-	return Frect();
-}
-
-float CUITextureMaster::GetTextureWidth(const char* texture_name){
-	xr_map<shared_str, TEX_INFO>::iterator	it;
-	it = m_textures.find(texture_name);
-
-	if (it != m_textures.end())
-		return (*it).second.rect.width();
-	R_ASSERT3(false,"CUITextureMaster::GetTextureHeight Can't find texture", texture_name);
-	return 0;
-}
-
-LPCSTR CUITextureMaster::GetTextureFileName(const char* texture_name){
-	xr_map<shared_str, TEX_INFO>::iterator	it;
-	it = m_textures.find(texture_name);
-
-	if (it != m_textures.end())
-		return *((*it).second.file);
-	R_ASSERT3(false,"CUITextureMaster::GetTextureFileName Can't find texture", texture_name);
-	return 0;
-}
-
-TEX_INFO CUITextureMaster::FindItem(LPCSTR texture_name, LPCSTR def_texture_name)
+Frect CUITextureMaster::GetTextureRect(const shared_str& texture_name)
 {
-	xr_map<shared_str, TEX_INFO>::iterator	it;
+	TEX_INFO info = FindItem(texture_name);
+	return info.rect;
+}
+
+float CUITextureMaster::GetTextureHeight(const shared_str& texture_name)
+{
+	TEX_INFO info = FindItem(texture_name);
+	return info.rect.height();
+}
+
+float CUITextureMaster::GetTextureWidth(const shared_str& texture_name)
+{
+	TEX_INFO info = FindItem(texture_name);
+	return info.rect.width();
+}
+
+TEX_INFO CUITextureMaster::FindItem(const shared_str& texture_name)
+{
+	xr_map<shared_str, TEX_INFO>::iterator it;
 	it = m_textures.find(texture_name);
 
 	if (it != m_textures.end())
 		return (it->second);
-	else{
-		R_ASSERT2(m_textures.find(def_texture_name)!=m_textures.end(),texture_name);
-		return FindItem	(def_texture_name,NULL);
+	else
+	{
+		return TEX_INFO();
 	}
 }
 
-void CUITextureMaster::GetTextureShader(LPCSTR texture_name, ref_shader& sh){
-	xr_map<shared_str, TEX_INFO>::iterator	it;
+TEX_INFO CUITextureMaster::FindItem(const shared_str& texture_name, const shared_str& def_texture_name)
+{
+	xr_map<shared_str, TEX_INFO>::iterator it;
 	it = m_textures.find(texture_name);
 
-	R_ASSERT3(it != m_textures.end(), "can't find texture", texture_name);
+	if (it != m_textures.end())
+		return (it->second);
+	else
+		return FindItem(def_texture_name);
+}
 
-	sh.create("hud\\default", *((*it).second.file));	
+LPCSTR CUITextureMaster::GetTextureFileName(const shared_str& texture_name)
+{
+	TEX_INFO info = FindItem(texture_name);
+	return *info.file;
+}
+
+void CUITextureMaster::GetTextureShader(const shared_str& texture_name, ref_shader& sh)
+{
+	xr_map<shared_str, TEX_INFO>::iterator it;
+	it = m_textures.find(texture_name);
+
+	R_ASSERT3(it != m_textures.end(), "can't find texture", texture_name.c_str());
+
+	sh.create("hud\\default", *((*it).second.file));
 }
